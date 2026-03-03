@@ -1,0 +1,5 @@
+@if (message()?.invalid() && message()?.touched()) {
+    @for (error of message()?.errors(); track error) {
+        <div [id]="messageId()" class="form-text">{{error.message}}</div>
+    }
+}
