@@ -32,7 +32,7 @@ export class CategoryList extends BaseList<ICategoryModel> {
         data : this.dataModel(),
         buttons : [
           {
-            name : "Deletar",
+            name : "Excluir",
             show : () => {
               return true
             },

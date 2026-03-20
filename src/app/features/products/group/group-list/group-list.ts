@@ -27,14 +27,14 @@ export class GroupList extends BaseList<IGroupModel> {
 
   override createData() {
     const routeData = toSignal(this.route.data);
-
+    
     this.dataModel.set(routeData()?.['data']);
     this.configTable = computed(() => {
       return {
         data : this.dataModel(),
         buttons : [
           {
-            name : "Deletar",
+            name : "Excluir",
             show : () => {
               return true
             },

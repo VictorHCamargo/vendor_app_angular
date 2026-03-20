@@ -1,10 +1,11 @@
 import { inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
 
 export abstract class BaseServices<MODEL,SERVICE> {
     http  = inject(HttpClient);
-    host : string = "http://localhost:3000";
+    host : string = environment.apiUrl;
     
     abstract endPoint : string;
     abstract mapDto(model : MODEL) : SERVICE;
