@@ -53,7 +53,7 @@ app.use((req, res, next) => {
  */
 if (isMainModule(import.meta.url) || process.env['pm_id']) {
   const hostname = process.env['NODE_ENV'] === 'production' ? '0.0.0.0' : 'localhost';
-  const port = process.env['PORT'] || 4000;
+  const port = process.env['PORT'] === undefined ? 4000 : Number(process.env['PORT']);
   app.listen(port, (error) => {
     if (error) {
       throw error;
