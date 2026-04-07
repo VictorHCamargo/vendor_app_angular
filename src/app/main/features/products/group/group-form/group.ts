@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { BaseForms } from '../../../../shared/class/base-form';
 import { IGroupModel } from '../interfaces/group-model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Field, minLength, required, submit } from '@angular/forms/signals';
-import { ErrorMessages } from '../../../../shared/components/error-messages/error-messages';
 import { GroupService } from '../services/group-service';
+import { ErrorMessages } from '../../../../shared/components/error-messages/error-messages';
 import { ToastService } from '../../../../shared/components/toast-messages/services/toast-service';
+import { BaseForms } from '../../../../shared/class/base-form';
 
 @Component({
   selector: 'app-group',

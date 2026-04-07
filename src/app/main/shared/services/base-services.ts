@@ -1,10 +1,12 @@
 import { inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { environment } from "../../../environments/environment";
+import { catchError, Observable } from "rxjs";
+import { environment } from "../../../../environments/environment";
+import { Router } from "@angular/router";
 
 export abstract class BaseServices<MODEL,SERVICE> {
     http  = inject(HttpClient);
+    router = inject(Router);
     host : string = environment.apiUrl;
     
     abstract endPoint : string;
@@ -40,6 +42,22 @@ export abstract class BaseServices<MODEL,SERVICE> {
 
         return newRequest as Observable<MODEL>;
   }
+  processObservable(req : any) {
+    return req.pipe(
+        catchError((errorResponse) => {
+            console.log(errorResponse)
+            const codeStatus = errorResponse.status;
+            if(codeStatus == 401) {
+                this.router.navigate(['unauthorized']);
+
+            } 
+
+            throw errorResponse;
+        },)
+    )
+  }
+
+  
 }
   
    

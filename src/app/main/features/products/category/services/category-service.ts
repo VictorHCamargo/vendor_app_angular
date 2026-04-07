@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ICategoryModel} from '../interfaces/category-model';
 import { ICategoryServiceModel } from '../interfaces/category-service-model';
-import { BaseServices } from '../../../../shared/services/base-services';
 import { map, Observable } from 'rxjs';
+import { BaseServices } from '../../../../shared/services/base-services';
 
 @Injectable({
   providedIn: 'root',

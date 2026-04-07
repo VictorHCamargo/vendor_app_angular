@@ -1,11 +1,10 @@
 import { Component, inject, WritableSignal, signal, computed, Signal } from '@angular/core';
-import { Table } from '../../../../shared/components/table/table';
-import { ITableConfig } from '../../../../shared/components/table/interfaces/table-config';
 import { CategoryService } from '../services/category-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ICategoryModel } from '../interfaces/category-model';
 import { BaseList } from '../../../../shared/class/base-list';
+import { Table } from '../../../../shared/components/table/table';
 import { ToastService } from '../../../../shared/components/toast-messages/services/toast-service';
 //TO-DO: Meus products Grupo e Marca
 @Component({

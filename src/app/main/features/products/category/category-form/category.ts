@@ -1,14 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
 import { ICategoryModel } from '../interfaces/category-model';
 import { Field,required,minLength, submit } from '@angular/forms/signals';
-import { BaseForms } from '../../../../shared/class/base-form';
-import { ErrorMessages } from "../../../../shared/components/error-messages/error-messages";
-import { CategoryService } from '../services/category-service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastMessages } from '../../../../shared/components/toast-messages/toast-messages';
+import { ErrorMessages } from '../../../../shared/components/error-messages/error-messages';
 import { ToastService } from '../../../../shared/components/toast-messages/services/toast-service';
-
-
+import { BaseForms } from '../../../../shared/class/base-form';
+import { CategoryService } from '../services/category-service';
 
 @Component({
   selector: 'app-category',

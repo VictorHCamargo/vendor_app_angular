@@ -5,5 +5,5 @@ import { GroupService } from "../services/group-service";
 
 export const groupDataResolverList : ResolveFn<any> = (route,_state) => {
     const groupService = inject(GroupService);
-    return groupService.search();
+    return groupService.processObservable(groupService.search());
 }
