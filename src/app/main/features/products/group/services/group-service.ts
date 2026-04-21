@@ -8,7 +8,7 @@ import { BaseServices } from '../../../../shared/services/base-services';
   providedIn: 'root',
 })
 export class GroupService extends BaseServices<IGroupModel,IGroupServiceModel>{
-  endPoint = "/grupos";
+  endPoint = "/victor/grupo";
 
   mapDto(model: IGroupModel): IGroupServiceModel {
     return {

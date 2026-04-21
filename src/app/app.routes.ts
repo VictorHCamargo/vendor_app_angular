@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { Unauthorized } from './unauthorized/unauthorized';
 import { Login } from './login/login';
 import { authGuard } from './main/shared/guards/auth.guard';
+import { Main } from './main/main';
+import { HomePage } from './main/features/pages/home-page/home-page';
 
 
 export const routes: Routes = [
@@ -16,8 +18,12 @@ export const routes: Routes = [
     {
         path : "",
         canActivate : [authGuard],
-        loadComponent : () => import('./main/main').then(m => m.Main),
+        component : Main,
         children : [
+            {
+                path: "home",
+                component : HomePage
+            },
             {
                 path:"category",
                 loadChildren: () => import('./main/features/products/category/routes/category.routes').then(m => m.categoryRoutes)
@@ -27,8 +33,9 @@ export const routes: Routes = [
                 loadChildren: () => import('./main/features/products/group/routes/group.routes').then(m => m.groupRoutes)
             },
             {
-                path: "",
-                loadComponent: () => import('./main/features/pages/home-page/home-page').then(m => m.HomePage)
+                path : "",
+                redirectTo : "home",
+                pathMatch : 'full'
             }
         ]
     },

@@ -19,7 +19,12 @@
                 <label for="floatingPassword" class="form-label fw-semibold">Senha</label>
                 <div class="input-group">
                     <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock"></i></span>
-                    <input [field]="formData.password" type="password" class="form-control border-start-0 bg-light" id="floatingPassword" placeholder="••••••">
+                    <input [field]="formData.password"[type]="showPassword() ? 'text' : 'password'" class="form-control border-start-0 bg-light" id="floatingPassword" placeholder="••••••">
+                    <button class="input-group-text bg-white border-start-0" type="button"
+                            (click)="showPassword.set(!showPassword())">
+
+                            <i class="bi" [class]="showPassword() ? 'bi-eye-slash' : 'bi-eye'"></i>
+                    </button>
                 </div>
                 <app-error-messages [message]="formData.password()" [messageId]="'floatingPassword'"></app-error-messages>
             </div>

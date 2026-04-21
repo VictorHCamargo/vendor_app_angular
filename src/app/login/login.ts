@@ -15,8 +15,10 @@ import { ErrorMessages } from '../main/shared/components/error-messages/error-me
 })
 export class Login extends BaseForms<ILoginModel> {
   loginService = inject(LoginService);
-  router = inject(Router);
   toastService = inject(ToastService);
+  router = inject(Router);
+
+  showPassword = signal<boolean>(false);
 
   constructor() {
     super()
@@ -34,14 +36,16 @@ export class Login extends BaseForms<ILoginModel> {
   }
 
   onSign() {
-    const authNoEncode = `${this.model().email}:${this.model().password}`;
 
-    const results = this.loginService.createToken(authNoEncode);
+    const results = this.loginService.login(this.model());
 
     results.subscribe({
       next: (_value) => {
         this.toastService.show("Usuario autorizado!",'success',1500);
-        this.router.navigate(["group","list"]);
+        this.router.navigate(["home"]);
+      },
+      error: (_error) => {
+        this.toastService.show("Dados incorretos",'danger',3000);
       }
     })
   }
