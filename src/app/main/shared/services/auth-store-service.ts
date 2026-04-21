@@ -38,10 +38,11 @@ export class AuthStoreService {
 
   getAuthTokenLocalStorage() {
     const number = localStorage.getItem(this.localStorageExpire);
-    
     this.expireAt.set(number ? Number(number) : Date.now());
-    this.token.set(localStorage.getItem(this.localStorageToken) ?? "");
-    this.user.set(JSON.parse(localStorage.getItem(this.localStorageUser) ?? '') ?? {});
+    this.token.set(localStorage.getItem(this.localStorageToken) ?? '');
+
+    const rawUser = localStorage.getItem(this.localStorageUser);
+    this.user.set(rawUser ? JSON.parse(rawUser) : {});
   }
 
   setAuthUser(data : any) {
