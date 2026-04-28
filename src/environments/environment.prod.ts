@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'https://vendor-service-m72u.onrender.com:3000'
+  apiUrl: 'https://vendor-service-t2gu.onrender.com'
 };
