@@ -1,4 +1,4 @@
 export interface IGroupModel {
-    id : number | null,
-    name: string
+  id: number | null;
+  name: string;
 }

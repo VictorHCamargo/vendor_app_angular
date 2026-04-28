@@ -13,16 +13,14 @@ export class LoginService {
   authLoginService = inject(AuthLoginService);
   authStoreService = inject(AuthStoreService);
   authUserService = inject(AuthUserService);
-  login(model : ILoginModel) : Observable<boolean> {
+  login(model: ILoginModel): Observable<boolean> {
     return this.authLoginService.createToken(model).pipe(
       switchMap(() => {
         return this.authUserService.getUser();
       }),
-      map((_)=> {
+      map((_) => {
         return this.authStoreService.isLogged();
-      })
-    )
+      }),
+    );
   }
-
-  
 }

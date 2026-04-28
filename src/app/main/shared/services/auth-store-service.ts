@@ -4,36 +4,36 @@ import { computed, Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthStoreService {
-  private localStorageToken = "token";
-  private localStorageExpire = "expireIn";
-  private localStorageUser = "user";
+  private localStorageToken = 'token';
+  private localStorageExpire = 'expireIn';
+  private localStorageUser = 'user';
 
-  token = signal<string>("");
+  token = signal<string>('');
   expireAt = signal<number>(0);
   user = signal<any>({});
 
   isLogged = computed(() => {
-    return !!this.token() && !this.isTokenExpired()
+    return !!this.token() && !this.isTokenExpired();
   });
 
   isTokenExpired = computed(() => {
     const exp = this.expireAt();
 
-    return exp ? Date.now() > exp : true
+    return exp ? Date.now() > exp : true;
   });
-  setAuthToken(data : any) {
+  setAuthToken(data: any) {
     const expireAt = Date.now() + data.expiresIn * 1000;
 
     this.expireAt.set(expireAt);
 
     this.token.set(data.token);
 
-    this.setAuthTokenLocalStorage()
+    this.setAuthTokenLocalStorage();
   }
 
   private setAuthTokenLocalStorage() {
-    localStorage.setItem(this.localStorageToken,this.token());
-    localStorage.setItem(this.localStorageExpire,`${this.expireAt()}`);
+    localStorage.setItem(this.localStorageToken, this.token());
+    localStorage.setItem(this.localStorageExpire, `${this.expireAt()}`);
   }
 
   getAuthTokenLocalStorage() {
@@ -45,9 +45,9 @@ export class AuthStoreService {
     this.user.set(rawUser ? JSON.parse(rawUser) : {});
   }
 
-  setAuthUser(data : any) {
+  setAuthUser(data: any) {
     this.user.set(data);
-    localStorage.setItem(this.localStorageUser, JSON.stringify(data))
+    localStorage.setItem(this.localStorageUser, JSON.stringify(data));
   }
 
   getUser() {

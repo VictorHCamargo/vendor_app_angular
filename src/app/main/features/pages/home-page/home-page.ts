@@ -12,11 +12,11 @@ export class HomePage {
   authStoreService = inject(AuthStoreService);
   router = inject(Router);
 
-  onNavigate(path : string, subPath? : string) {
-    this.router.navigate([path,subPath])
+  onNavigate(path: string, subPath?: string) {
+    this.router.navigate([path, subPath]);
   }
 
   get username() {
-    return this.authStoreService.getUser().nomecredencial
+    return this.authStoreService.getUser().nomecredencial;
   }
 }

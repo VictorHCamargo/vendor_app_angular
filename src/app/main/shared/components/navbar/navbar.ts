@@ -1,4 +1,4 @@
-import { Component,input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { InterfacesNavbar } from './interfaces/interfaces-navbar';
 
 @Component({

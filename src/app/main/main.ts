@@ -5,27 +5,27 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-main',
-  imports: [RouterOutlet,Navbar],
+  imports: [RouterOutlet, Navbar],
   templateUrl: './main.html',
   styleUrl: './main.scss',
 })
 export class Main {
-  InterfacesNavbar :  InterfacesNavbar[] = [
-      {
-        name : "produtos",
-        way : "#",
-        children : [
-          {
-            name : "categoria",
-            way : "/category/list",
-            children : []
-          },
-          {
-            name : "grupos",
-            way : "/group/list",
-            children : []
-          }
-        ]
-    }
-  ]
+  InterfacesNavbar: InterfacesNavbar[] = [
+    {
+      name: 'produtos',
+      way: '#',
+      children: [
+        {
+          name: 'categoria',
+          way: '/category/list',
+          children: [],
+        },
+        {
+          name: 'grupos',
+          way: '/group/list',
+          children: [],
+        },
+      ],
+    },
+  ];
 }

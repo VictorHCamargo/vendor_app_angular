@@ -1,5 +1,5 @@
 export interface InterfacesNavbar {
-    name : string,
-    way : string,
-    children : InterfacesNavbar[]
+  name: string;
+  way: string;
+  children: InterfacesNavbar[];
 }

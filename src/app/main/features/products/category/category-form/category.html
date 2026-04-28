@@ -7,19 +7,27 @@
     </div>
     <div class="row mb-3">
       <div class="col">
-          <label for="nome" class="form-label">Nome da Categoria</label>
-          <input [field]="formData.name" type="text" class="form-control" id="nome" aria-describedby="nomeHelp">
-          <app-error-messages [message]="formData.name()" [messageId]="idHelp"></app-error-messages>
+        <label for="nome" class="form-label">Nome da Categoria</label>
+        <input
+          [field]="formData.name"
+          type="text"
+          class="form-control"
+          id="nome"
+          aria-describedby="nomeHelp"
+        />
+        <app-error-messages [message]="formData.name()" [messageId]="idHelp"></app-error-messages>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-        @if(this.saving()) {
-          <img src="../../../../assets/loading.png" class="rounded loading-animation">
+        @if (this.saving()) {
+          <img src="../../../../assets/loading.png" class="rounded loading-animation" />
         } @else {
           <button type="button" class="btn btn-danger" (click)="onCancel()">Voltar</button>
-          <button [disabled]="isDisabled" type="button" class="btn btn-primary" (click)="onSalve()">Salvar</button>
+          <button [disabled]="isDisabled" type="button" class="btn btn-primary" (click)="onSalve()">
+            Salvar
+          </button>
         }
       </div>
     </div>

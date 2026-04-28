@@ -1,1 +1,1 @@
-export type ItoastStyleConfig = "success"| "danger" | "info";
+export type ItoastStyleConfig = 'success' | 'danger' | 'info';

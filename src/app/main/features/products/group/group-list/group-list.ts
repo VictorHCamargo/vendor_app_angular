@@ -7,7 +7,6 @@ import { Table } from '../../../../shared/components/table/table';
 import { BaseList } from '../../../../shared/class/base-list';
 import { ToastService } from '../../../../shared/components/toast-messages/services/toast-service';
 
-
 @Component({
   selector: 'app-group-list',
   imports: [Table],
@@ -18,7 +17,7 @@ export class GroupList extends BaseList<IGroupModel> {
   router = inject(Router);
   route = inject(ActivatedRoute);
   groupService = inject(GroupService);
-  toastService = inject(ToastService)
+  toastService = inject(ToastService);
 
   constructor() {
     super();
@@ -27,60 +26,64 @@ export class GroupList extends BaseList<IGroupModel> {
 
   override createData() {
     const routeData = toSignal(this.route.data);
-    
+
     this.dataModel.set(routeData()?.['data']);
     this.configTable = computed(() => {
       return {
-        data : this.dataModel(),
-        buttons : [
+        data: this.dataModel(),
+        buttons: [
           {
-            name : "Excluir",
-            show : () => {
-              return true
+            name: 'Excluir',
+            show: () => {
+              return true;
             },
-            action : (data) => {
+            action: (data) => {
               this.groupService.delete(data.id!).subscribe({
                 next: (_) => {
                   this.reloadData();
-                  this.toastService.show("Categoria deletada com sucesso","success",2000);
+                  this.toastService.show('Categoria deletada com sucesso', 'success', 2000);
                 },
                 error: (_) => {
-                  this.toastService.show("Não é permitido deletar categorias vinculadas a empresas","danger",2000);
-                }
+                  this.toastService.show(
+                    'Não é permitido deletar categorias vinculadas a empresas',
+                    'danger',
+                    2000,
+                  );
+                },
               });
             },
-            style : 'btn btn-danger'
+            style: 'btn btn-danger',
           },
           {
-            name : "Editar",
-            show : () => {
-              return true
+            name: 'Editar',
+            show: () => {
+              return true;
             },
-            action : (data) => {
-              this.router.navigate(['group','form',`${data.id}`]);
+            action: (data) => {
+              this.router.navigate(['group', 'form', `${data.id}`]);
             },
-            style : 'btn btn-primary'
-          }
+            style: 'btn btn-primary',
+          },
         ],
-        titles : [
+        titles: [
           {
-            name : "Grupo de Produtos",
-            dataField : 'name'
-          }
-        ]
-      }
-    })
+            name: 'Grupo de Produtos',
+            dataField: 'name',
+          },
+        ],
+      };
+    });
   }
 
   override reloadData() {
-    this.toastService.show("As informações foram atualizadas","info",1000);
+    this.toastService.show('As informações foram atualizadas', 'info', 1000);
     this.groupService.search().subscribe((result) => {
       this.dataModel.set(result as IGroupModel[]);
-    })
+    });
   }
 
   override onNewRegister() {
-    this.toastService.show("Indo para o cadastro dos grupos",'info',1000);
-    this.router.navigate(['group','form']);
+    this.toastService.show('Indo para o cadastro dos grupos', 'info', 1000);
+    this.router.navigate(['group', 'form']);
   }
 }

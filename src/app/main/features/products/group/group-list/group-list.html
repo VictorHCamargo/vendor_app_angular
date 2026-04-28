@@ -1,13 +1,15 @@
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <h2>Lista de Grupos</h2>
-        </div>
-        <div class="col text-end">
-            <button type="button" class="btn btn-primary" (click)="onNewRegister()">Cadastrar novo Grupo</button>
-        </div>
+  <div class="row">
+    <div class="col">
+      <h2>Lista de Grupos</h2>
     </div>
-    <div class="row">
-        <app-table [tableConfig]="configTable()"></app-table>
+    <div class="col text-end">
+      <button type="button" class="btn btn-primary" (click)="onNewRegister()">
+        Cadastrar novo Grupo
+      </button>
     </div>
+  </div>
+  <div class="row">
+    <app-table [tableConfig]="configTable()"></app-table>
+  </div>
 </div>

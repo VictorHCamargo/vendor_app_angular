@@ -1,5 +1,4 @@
 import { Injectable, signal } from '@angular/core';
-import { ItoastStyleConfig } from '../interfaces/toast-style-config';
 import { IToastConfig } from '../interfaces/toast-config';
 
 @Injectable({
@@ -15,10 +14,10 @@ export class ToastService {
       id,
       message,
       styleToast: style,
-      duration
+      duration,
     };
 
-    this.toasts.update(list => [...list, newToast]);
+    this.toasts.update((list) => [...list, newToast]);
 
     setTimeout(() => {
       this.remove(id);
@@ -26,6 +25,6 @@ export class ToastService {
   }
 
   remove(id: number) {
-    this.toasts.update(list => list.filter(t => t.id !== id));
+    this.toasts.update((list) => list.filter((t) => t.id !== id));
   }
 }

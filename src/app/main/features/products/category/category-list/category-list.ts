@@ -19,67 +19,68 @@ export class CategoryList extends BaseList<ICategoryModel> {
   categoryService = inject(CategoryService);
   toastService = inject(ToastService);
   constructor() {
-    super()
+    super();
     this.createData();
   }
-  
+
   override createData() {
     const routeData = toSignal(this.route.data);
     this.dataModel.set(routeData()?.['data']);
     this.configTable = computed(() => {
       return {
-        data : this.dataModel(),
-        buttons : [
+        data: this.dataModel(),
+        buttons: [
           {
-            name : "Excluir",
-            show : () => {
-              return true
+            name: 'Excluir',
+            show: () => {
+              return true;
             },
-            action : (data) => {
+            action: (data) => {
               this.categoryService.delete(data.id!).subscribe({
                 next: (_) => {
                   this.reloadData();
-                  this.toastService.show("Categoria deletada com sucesso","success",2000);
+                  this.toastService.show('Categoria deletada com sucesso', 'success', 2000);
                 },
                 error: (_) => {
-                  this.toastService.show("Não é permitido deletar categorias vinculadas a empresas","danger",2000);
-                }
+                  this.toastService.show(
+                    'Não é permitido deletar categorias vinculadas a empresas',
+                    'danger',
+                    2000,
+                  );
+                },
               });
             },
-            style : 'btn btn-danger'
+            style: 'btn btn-danger',
           },
           {
-            name : "Editar",
-            show : () => {
-              return true
+            name: 'Editar',
+            show: () => {
+              return true;
             },
-            action : (data) => {
-              this.router.navigate(['category','form',`${data.id}`]);
+            action: (data) => {
+              this.router.navigate(['category', 'form', `${data.id}`]);
             },
-            style : 'btn btn-primary'
-          }
+            style: 'btn btn-primary',
+          },
         ],
-        titles : [
+        titles: [
           {
-            name : "Categoria de Produtos",
-            dataField : "name"
-          }
-        ]
-      }
-    }) 
+            name: 'Categoria de Produtos',
+            dataField: 'name',
+          },
+        ],
+      };
+    });
   }
-  
-  
+
   override reloadData() {
     this.categoryService.search().subscribe((result) => {
       this.dataModel.set(result as ICategoryModel[]);
-    })
+    });
   }
 
-  
-  
   override onNewRegister() {
-    this.toastService.show("Indo para o cadastro das Categorias",'info');
-    this.router.navigate(['category','form'])
+    this.toastService.show('Indo para o cadastro das Categorias', 'info');
+    this.router.navigate(['category', 'form']);
   }
 }
