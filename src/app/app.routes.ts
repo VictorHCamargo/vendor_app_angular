@@ -4,6 +4,7 @@ import { Login } from './login/login';
 import { authGuard } from './main/shared/guards/auth.guard';
 import { Main } from './main/main';
 import { HomePage } from './main/features/pages/home-page/home-page';
+import { ExternalPartner } from './main/external-partner/external-partner';
 
 export const routes: Routes = [
   {
@@ -41,6 +42,10 @@ export const routes: Routes = [
         pathMatch: 'full',
       },
     ],
+  },
+  {
+    path: 'externalPartner',
+    component : ExternalPartner
   },
   {
     path: '**',

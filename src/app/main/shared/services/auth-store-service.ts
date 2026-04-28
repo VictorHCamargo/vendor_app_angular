@@ -1,4 +1,5 @@
 import { computed, Injectable, signal } from '@angular/core';
+import { IAuthTokenConfig } from '../interfaces/auth-token-config';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ export class AuthStoreService {
 
     return exp ? Date.now() > exp : true;
   });
-  setAuthToken(data: any) {
+  setAuthToken(data: IAuthTokenConfig) {
     const expireAt = Date.now() + data.expiresIn * 1000;
 
     this.expireAt.set(expireAt);
