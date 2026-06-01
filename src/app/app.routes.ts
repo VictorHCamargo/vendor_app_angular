@@ -37,6 +37,11 @@ export const routes: Routes = [
           import('./main/features/products/group/routes/group.routes').then((m) => m.groupRoutes),
       },
       {
+        path: 'people',
+        loadChildren: () =>
+          import('./main/features/people/routes/people.routes').then((m) => m.peopleRoutes),
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
@@ -45,7 +50,7 @@ export const routes: Routes = [
   },
   {
     path: 'externalPartner',
-    component : ExternalPartner
+    component: ExternalPartner,
   },
   {
     path: '**',

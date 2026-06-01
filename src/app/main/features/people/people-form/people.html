@@ -1,0 +1,122 @@
+<div class="container">
+  <form>
+    <div class="row mb-3 mt-3">
+      <div class="col">
+        <h1>Cadastro de {{ html.title }}</h1>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="nome" class="form-label">{{ html.nameLabel }}</label>
+        <input
+          [field]="formData.name"
+          type="text"
+          class="form-control"
+          id="nome"
+          aria-describedby="nomeHelp"
+        />
+        <app-error-messages [message]="formData.name()" [messageId]="idHelp"></app-error-messages>
+      </div>
+      <div class="col">
+        <label for="nome" class="form-label">{{ html.nicknameLabel }}</label>
+        <input
+          [field]="formData.nickname"
+          type="text"
+          class="form-control"
+          id="nome"
+          aria-describedby="nomeHelp"
+        />
+        <app-error-messages
+          [message]="formData.nickname()"
+          [messageId]="idHelp"
+        ></app-error-messages>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="nome" class="form-label">{{ html.stateLabel }}</label>
+        <input
+          [field]="formData.stateDocument"
+          type="text"
+          class="form-control"
+          id="nome"
+          aria-describedby="nomeHelp"
+        />
+        <app-error-messages
+          [message]="formData.stateDocument()"
+          [messageId]="idHelp"
+        ></app-error-messages>
+      </div>
+      <div class="col">
+        <label for="nome" class="form-label">{{ html.federalLabel }}</label>
+        <input
+          [field]="formData.federalDocument"
+          type="text"
+          class="form-control"
+          id="nome"
+          aria-describedby="nomeHelp"
+        />
+        <app-error-messages
+          [message]="formData.federalDocument()"
+          [messageId]="idHelp"
+        ></app-error-messages>
+      </div>
+    </div>
+    @if (isNaturalPerson()) {
+      <div class="row mb-3"> <!--TO-DO: Resolver esse problema, temos até amanha em!-->
+        <h1>Pessoa fisica is works</h1>
+        <div class="col">
+          <label for="nome" class="form-label">{{ html.genderLabel }}</label>
+          <input
+            [field]="formData.gender"
+            type="text"
+            class="form-control"
+            id="nome"
+            aria-describedby="nomeHelp"
+          />
+          <app-error-messages
+            [message]="formData.gender()"
+            [messageId]="idHelp"
+          ></app-error-messages>
+        </div>
+        <div class="col">
+          <label for="nome" class="form-label">{{ html.ageLabel }}</label>
+          <input
+            [field]="formData.age"
+            type="text"
+            class="form-control"
+            id="nome"
+            aria-describedby="nomeHelp"
+          />
+          <app-error-messages [message]="formData.age()" [messageId]="idHelp"></app-error-messages>
+        </div>
+        <div class="col">
+          <label for="nome" class="form-label">{{ html.bondLabel }}</label>
+          <input
+            [field]="formData.bond"
+            type="text"
+            class="form-control"
+            id="nome"
+            aria-describedby="nomeHelp"
+          />
+          <app-error-messages
+            [message]="formData.bond()"
+            [messageId]="idHelp"
+          ></app-error-messages>
+        </div>
+      </div>
+    }
+    <div class="row">
+      <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+        @if (this.saving()) {
+          <img src="../../../../assets/loading.png" class="rounded loading-animation" />
+        } @else {
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Voltar</button>
+          <button [disabled]="isDisabled" type="button" class="btn btn-primary" (click)="onSalve()">
+            Salvar
+          </button>
+        }
+      </div>
+    </div>
+  </form>
+</div>

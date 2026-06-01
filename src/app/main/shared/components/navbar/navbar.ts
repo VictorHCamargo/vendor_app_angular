@@ -13,9 +13,6 @@ export class Navbar {
 
   hasExternalRedirect(url : string) : boolean {
     url.includes("");
-
-
-
     return false
   }
 }

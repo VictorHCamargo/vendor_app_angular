@@ -7,7 +7,7 @@ import { AuthStoreService } from './main/shared/services/auth-store-service';
   selector: 'app-root',
   imports: [RouterOutlet, ToastMessages],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('angular');

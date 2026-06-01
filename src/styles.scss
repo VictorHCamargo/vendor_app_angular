@@ -1,16 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 .loading-animation {
-    overflow: none;
-    animation-name: anima;
-    animation-duration: 1.2s;
-    animation-iteration-count: infinite;
+  overflow: none;
+  animation-name: anima;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
 }
 
-
 @keyframes anima {
-    0% {transform: rotate(0deg);}
+  0% {
+    transform: rotate(0deg);
+  }
 
-    50% {transform: rotate(180deg);}
+  50% {
+    transform: rotate(180deg);
+  }
 
-    100% {transform: rotate(360deg);}
+  100% {
+    transform: rotate(360deg);
+  }
 }

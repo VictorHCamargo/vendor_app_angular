@@ -8,6 +8,6 @@ import { FieldState } from '@angular/forms/signals';
   styleUrl: './error-messages.scss',
 })
 export class ErrorMessages {
-  message = input<FieldState<string>>();
+  message = input<FieldState<any>>();
   messageId = input<string>();
 }
