@@ -1,0 +1,10 @@
+<div class="col">
+  <label [for]="info().idLabel" class="form-label">{{info().nameLabel}}</label>
+  <input
+    [field]="$any(info().inputField)[info().idLabel]"
+    [type]="info().type"
+    class="form-control"
+    [id]="info().idLabel"
+    [aria-describedby]="info().messageId"
+  />
+</div>
