@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { ResolveFn, Router } from '@angular/router';
 import { EMPTY } from 'rxjs';
 import { ToastService } from '../../../shared/components/toast-messages/services/toast-service';
-import { IPersonModel, TPersonType } from '../interfaces/person-model';
+import { ILegalPerson, INaturalPerson, IPersonModel, TPersonType } from '../interfaces/person-model';
 
 function isPersonType(params: string): params is TPersonType {
   return params === 'F' || params === 'J';
@@ -29,7 +29,7 @@ function modelDTOType(people: TPersonType): IPersonModel {
       bond: {
         id: null,
       },
-    } as IPersonModel;
+    } as INaturalPerson;
   } else {
     return {
       id: null,
@@ -39,7 +39,7 @@ function modelDTOType(people: TPersonType): IPersonModel {
       federalDocument: '',
       peopleType: people,
       stateDocument: '',
-    } as IPersonModel;
+    } as ILegalPerson;
   }
 }
 

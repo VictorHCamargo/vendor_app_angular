@@ -1,3 +1,5 @@
+import { IPartFormConfig } from '../../../shared/components/form/components/part-form/interfaces/part-form-config';
+import { ILegalPerson, INaturalPerson } from '../interfaces/person-model';
 import { IPersonWebConfig } from '../interfaces/person-web-config';
 
 export const NATURAL_PERSON: IPersonWebConfig = {
@@ -18,3 +20,13 @@ export const ENTITIES_PERSON: IPersonWebConfig = {
   federalLabel: 'CNPJ',
   stateLabel: 'Inscriçao Estadual',
 };
+
+export const NATURAL_PERSON_MODEL : Partial<Record<keyof INaturalPerson, IPartFormConfig<INaturalPerson>>> = {
+
+}
+
+export const ENTITIES_PERSON_MODEL : Partial<Record<keyof ILegalPerson, IPartFormConfig<ILegalPerson>>> = {
+  
+}
+
+export const FORM_PERSON : 

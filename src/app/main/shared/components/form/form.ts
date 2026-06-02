@@ -1,7 +1,5 @@
 import { Component, input, signal } from '@angular/core';
 import { IFormConfig } from './interfaces/form-config';
-import { ICategoryModel } from '../../../features/products/category/interfaces/category-model';
-import { form } from '@angular/forms/signals';
 import { IPartFormConfig } from './components/part-form/interfaces/part-form-config';
 import { PartForm } from './components/part-form/part-form';
 
@@ -12,7 +10,6 @@ import { PartForm } from './components/part-form/part-form';
   styleUrl: './form.scss',
 })
 export class Form<MODEL> {
-  model = input.required<MODEL>();
   fieldArray = signal<IPartFormConfig<MODEL>[]>([]);
   form = input.required<IFormConfig<MODEL>>()
 

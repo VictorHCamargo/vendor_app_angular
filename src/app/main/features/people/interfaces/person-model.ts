@@ -2,15 +2,25 @@ export type TPersonType = 'F' | 'J';
 export type TGenderType = 'M' | 'F';
 export type TActiveType = 'A' | 'I';
 
-export interface IPersonModel {
+export type IPersonModel = INaturalPerson | ILegalPerson
+
+interface IBasePerson {
   id: number | null;
+  peopleType : TPersonType
   name: string;
   nickname: string;
-  peopleType: TPersonType;
-  gender: TGenderType | null;
-  age: number | null;
   federalDocument: string;
   stateDocument: string;
   active: TActiveType;
+}
+
+export interface INaturalPerson extends IBasePerson {
+  peopleType: 'F';
+  gender: TGenderType | null;
+  age: number | null;
   bond : Pick<IPersonModel, 'id'> | null;
+}
+
+export interface ILegalPerson extends IBasePerson {
+  peopleType: 'J';
 }
