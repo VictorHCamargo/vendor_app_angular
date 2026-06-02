@@ -1,40 +1,52 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { IFormConfig } from './interfaces/form-config';
 import { ICategoryModel } from '../../../features/products/category/interfaces/category-model';
 import { form } from '@angular/forms/signals';
 import { IPartFormConfig } from './components/part-form/interfaces/part-form-config';
+import { PartForm } from './components/part-form/part-form';
 
 @Component({
   selector: 'app-form',
-  imports: [],
+  imports: [PartForm],
   templateUrl: './form.html',
   styleUrl: './form.scss',
 })
-export class Form {
-  testeArray = signal<IPartFormConfig<ICategoryModel>[]>([]);
-  teste : IFormConfig<ICategoryModel> = {
-    formInfo : {
-      name : {
-        idLabel : 'name',
-        inputField : form(signal<ICategoryModel>({id : null, name : ''})),
-        messageId : 'nameId',
-        nameLabel : 'seila kkkkkkkkk',
-        type : 'text'
-      }
-    }
+export class Form<MODEL> {
+  model = input.required<MODEL>();
+  fieldArray = signal<IPartFormConfig<MODEL>[]>([]);
+  form = input.required<IFormConfig<MODEL>>()
+
+  constructor() {
+    this.mapDTO();
   }
 
   mapDTO() {
-    const formInfoArray = this.objectKeys(this.teste.formInfo); //TO-DO: Terminar de transformar o objeto formInfo em uma array acessivel para criar um formulario dinamico!
+    const formInfoArray = this.objectKeys(this.form().formInfo);
 
-    console.log(this.teste.formInfo['name'])
+    formInfoArray.forEach((key: string) => {
+      const keyModel = key as keyof MODEL;
 
-  }
-  constructor() {
-    this.mapDTO()
+      const dataFormInfo = this.form().formInfo[keyModel];
+
+      if (dataFormInfo != undefined) {
+        this.fieldArray.update((value) => [dataFormInfo, ...value]);
+      }
+    });
   }
 
   get objectKeys() {
-    return Object.keys
+    return Object.keys;
+  }
+
+  get fieldRows() : IPartFormConfig<MODEL>[][] {
+    const rows : IPartFormConfig<MODEL>[][] = [];
+
+    for (let i = 0; i < this.fieldArray().length; i += this.form().fieldsPerRow) {
+      const rowPiece = this.fieldArray().slice(i, i + this.form().fieldsPerRow);
+
+      rows.push(rowPiece);
+    }
+
+    return rows;
   }
 }

@@ -54,10 +54,6 @@ export const routes: Routes = [
     component: ExternalPartner,
   },
   {
-    path : 'test',
-    component : Form
-  },
-  {
     path: '**',
     redirectTo: 'login',
   },

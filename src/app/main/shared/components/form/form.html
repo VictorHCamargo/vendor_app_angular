@@ -1,5 +1,7 @@
-
-<div class="row mb-3">
-    
-    
-</div>
+@for (row of fieldRows; track $index) {
+  <div class="row mb-3">
+    @for(dataFormInfo of row; track dataFormInfo.idLabel) {
+        <app-part-form [info]="dataFormInfo"></app-part-form>
+    }
+  </div>
+}
