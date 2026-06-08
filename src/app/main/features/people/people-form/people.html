@@ -5,7 +5,18 @@
         <h1>Cadastro de {{ html.title }}</h1>
       </div>
     </div>
-    <app-form [form]="formConfig"></app-form>
+    <div class="row mb-3">
+      <div class="col">
+        <app-form-input [info]="createConfigInput('input',{nameLabel: 'Nome',
+      type: 'text',},'name',formData.name,'name')"> </app-form-input>
+      </div>
+      <div class="col">
+        <app-form-input [info]="testRadio"> </app-form-input>
+      </div>
+      <div class="col">
+        <app-form-input [info]="testSelect"></app-form-input>
+      </div>
+    </div>
     <!-- <div class="row mb-3">
       <div class="col">
         <label for="nome" class="form-label">{{ html.nameLabel }}</label>

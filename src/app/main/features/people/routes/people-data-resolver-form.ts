@@ -46,7 +46,7 @@ function modelDTOType(people: TPersonType): IPersonModel {
 export const peopleDataResolverForm: ResolveFn<any> = (route, _state) => {
   const router = inject(Router);
   const toastService = inject(ToastService);
-  const people = route.paramMap.get('type');
+  const people = 'F';
   if (people) {
     if (isPersonType(people)) {
       return modelDTOType(people)

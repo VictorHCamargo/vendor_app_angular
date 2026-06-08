@@ -5,7 +5,6 @@ import { authGuard } from './main/shared/guards/auth.guard';
 import { Main } from './main/main';
 import { HomePage } from './main/features/pages/home-page/home-page';
 import { ExternalPartner } from './main/external-partner/external-partner';
-import { Form } from './main/shared/components/form/form';
 
 export const routes: Routes = [
   {
@@ -38,16 +37,16 @@ export const routes: Routes = [
           import('./main/features/products/group/routes/group.routes').then((m) => m.groupRoutes),
       },
       {
-        path: 'people',
-        loadChildren: () =>
-          import('./main/features/people/routes/people.routes').then((m) => m.peopleRoutes),
-      },
-      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
       },
     ],
+  },
+  {
+    path: 'people',
+    loadChildren: () =>
+      import('./main/features/people/routes/people.routes').then((m) => m.peopleRoutes),
   },
   {
     path: 'externalPartner',
