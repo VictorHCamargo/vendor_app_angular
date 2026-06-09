@@ -7,73 +7,79 @@
     </div>
     <div class="row mb-3">
       <div class="col">
-        <app-form-input [info]="createConfigInput('input',{nameLabel: 'Nome',
-      type: 'text',},'name',formData.name,'name')"> </app-form-input>
-      </div>
-      <div class="col">
-        <app-form-input [info]="testRadio"> </app-form-input>
-      </div>
-      <div class="col">
-        <app-form-input [info]="testSelect"></app-form-input>
-      </div>
-    </div>
-    <!-- <div class="row mb-3">
-      <div class="col">
-        <label for="nome" class="form-label">{{ html.nameLabel }}</label>
-        <input
-          [field]="formData.name"
-          type="text"
-          class="form-control"
-          id="nome"
-          aria-describedby="nomeHelp"
+        <app-form-input
+          [messageId]="'name'"
+          [fieldTree]="formData.name"
+          [type]="'input'"
+          [info]="{
+            idLabel: 'name',
+            nameLabel: html.nameLabel,
+            type: 'text',
+          }"
         />
-        <app-error-messages [message]="formData.name()" [messageId]="idHelp"></app-error-messages>
       </div>
       <div class="col">
-        <label for="nome" class="form-label">{{ html.nicknameLabel }}</label>
-        <input
-          [field]="formData.nickname"
-          type="text"
-          class="form-control"
-          id="nome"
-          aria-describedby="nomeHelp"
+        <app-form-input
+          [messageId]="'nickname'"
+          [fieldTree]="formData.nickname"
+          [type]="'input'"
+          [info]="{
+            idLabel: 'nickname',
+            nameLabel: html.nicknameLabel,
+            type: 'text',
+          }"
         />
-        <app-error-messages
-          [message]="formData.nickname()"
-          [messageId]="idHelp"
-        ></app-error-messages>
+      </div>
+      <div class="col">
+        <label class="form-label">Status</label>
+        <br />
+        <app-form-input
+          [messageId]="'active'"
+          [fieldTree]="formData.active"
+          [type]="'radio'"
+          [info]="{
+            options: [
+              {
+                data: 'Ativo',
+                value: 'A',
+              },
+              {
+                data: 'Inativo',
+                value: 'I',
+              },
+            ],
+          }"
+        />
       </div>
     </div>
     <div class="row mb-3">
       <div class="col">
-        <label for="nome" class="form-label">{{ html.stateLabel }}</label>
-        <input
-          [field]="formData.stateDocument"
-          type="text"
-          class="form-control"
-          id="nome"
-          aria-describedby="nomeHelp"
+        <app-form-input
+          [messageId]="'state'"
+          [fieldTree]="formData.stateDocument"
+          [type]="'input'"
+          [info]="{
+            idLabel: 'stateDocument',
+            nameLabel: html.stateLabel,
+            type: 'number',
+          }"
         />
-        <app-error-messages
-          [message]="formData.stateDocument()"
-          [messageId]="idHelp"
-        ></app-error-messages>
       </div>
       <div class="col">
-        <label for="nome" class="form-label">{{ html.federalLabel }}</label>
-        <input
-          [field]="formData.federalDocument"
-          type="text"
-          class="form-control"
-          id="nome"
-          aria-describedby="nomeHelp"
+        <app-form-input
+          [messageId]="'federal'"
+          [fieldTree]="formData.federalDocument"
+          [type]="'input'"
+          [info]="{
+            idLabel: 'federalDocument',
+            nameLabel: html.federalLabel,
+            type: 'number',
+          }"
         />
-        <app-error-messages
-          [message]="formData.federalDocument()"
-          [messageId]="idHelp"
-        ></app-error-messages>
       </div>
     </div>
+    
+    <!-- <div class="row mb-3">
     @if (isNaturalPerson()) {
       <div class="row mb-3"> 
         <h1>Pessoa fisica is works</h1>

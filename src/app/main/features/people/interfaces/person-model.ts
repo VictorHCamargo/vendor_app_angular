@@ -1,3 +1,5 @@
+import { IAddressModel } from "./address-model";
+
 export type TPersonType = 'F' | 'J';
 export type TGenderType = 'M' | 'F';
 export type TActiveType = 'A' | 'I';
@@ -12,6 +14,7 @@ interface IBasePerson {
   federalDocument: string;
   stateDocument: string;
   active: TActiveType;
+  addresses : IAddressModel[]
 }
 
 export interface INaturalPerson extends IBasePerson {

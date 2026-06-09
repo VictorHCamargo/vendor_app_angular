@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { Field, FieldTree } from '@angular/forms/signals';
-import { IFormInputConfig } from './interfaces/form-input-config';
+import { IFormInputConfig, TTypeInput } from './interfaces/form-input-config';
 import { ErrorMessages } from '../error-messages/error-messages';
 
 @Component({
@@ -11,8 +11,11 @@ import { ErrorMessages } from '../error-messages/error-messages';
 })
 export class FormInput<MODEL> {
   info = input.required<IFormInputConfig<MODEL>>();
+  type = input.required<TTypeInput>();
+  messageId = input.required<string>()
+  fieldTree = input.required<FieldTree<string | number | boolean | null>>()
 
   get stringField() {
-    return this.info().inputField as FieldTree<string>
+    return this.fieldTree() as FieldTree<string>
   }
 }

@@ -1,7 +1,7 @@
-@if (info().typeInput != 'radio') {
+@if (type() != 'radio') {
   <label [for]="info().idLabel" class="form-label">{{ info().nameLabel }}</label>
 }
-@switch (info().typeInput) {
+@switch (type()) {
   @case ('radio') {
     @for (option of info().options; track option.data) {
       <label class="form-check-label" [for]="option.data">{{ option.data }}</label>
@@ -15,7 +15,7 @@
     }
   }
   @case ('select') {
-    <select class="form-select" [field]="stringField">
+    <select class="form-select" [field]="stringField" [id]="info().idLabel">
       @for (option of info().options; track option.data) {
         <option [value]="option.value">{{ option.data }}</option>
       }
@@ -23,13 +23,13 @@
   }
   @case ('input') {
     <input
-      [field]="info().inputField"
+      [field]="fieldTree()"
       [type]="info().type"
       class="form-control"
       [id]="info().idLabel"
-      [aria-describedby]="info().messageId"
+      [aria-describedby]="messageId()"
     />
   }
 }
-<app-error-messages [message]="info().inputField()" [messageId]="info().messageId">
+<app-error-messages [message]="fieldTree()()" [messageId]="messageId()">
 </app-error-messages>

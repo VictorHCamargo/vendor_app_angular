@@ -4,10 +4,6 @@ export interface IFormInputConfig<MODEL> {
   idLabel?: keyof MODEL;
   nameLabel?: string;
   type?: string;
-  messageId: string;
-  inputField: FieldTree<string | number | null | boolean>;
-
-  typeInput: TTypeInput;
   options?: TOpitons[];
 }
 
