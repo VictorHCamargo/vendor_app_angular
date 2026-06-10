@@ -3,12 +3,12 @@
     <tr>
       @for (title of tableConfig()?.titles; track $index) {
         <th>{{ title.name }}</th>
-        <th>Ações</th>
       }
+      <th>Ações</th>
     </tr>
   </thead>
   <tbody>
-    @for (model of tableConfig()?.data; track $index) {
+    @for (model of tableConfig()?.data; track $index; let i = $index) {
       <tr>
         @for (title of tableConfig()?.titles; track $index) {
           <td>{{ model[title.dataField] }}</td>
@@ -17,12 +17,18 @@
         <td>
           @for (button of tableConfig()?.buttons; track $index) {
             @if (button.show()) {
-              <button type="button" [classList]="button.style" (click)="button.action(model)">
+              <button type="button" [classList]="button.style" (click)="button.action(model,i)">
                 {{ button.name }}
               </button>
               &nbsp;
             }
           }
+        </td>
+      </tr>
+    } @empty {
+      <tr>
+        <td [attr.colspan]="colspan()" class="text-center">
+          Nenhum registro encontrado
         </td>
       </tr>
     }

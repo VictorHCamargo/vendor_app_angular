@@ -7,7 +7,7 @@ export interface IFormInputConfig<MODEL> {
   options?: TOpitons[];
 }
 
-export type TTypeInput = 'input' | 'radio' | 'select';
+export type TTypeInput = 'input' | 'radio' | 'select' | 'active';
 
 export type TOpitons = {
   value: string;

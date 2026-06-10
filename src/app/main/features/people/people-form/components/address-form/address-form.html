@@ -1,7 +1,141 @@
-
+<div class="row mb-3 mt-3">
+  <div class="col">
+    <h1>Cadastro de Endereços</h1>
+  </div>
+</div>
 <div class="row">
-    <app-form-input 
-        [messageId]="''"
-        []
-    /> <!--TO-DO: finalizar essa parte na aula de hoje, pelos menos deixar completo a lista, utilizar a pratica do output!-->
+  <div class="col">
+    <app-form-input
+      [messageId]="'typeAddress'"
+      [fieldTree]="formType"
+      [type]="'radio'"
+      [info]="{
+        options: [
+          {
+            data: 'Moradia',
+            value: 'M',
+          },
+          {
+            data: 'Cobrança',
+            value: 'C',
+          },
+          {
+            data: 'Entrega',
+            value: 'E',
+          },
+        ],
+      }"
+    />
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <app-form-input
+      [messageId]="'zipCode'"
+      [fieldTree]="formCode"
+      [type]="'input'"
+      [info]="{
+        idLabel: 'zipCode',
+        nameLabel: 'CEP',
+        type: 'text',
+      }"
+      (onChange)="getByZipCode($event)"
+    />
+  </div>
+  <div class="col">
+    <app-form-input
+      [messageId]="'street'"
+      [fieldTree]="formStreet"
+      [type]="'input'"
+      [info]="{
+        idLabel: 'street',
+        nameLabel: 'Logradouro',
+        type: 'text',
+      }"
+    />
+  </div>
+
+  <div class="col">
+    <app-form-input
+      [messageId]="'number'"
+      [fieldTree]="formNumber"
+      [type]="'input'"
+      [info]="{
+        idLabel: 'number',
+        nameLabel: 'Número',
+        type: 'text',
+      }"
+    />
+  </div>
+
+  <div class="col">
+    <app-form-input
+      [messageId]="'state'"
+      [fieldTree]="formState"
+      [type]="'select'"
+      [info]="{
+        idLabel: 'state',
+        nameLabel: 'Estado',
+        options: selectState(),
+      }"
+    />
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <app-form-input
+      [messageId]="'city'"
+      [fieldTree]="formCity"
+      [type]="'input'"
+      [info]="{
+        idLabel: 'city',
+        nameLabel: 'Cidade',
+        type: 'text',
+      }"
+    />
+  </div>
+
+  <div class="col">
+    <app-form-input
+      [messageId]="'neighborhood'"
+      [fieldTree]="formNeighborhood"
+      [type]="'input'"
+      [info]="{
+        idLabel: 'neighborhood',
+        nameLabel: 'Bairro',
+        type: 'text',
+      }"
+    />
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="form-check form-switch">
+      <app-form-input
+        [messageId]="'active'"
+        [fieldTree]="formActive"
+        [type]="'active'"
+        [info]="{
+          options: [
+            {
+              data: 'Ativo',
+              value: 'A',
+            },
+          ],
+        }"
+      />
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+    @if (this.saving()) {
+      <img src="../../../../assets/loading.png" class="rounded loading-animation" />
+    } @else {
+      <button type="button" class="btn btn-danger" (click)="onCancel()">Cancelar</button>
+      <button [disabled]="isDisabled" type="button" class="btn btn-primary" (click)="onSalve()">
+        {{ onEditing() ? 'Editar' : 'Salvar' }}
+      </button>
+    }
+  </div>
 </div>

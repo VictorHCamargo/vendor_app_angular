@@ -2,9 +2,20 @@
   <label [for]="info().idLabel" class="form-label">{{ info().nameLabel }}</label>
 }
 @switch (type()) {
+  @case ('active') {
+    <label class="form-check-label" [for]="info().options![0].data">{{
+      info().options![0].data
+    }}</label>
+    <input
+      type="checkbox"
+      class="form-check-input"
+      [field]="booleanField"
+      [id]="info().options![0].data"
+    />
+  }
   @case ('radio') {
     @for (option of info().options; track option.data) {
-      <label class="form-check-label" [for]="option.data">{{ option.data }}</label>
+      &nbsp;
       <input
         type="radio"
         class="form-check-input"
@@ -12,6 +23,7 @@
         [field]="stringField"
         [id]="option.data"
       />
+      <label class="form-check-label" [for]="option.data">{{ option.data }}</label>
     }
   }
   @case ('select') {
@@ -28,8 +40,8 @@
       class="form-control"
       [id]="info().idLabel"
       [aria-describedby]="messageId()"
+      (change)="onChange.emit($event)"
     />
   }
 }
-<app-error-messages [message]="fieldTree()()" [messageId]="messageId()">
-</app-error-messages>
+<app-error-messages [message]="fieldTree()()" [messageId]="messageId()"> </app-error-messages>

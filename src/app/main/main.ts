@@ -48,6 +48,22 @@ export class Main {
         },
       ],
     },
+    {
+      name : 'Pessoas',
+      way : '#',
+      children : [
+        {
+          name : 'Física',
+          way : '/people/form/naturalPerson',
+          children : []
+        },
+        {
+          name : 'Jurídica',
+          way : '/people/form/legalPerson',
+          children : []
+        },
+      ]
+    }
   ];
   private makeUrlExternalPartner(basePath: string, url: string) {
     return `${basePath}/externalPartner?redirect=${url}&secret=${this.authStoreService.getToken()}&exp=3600`;

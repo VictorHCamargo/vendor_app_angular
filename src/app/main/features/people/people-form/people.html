@@ -9,7 +9,7 @@
       <div class="col">
         <app-form-input
           [messageId]="'name'"
-          [fieldTree]="formData.name"
+          [fieldTree]="formName"
           [type]="'input'"
           [info]="{
             idLabel: 'name',
@@ -21,7 +21,7 @@
       <div class="col">
         <app-form-input
           [messageId]="'nickname'"
-          [fieldTree]="formData.nickname"
+          [fieldTree]="formNickname"
           [type]="'input'"
           [info]="{
             idLabel: 'nickname',
@@ -30,55 +30,124 @@
           }"
         />
       </div>
-      <div class="col">
-        <label class="form-label">Status</label>
-        <br />
-        <app-form-input
-          [messageId]="'active'"
-          [fieldTree]="formData.active"
-          [type]="'radio'"
-          [info]="{
-            options: [
-              {
-                data: 'Ativo',
-                value: 'A',
-              },
-              {
-                data: 'Inativo',
-                value: 'I',
-              },
-            ],
-          }"
-        />
-      </div>
     </div>
     <div class="row mb-3">
       <div class="col">
         <app-form-input
           [messageId]="'state'"
-          [fieldTree]="formData.stateDocument"
+          [fieldTree]="formStateDocument"
           [type]="'input'"
           [info]="{
             idLabel: 'stateDocument',
             nameLabel: html.stateLabel,
-            type: 'number',
+            type: 'text',
           }"
         />
       </div>
       <div class="col">
         <app-form-input
           [messageId]="'federal'"
-          [fieldTree]="formData.federalDocument"
+          [fieldTree]="formFederalDocument"
           [type]="'input'"
           [info]="{
             idLabel: 'federalDocument',
             nameLabel: html.federalLabel,
-            type: 'number',
+            type: 'text',
           }"
         />
       </div>
+      @if (isNaturalPerson()) {
+        <div class="col">
+          <app-form-input
+            [messageId]="'gender'"
+            [fieldTree]="formGender"
+            [type]="'input'"
+            [info]="{
+              idLabel: 'gender',
+              nameLabel: html.genderLabel,
+              type: 'text',
+            }"
+          />
+        </div>
+
+        <div class="col">
+          <app-form-input
+            [messageId]="'date'"
+            [fieldTree]="formDate"
+            [type]="'input'"
+            [info]="{
+              idLabel: 'date',
+              nameLabel: html.dateLabel,
+              type: 'date',
+            }"
+          /> <!--TO-DO: Fazer o tratamento de dados para que so aceite pessoas acimas de (14 anos)-->
+        </div>
+      } @else {
+        <div class="col">
+          <app-form-input
+            [messageId]="'bond'"
+            [fieldTree]="formBond"
+            [type]="'input'"
+            [info]="{
+              idLabel: 'bond',
+              nameLabel: html.bondLabel,
+              type: 'number',
+            }"
+          />
+        </div>
+      }
     </div>
-    
+
+    <div class="row">
+      <div class="col">
+        <div class="form-check form-switch">
+          <app-form-input
+            [messageId]="'active'"
+            [fieldTree]="formActive"
+            [type]="'active'"
+            [info]="{
+              options: [
+                {
+                  data: 'Ativo',
+                  value: 'A',
+                },
+              ],
+            }"
+          />
+        </div>
+      </div>
+    </div>
+
+    @if (isAddressModeForm()) {
+      <app-address-form
+        (cancel)="onCancelForm($event)"
+        (salve)="onSalveForm($event)"
+        [addressEvent]="editAddress()"
+      />
+    } @else {
+      <app-address-list
+        [addresses]="addresses()"
+        (onCreate)="onCancelForm($event)"
+        (onEdit)="onEditForm($event)"
+      />
+      <div class="row">
+        <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+          @if (this.saving()) {
+            <img src="../../../../assets/loading.png" class="rounded loading-animation" />
+          } @else {
+            <button type="button" class="btn btn-danger" (click)="onCancel()">Voltar</button>
+            <button
+              [disabled]="isDisabled"
+              type="button"
+              class="btn btn-primary"
+              (click)="onSalve()"
+            >
+              Salvar
+            </button>
+          }
+        </div>
+      </div>
+    }
     <!-- <div class="row mb-3">
     @if (isNaturalPerson()) {
       <div class="row mb-3"> 
@@ -124,17 +193,5 @@
         </div>
       </div>
     } -->
-    <div class="row">
-      <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-        @if (this.saving()) {
-          <img src="../../../../assets/loading.png" class="rounded loading-animation" />
-        } @else {
-          <button type="button" class="btn btn-danger" (click)="onCancel()">Voltar</button>
-          <button [disabled]="isDisabled" type="button" class="btn btn-primary" (click)="onSalve()">
-            Salvar
-          </button>
-        }
-      </div>
-    </div>
   </form>
 </div>

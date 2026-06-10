@@ -1,15 +1,15 @@
-import { IPersonModel, TActiveType } from './person-model';
+import { TPersonModel } from './person-model';
 
 export interface IAddressModel {
   zipCode: string;
   id: number | null;
-  idPerson: Pick<IPersonModel, 'id'> | null;
+  idPerson: Pick<TPersonModel, 'id'> | null;
   number: string;
   street: string;
   neighborhood: string;
   city: string;
   state: string;
-  activate: TActiveType;
+  active: boolean;
   typeAddress: TTypeAddress;
   hasZipCode: boolean;
 }

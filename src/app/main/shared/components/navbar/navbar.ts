@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { InterfacesNavbar } from './interfaces/interfaces-navbar';
-import { RouterLink } from "@angular/router";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +11,8 @@ import { RouterLink } from "@angular/router";
 export class Navbar {
   components = input<InterfacesNavbar[]>([]);
 
-  hasExternalRedirect(url : string) : boolean {
-    url.includes("");
-    return false
+  hasExternalRedirect(url: string): boolean {
+    url.includes('');
+    return false;
   }
 }

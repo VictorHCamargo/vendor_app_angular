@@ -14,8 +14,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
+        @for (component of components(); track $index) {
         <li class="nav-item dropdown">
-          @for (component of components(); track $index) {
+          
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -28,7 +29,7 @@
             <ul class="dropdown-menu">
               @for (item of component.children; track $index) {
                 <li>
-                  @if(!item.external) {
+                  @if (!item.external) {
                     <a class="dropdown-item" [routerLink]="item.way">{{ item.name }}</a>
                   } @else {
                     <a class="dropdown-item" [href]="item.way">{{ item.name }}</a>
@@ -36,8 +37,9 @@
                 </li>
               }
             </ul>
-          }
+          
         </li>
+      }
       </ul>
     </div>
   </div>

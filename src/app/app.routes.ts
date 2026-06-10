@@ -37,16 +37,16 @@ export const routes: Routes = [
           import('./main/features/products/group/routes/group.routes').then((m) => m.groupRoutes),
       },
       {
+        path: 'people',
+        loadChildren: () =>
+          import('./main/features/people/routes/people.routes').then((m) => m.peopleRoutes),
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
       },
     ],
-  },
-  {
-    path: 'people',
-    loadChildren: () =>
-      import('./main/features/people/routes/people.routes').then((m) => m.peopleRoutes),
   },
   {
     path: 'externalPartner',

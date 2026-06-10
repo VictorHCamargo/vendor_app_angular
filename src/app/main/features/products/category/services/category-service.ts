@@ -8,9 +8,9 @@ import { BaseServices } from '../../../../shared/services/base-services';
   providedIn: 'root',
 })
 export class CategoryService extends BaseServices<ICategoryModel, ICategoryServiceModel> {
-  endPoint = '/categorias';
+  override endPoint = '/categorias';
 
-  mapDto(model: ICategoryModel): ICategoryServiceModel {
+  override mapDto(model: ICategoryModel): ICategoryServiceModel {
     return {
       id: model.id,
       nome: model.name,

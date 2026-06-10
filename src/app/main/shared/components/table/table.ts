@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { ITableConfig } from './interfaces/table-config';
 
 @Component({
@@ -9,4 +9,8 @@ import { ITableConfig } from './interfaces/table-config';
 })
 export class Table<MODEL> {
   tableConfig = input<ITableConfig<MODEL>>();
+
+  colspan = computed(() => {
+    return this.tableConfig()?.titles?.length! + 1
+  })
 }
