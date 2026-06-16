@@ -80,7 +80,7 @@
               nameLabel: html.dateLabel,
               type: 'date',
             }"
-          /> <!--TO-DO: Fazer o tratamento de dados para que so aceite pessoas acimas de (14 anos)-->
+          /> 
         </div>
       } @else {
         <div class="col">
@@ -129,6 +129,7 @@
         [addresses]="addresses()"
         (onCreate)="onCancelForm($event)"
         (onEdit)="onEditForm($event)"
+        (onDel)="onDelList($event)"
       />
       <div class="row">
         <div class="col d-grid gap-2 d-md-flex justify-content-md-end">

@@ -9,7 +9,7 @@ import {
 import { BaseForms } from '../../../shared/class/base-form';
 import { ActivatedRoute } from '@angular/router';
 import { FieldTree, required } from '@angular/forms/signals';
-import { ENTITIES_PERSON, NATURAL_PERSON } from '../tools/person-setup';
+import { applyLegalPersonSchemaPath, applyNaturalPersonSchemaPath, ENTITIES_PERSON, NATURAL_PERSON } from '../tools/person-setup';
 import { FormInput } from '../../../shared/components/form-input/form-input';
 import { AddressForm } from './components/address-form/address-form';
 import { IAddressModel } from '../interfaces/address-model';
@@ -17,13 +17,6 @@ import { AddressList } from './components/address-list/address-list';
 import { ToastService } from '../../../shared/components/toast-messages/services/toast-service';
 import { IAddressEvent } from '../interfaces/address-event';
 import { PeopleService } from '../services/people-service';
-
-const PATTERNS = {
-  CPF: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
-  CNPJ: /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/,
-  RG: /^\d{1,2}\.\d{3}\.\d{3}-[\dxX]$/,
-  IE: /^\d{3}\.?\d{3}\.?\d{3}\.?\d{3}$/,
-};
 
 @Component({
   selector: 'app-peoples',
@@ -49,9 +42,9 @@ export class People extends BaseForms<TPersonModel> {
     super();
     this.createForm(this.createModel(), (Path) => {
       if (this.isNaturalPerson()) {
-        //TO-DO: NATURALPERSON schemAPath
+        applyNaturalPersonSchemaPath(Path);
       } else {
-        //TO-DO: LEGALPERSON schemAPath
+        applyLegalPersonSchemaPath(Path);
       }
     });
     this.setHtmlConfig();
@@ -82,6 +75,21 @@ export class People extends BaseForms<TPersonModel> {
   onCancelForm(event: boolean) {
     this.editAddress.set(null);
     this.createAddress.set(event);
+  }
+
+  onDelList(event : IAddressEvent) {
+    if(confirm("Tem certeza que deseja desativar esse endereço!")) {
+      if(this.validateDelAddress(event.address, event.index!)) {
+        this.model.update((value) => {
+          value.addresses[event.index!] = {
+            ...value.addresses[event.index!],
+            active : !value.addresses[event.index!].active
+          }
+          return {...value}
+        })
+        console.log(this.model())
+      }
+    }
   }
 
   onSalveForm(event: IAddressEvent) {
@@ -120,7 +128,6 @@ export class People extends BaseForms<TPersonModel> {
   }
 
   validateEditAddress(address: IAddressModel, index: number): boolean {
-    console.log(index);
     const thereIsTypeAddress = this.addresses().find(
       (value, position) => value.typeAddress === address.typeAddress && position != index,
     );
@@ -131,9 +138,28 @@ export class People extends BaseForms<TPersonModel> {
         'danger',
       );
       return false;
+
     }
 
     return true;
+  }
+
+  validateDelAddress(address : IAddressModel,index : number) : boolean {
+    const thereIsTypeAddress = this.addresses().find(
+      (value,position) => value.typeAddress === address.typeAddress && position == index,
+    );
+
+    if(thereIsTypeAddress?.typeAddress == 'M') {
+      this.toastService.show(
+        'Não é possivel desativar o tipo de endereço moradia!',
+        'danger',
+      );
+      return false;
+    }
+
+
+
+    return true
   }
 
   override createModel(): TPersonModel {

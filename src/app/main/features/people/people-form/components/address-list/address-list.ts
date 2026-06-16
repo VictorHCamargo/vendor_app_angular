@@ -1,5 +1,5 @@
 import { Component, computed, input, output, signal } from '@angular/core';
-import { IAddressModel } from '../../../interfaces/address-model';
+import { IAddressModel, TTypeAddress } from '../../../interfaces/address-model';
 import { BaseList } from '../../../../../shared/class/base-list';
 import { Table } from '../../../../../shared/components/table/table';
 import { IAddressEvent } from '../../../interfaces/address-event';
@@ -17,6 +17,8 @@ export class AddressList extends BaseList<IAddressModel> {
 
   onEdit = output<IAddressEvent>();
 
+  onDel = output<IAddressEvent>();
+
   constructor() {
     super();
     this.createData();
@@ -27,7 +29,16 @@ export class AddressList extends BaseList<IAddressModel> {
       return {
         data: this.addresses(),
         titles: [
-          { dataField: 'typeAddress', name: 'Tipo de Endereço' },
+          {
+            name: 'Tipo de Endereço',
+            dataField: 'typeAddress',
+            transform: (value: TTypeAddress) =>
+              ({
+                M: 'bi bi-house-door',
+                C: 'bi bi-building',
+                E: 'bi bi-truck',
+              })[value] ?? 'bi bi-geo-alt',
+          },
           { dataField: 'zipCode', name: 'CEP' },
           { dataField: 'city', name: 'Cidade' },
           { dataField: 'state', name: 'Estado' },
@@ -43,6 +54,14 @@ export class AddressList extends BaseList<IAddressModel> {
             name: 'Editar',
             show: () => true,
             style: 'btn btn-primary',
+          },
+          {
+            action: (data, index) => {
+              this.onDel.emit({ address: data, index });
+            },
+            name: 'Deletar',
+            show: () => true,
+            style: 'btn btn-danger',
           },
         ],
       };
