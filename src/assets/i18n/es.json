@@ -1,0 +1,73 @@
+{
+  "COMMONS": {
+    "VIEW": "Ver",
+    "CANCEL": "Volver",
+    "SAVE": "Guardar",
+    "EDIT": "Editar",
+    "DEL": "Inactivar"
+  },
+  "MAIN": {
+    "FEATURES": {
+      "PEOPLE": {
+        "NAMEF": "Nombre",
+        "NICKNAMEF": "Apodo",
+        "STATEDOCUMENTF": "Documento Estatal",
+        "FEDERALDOCUMENTF": "Documento Federal",
+        "GENDER": "Género",
+        "GENDERLABELMAN": "Masculino",
+        "GENDERLABELFEMAN": "Femenino",
+        "DATE": "Fecha de cumpleaños",
+        "TITLEF": "Registro de Persona Física",
+        "NAMEJ": "Razón Social",
+        "NICKNAMEJ": "Nombre Fantasía",
+        "STATEDOCUMENTJ": "Inscripción Estatal",
+        "FEDERALDOCUMENTJ": "Documento Federal / CNPJ",
+        "BOND": "Vínculo",
+        "TITLEJ": "Registro de Persona Jurídica",
+        "ACTIVE": "Activo"
+      },
+      "ADDRESSES": {
+        "TYPEADDRESSES": {
+          "DELIVERY": "Entrega",
+          "CHARGE": "Facturación",
+          "HOUSING": "Vivienda"
+        },
+        "ZIPCODE": "Código Postal",
+        "STREET": "Calle / Dirección",
+        "NUMBER": "Número",
+        "STATE": "Estado",
+        "CITY": "Ciudad",
+        "NEIGHBORHOOD": "Barrio",
+        "ACTIVE": "Activo",
+        "FORMTITLE": "Registro de Direcciones",
+        "LISTTITLE": "Lista de Direcciones",
+        "TYPEADDRESS": "Tipo de Dirección"
+      }
+    },
+    "SHARED": {
+      "NAVBAR": {
+        "TITLE": "Vendor App (Angular)",
+        "LANGUAGES": "Idiomas",
+        "PRODUCTS": {
+          "NAME": "Productos",
+          "CATEGORY": "Categoría",
+          "GROUP": "Grupo",
+          "COIN": "Moneda",
+          "MEASURE": "Medida"
+        },
+        "PEOPLE": {
+          "NAME": "Personas",
+          "NATURAL": "Física",
+          "LEGAL": "Jurídica"
+        }
+      }
+    },
+    "HOME": {
+      "WELCOME": "¡Bienvenido de nuevo!",
+      "TITLE": "Panel de Control",
+      "ACTION": "Acciones Rápidas",
+      "BUTTON1": "Ver Categorías",
+      "BUTTON2": "Gestionar Grupos"
+    }
+  }
+}

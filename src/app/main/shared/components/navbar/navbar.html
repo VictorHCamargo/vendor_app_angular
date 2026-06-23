@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Vendor App (Angular)</a>
+    <a class="navbar-brand" routerLink="/home">{{ 'MAIN.SHARED.NAVBAR.TITLE' | translate }}</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -13,34 +13,63 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        @for (component of components(); track $index) {
-        <li class="nav-item dropdown">
-          
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              {{ component.name }}
-            </a>
-            <ul class="dropdown-menu">
-              @for (item of component.children; track $index) {
-                <li>
-                  @if (!item.external) {
-                    <a class="dropdown-item" [routerLink]="item.way">{{ item.name }}</a>
-                  } @else {
-                    <a class="dropdown-item" [href]="item.way">{{ item.name }}</a>
-                  }
+      <div class="container">
+        <div class="row justify-content-between align-items-center">
+          <div class="col">
+            <ul class="navbar-nav">
+              @for (component of components(); track $index) {
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {{ component.name | translate }}
+                  </a>
+                  <ul class="dropdown-menu">
+                    @for (item of component.children; track $index) {
+                      <li>
+                        @if (!item.external) {
+                          <a class="dropdown-item" [routerLink]="item.way">{{
+                            item.name | translate
+                          }}</a>
+                        } @else {
+                          <a class="dropdown-item" [href]="item.way">{{ item.name | translate }}</a>
+                        }
+                      </li>
+                    }
+                  </ul>
                 </li>
               }
             </ul>
-          
-        </li>
-      }
-      </ul>
+          </div>
+          <div class="col-auto">
+            <div class="dropdown">
+              <a
+                class="btn dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {{ 'MAIN.SHARED.NAVBAR.LANGUAGES' | translate }}
+              </a>
+
+              <ul class="dropdown-menu">
+                @for (language of languages(); track $index) {
+                  <li>
+                    <a class="btn dropdown-item" (click)="changeLanguenges(language.acronym)">{{
+                      language.name | translate
+                    }}</a>
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

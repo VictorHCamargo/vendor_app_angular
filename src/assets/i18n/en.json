@@ -1,0 +1,73 @@
+{
+  "COMMONS": {
+    "VIEW": "View",
+    "CANCEL": "Back",
+    "SAVE": "Save",
+    "EDIT": "Edit",
+    "DEL": "Inactivate"
+  },
+  "MAIN": {
+    "FEATURES": {
+      "PEOPLE": {
+        "NAMEF": "Name",
+        "NICKNAMEF": "Nickname",
+        "STATEDOCUMENTF": "State ID",
+        "FEDERALDOCUMENTF": "SSN / Tax ID",
+        "GENDER": "Gender",
+        "GENDERLABELMAN": "Male",
+        "GENDERLABELFEMAN": "Female",
+        "DATE": "Birthday",
+        "TITLEF": "Natural Person Registration",
+        "NAMEJ": "Company Name",
+        "NICKNAMEJ": "Trade Name",
+        "STATEDOCUMENTJ": "State Tax ID",
+        "FEDERALDOCUMENTJ": "EIN / Federal Tax ID",
+        "BOND": "Bond",
+        "TITLEJ": "Legal Person Registration",
+        "ACTIVE": "Active"
+      },
+      "ADDRESSES": {
+        "TYPEADDRESSES": {
+          "DELIVERY": "Delivery",
+          "CHARGE": "Billing",
+          "HOUSING": "Residential"
+        },
+        "ZIPCODE": "ZIP Code",
+        "STREET": "Street / Address",
+        "NUMBER": "Number",
+        "STATE": "State",
+        "CITY": "City",
+        "NEIGHBORHOOD": "Neighborhood",
+        "ACTIVE": "Active",
+        "FORMTITLE": "Address Registration",
+        "LISTTITLE": "Address List",
+        "TYPEADDRESS": "Address Type"
+      }
+    },
+    "SHARED": {
+      "NAVBAR": {
+        "TITLE": "Vendor App (Angular)",
+        "LANGUAGES": "Languages",
+        "PRODUCTS": {
+          "NAME": "Products",
+          "CATEGORY": "Category",
+          "GROUP": "Group",
+          "COIN": "Currency",
+          "MEASURE": "Unit of Measure"
+        },
+        "PEOPLE": {
+          "NAME": "People",
+          "NATURAL": "Natural Person",
+          "LEGAL": "Legal Person"
+        }
+      }
+    },
+    "HOME": {
+      "WELCOME": "Welcome back!",
+      "TITLE": "Dashboard",
+      "ACTION": "Quick Actions",
+      "BUTTON1": "View Categories",
+      "BUTTON2": "Manage Groups"
+    }
+  }
+}

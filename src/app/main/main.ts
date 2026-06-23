@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { Navbar } from './shared/components/navbar/navbar';
-import { InterfacesNavbar } from './shared/components/navbar/interfaces/interfaces-navbar';
+import { INavbarConfig } from './shared/components/navbar/interfaces/navbar-config';
 import { RouterOutlet } from '@angular/router';
 import { AuthStoreService } from './shared/services/auth-store-service';
+import { ILanguagesConfig } from './shared/components/navbar/interfaces/languages-config';
 
 @Component({
   selector: 'app-main',
@@ -12,13 +13,13 @@ import { AuthStoreService } from './shared/services/auth-store-service';
 })
 export class Main {
   private authStoreService = inject(AuthStoreService);
-  InterfacesNavbar: InterfacesNavbar[] = [
+  navbarConfig: INavbarConfig[] = [
     {
-      name: 'Produtos',
+      name: 'MAIN.SHARED.NAVBAR.PRODUCTS.NAME',
       way: '#',
       children: [
         {
-          name: 'Categoria',
+          name: 'MAIN.SHARED.NAVBAR.PRODUCTS.CATEGORY',
           way: this.makeUrlExternalPartner(
             'https://vendor-app-angular-ypmd.onrender.com',
             '/category/list',
@@ -27,12 +28,12 @@ export class Main {
           external: true,
         },
         {
-          name: 'Grupo',
+          name: 'MAIN.SHARED.NAVBAR.PRODUCTS.GROUP',
           way: '/group/list',
           children: [],
         },
         {
-          name: 'Moeda',
+          name: 'MAIN.SHARED.NAVBAR.PRODUCTS.COIN',
           way: this.makeUrlExternalPartner(
             'https://vendor-app-angular-ypmd.onrender.com',
             '/coin/list',
@@ -41,7 +42,7 @@ export class Main {
           external: true,
         },
         {
-          name: 'Medida',
+          name: 'MAIN.SHARED.NAVBAR.PRODUCTS.MEASURE',
           way: this.makeUrlExternalPartner('https://vendor-angular.onrender.com', '/measure/list'),
           children: [],
           external: true,
@@ -49,22 +50,37 @@ export class Main {
       ],
     },
     {
-      name : 'Pessoas',
-      way : '#',
-      children : [
+      name: 'MAIN.SHARED.NAVBAR.PEOPLE.NAME',
+      way: '#',
+      children: [
         {
-          name : 'Física',
-          way : '/people/form/naturalPerson',
-          children : []
+          name: 'MAIN.SHARED.NAVBAR.PEOPLE.NATURAL',
+          way: '/people/list/naturalPerson',
+          children: [],
         },
         {
-          name : 'Jurídica',
-          way : '/people/form/legalPerson',
-          children : []
+          name: 'MAIN.SHARED.NAVBAR.PEOPLE.LEGAL',
+          way: '/people/list/legalPerson',
+          children: [],
         },
-      ]
-    }
+      ],
+    },
   ];
+
+  languagesConfig : ILanguagesConfig[] = [
+    {
+      acronym : 'pt-BR',
+      name : 'Português (Brasil)'
+    },
+    {
+      acronym : 'en',
+      name : 'English'
+    },
+    {
+      acronym : 'es',
+      name : 'Español'
+    }
+  ]
   private makeUrlExternalPartner(basePath: string, url: string) {
     return `${basePath}/externalPartner?redirect=${url}&secret=${this.authStoreService.getToken()}&exp=3600`;
   }

@@ -1,9 +1,10 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { ITableConfig } from './interfaces/table-config';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-table',
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './table.html',
   styleUrl: './table.scss',
 })
@@ -13,4 +14,5 @@ export class Table<MODEL> {
   colspan = computed(() => {
     return this.tableConfig()?.titles?.length! + 1
   })
+
 }

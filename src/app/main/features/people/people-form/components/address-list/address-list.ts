@@ -3,10 +3,11 @@ import { IAddressModel, TTypeAddress } from '../../../interfaces/address-model';
 import { BaseList } from '../../../../../shared/class/base-list';
 import { Table } from '../../../../../shared/components/table/table';
 import { IAddressEvent } from '../../../interfaces/address-event';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-address-list',
-  imports: [Table],
+  imports: [Table,TranslatePipe],
   templateUrl: './address-list.html',
   styleUrl: './address-list.scss',
 })
@@ -30,7 +31,7 @@ export class AddressList extends BaseList<IAddressModel> {
         data: this.addresses(),
         titles: [
           {
-            name: 'Tipo de Endereço',
+            name: 'MAIN.FEATURES.ADDRESSES.TYPEADDRESS',
             dataField: 'typeAddress',
             transform: (value: TTypeAddress) =>
               ({
@@ -39,29 +40,29 @@ export class AddressList extends BaseList<IAddressModel> {
                 E: 'bi bi-truck',
               })[value] ?? 'bi bi-geo-alt',
           },
-          { dataField: 'zipCode', name: 'CEP' },
-          { dataField: 'city', name: 'Cidade' },
-          { dataField: 'state', name: 'Estado' },
-          { dataField: 'neighborhood', name: 'Bairro' },
-          { dataField: 'street', name: 'Logradouro' },
-          { dataField: 'number', name: 'Número' },
+          { dataField: 'zipCode', name: 'MAIN.FEATURES.ADDRESSES.ZIPCODE' },
+          { dataField: 'city', name: 'MAIN.FEATURES.ADDRESSES.CITY' },
+          { dataField: 'state', name: 'MAIN.FEATURES.ADDRESSES.STATE' },
+          { dataField: 'neighborhood', name: 'MAIN.FEATURES.ADDRESSES.NEIGHBORHOOD' },
+          { dataField: 'street', name: 'MAIN.FEATURES.ADDRESSES.STREET' },
+          { dataField: 'number', name: 'MAIN.FEATURES.ADDRESSES.NUMBER' },
         ],
         buttons: [
           {
             action: (data, index) => {
-              this.onEdit.emit({ address: data, index });
+              this.onDel.emit({ address: data, index });
             },
-            name: 'Editar',
+            name: 'COMMONS.DEL',
             show: () => true,
-            style: 'btn btn-primary',
+            style: 'btn btn-danger',
           },
           {
             action: (data, index) => {
-              this.onDel.emit({ address: data, index });
+              this.onEdit.emit({ address: data, index });
             },
-            name: 'Deletar',
+            name: 'COMMONS.EDIT',
             show: () => true,
-            style: 'btn btn-danger',
+            style: 'btn btn-primary',
           },
         ],
       };

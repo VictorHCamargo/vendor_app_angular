@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2>Lista de {{ html.title }}</h2>
+      <h2>{{ html.title }}</h2>
     </div>
     <div class="col text-end">
       <button type="button" class="btn btn-primary" (click)="onNewRegister()">
-        Cadastrar nova {{ html.title }}
+        {{ html.newRegistration }}
       </button>
     </div>
   </div>
@@ -13,3 +13,7 @@
     <app-table [tableConfig]="configTable()"></app-table>
   </div>
 </div>
+
+<app-modal [isOpen]="isOpen()" (closed)="onClosed()">
+  <app-modal-view [person]="havePerson()" [isNaturalPerson]="isNaturalPerson()" (onClosed)="onClosed()"/>
+</app-modal>

@@ -1,11 +1,13 @@
-<div class="container">
-  <form>
-    <div class="row mb-3 mt-3">
-      <div class="col">
-        <h1>{{ html.title | translate}}</h1>
-      </div>
-    </div>
-    <div class="row mb-3">
+<div class="modal-content">
+  <div class="modal-header bg-light">
+    <h5 class="modal-title"><i class="bi bi-person-bounding-box me-2"></i></h5>
+    <div [innerHTML]="person()?.active! | badgeActive"></div>
+    <button type="button" class="btn-close" (click)="onClosed.emit()"></button>
+  </div>
+
+  <div class="modal-body text-secondary">
+    <form>
+      <div class="row mb-3">
       <div class="col">
         <app-form-input
           [messageId]="'name'"
@@ -15,6 +17,7 @@
             idLabel: 'name',
             nameLabel: html.nameLabel | translate,
             type: 'text',
+            readonly : true
           }"
         />
       </div>
@@ -27,6 +30,7 @@
             idLabel: 'nickname',
             nameLabel: html.nicknameLabel | translate,
             type: 'text',
+            readonly : true
           }"
         />
       </div>
@@ -41,6 +45,7 @@
             idLabel: 'stateDocument',
             nameLabel: html.stateLabel | translate,
             type: 'text',
+            readonly : true
           }"
         />
       </div>
@@ -53,6 +58,7 @@
             idLabel: 'federalDocument',
             nameLabel: html.federalLabel | translate,
             type: 'text',
+            readonly : true
           }"
         />
       </div>
@@ -61,20 +67,11 @@
           <app-form-input
             [messageId]="'gender'"
             [fieldTree]="formGender"
-            [type]="'select'"
+            [type]="'input'"
             [info]="{
               idLabel: 'gender',
               nameLabel: html.genderLabel | translate,
-              options : [
-                {
-                  data: 'MAIN.FEATURES.PEOPLE.GENDERLABELMAN'| translate,
-                  value: 'M',
-                },
-                {
-                  data: 'MAIN.FEATURES.PEOPLE.GENDERLABELFEMAN'| translate,
-                  value: 'F',
-                }
-              ],
+              readonly: true
             }"
           />
         </div>
@@ -101,66 +98,21 @@
               idLabel: 'bond',
               nameLabel: html.bondLabel | translate,
               type: 'number',
+              readonly : true
             }"
           />
         </div>
       }
     </div>
 
-    <div class="row">
-      <div class="col">
-        <div class="form-check form-switch">
-          <app-form-input
-            [messageId]="'active'"
-            [fieldTree]="formActive"
-            [type]="'active'"
-            [info]="{
-              options: [
-                { 
-                  data: 'MAIN.FEATURES.PEOPLE.ACTIVE'| translate,
-                  value: 'A',
-                },
-              ],
-            }"
-          />
-        </div>
+      <h6 class="text-primary border-bottom pb-2 mb-3">Endereços Vinculados</h6>
+      <div class="table-responsive">
+        <app-table [tableConfig]="tableConfig()" />
       </div>
-    </div>
+    </form>
+  </div>
 
-    @if (isAddressModeForm()) {
-      <app-address-form
-        (cancel)="onCancelForm($event)"
-        (salve)="onSalveForm($event)"
-        [addressEvent]="editAddress()"
-      />
-    } @else {
-      <app-address-list
-        [addresses]="addresses()"
-        (onCreate)="onCancelForm($event)"
-        (onEdit)="onEditForm($event)"
-        (onDel)="onDelList($event)"
-      />
-      <div class="row">
-        <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-          @if (this.saving()) {
-            <img src="../../../../assets/loading.png" class="rounded loading-animation" />
-          } @else {
-            <button type="button" class="btn btn-danger" (click)="onCancel()">{{"COMMONS.CANCEL" | translate}}</button>
-            <button
-              [disabled]="isDisabled"
-              type="button"
-              class="btn btn-primary"
-              (click)="onSalve()"
-            >
-              {{"COMMONS.SAVE" | translate}}
-            </button>
-          }
-        </div>
-      </div>
-    }
-  </form>
+  <div class="modal-footer bg-light">
+    <button type="button" class="btn btn-primary px-4" (click)="onEdit(person()?.id)">Editar</button>
+  </div>
 </div>
-
-<app-modal [isOpen]="onDeactivating()" (closed)="onClosedModal()">
-  <app-modal-deactivate (onClosed)="onClosedModal()" [address]="deactivateAddress()!" (onDeactivate)="onDelModal($event)" />
-</app-modal>

@@ -1,0 +1,26 @@
+@if (address()) {
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content border-top border-danger border-4 px-2">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title text-danger">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>Confirmar Desativação
+        </h5>
+        <button type="button" class="btn-close" (click)="onClosed.emit()"></button>
+      </div>
+
+      <div class="modal-body text-secondary">
+        <p class="mb-3">
+          Tem certeza que deseja desativar o endereço
+          <strong>{{ address().address?.typeAddress! | typeAddressName }}</strong> ? Esta ação
+          impedirá que ele seja utilizado em novos faturamentos ou entregas.
+        </p>
+      </div>
+
+      <div class="modal-footer border-top-0 pt-0">
+        <button type="button" class="btn btn-danger" (click)="onDeactivate.emit(address())">
+          <i class="bi bi-x-circle me-1"></i> Desativar Endereço
+        </button>
+      </div>
+    </div>
+  </div>
+}

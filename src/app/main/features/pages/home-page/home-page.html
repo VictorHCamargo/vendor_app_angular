@@ -1,23 +1,20 @@
 <div class="container">
   <div class="row mb-4 mt-3">
     <div class="col">
-      <h1 class="display-5">Painel de Controle</h1>
-      <p class="text-muted">
-        Bem-vindo de volta {{ username }}! Aqui está o resumo do seu sistema.
-      </p>
+      <h1 class="display-5">{{ 'MAIN.HOME.TITLE' | translate }}</h1>
+      <p class="text-muted">{{ 'MAIN.HOME.WELCOME' | translate }} {{ username }}</p>
     </div>
   </div>
-
   <div class="row mb-4">
     <div class="col">
       <div class="p-4 bg-light rounded border">
-        <h5 class="mb-3">Ações Rápidas</h5>
+        <h5 class="mb-3">{{ 'MAIN.HOME.ACTION' | translate }}</h5>
         <div class="d-flex flex-wrap gap-3">
           <button class="btn btn-primary px-4 py-2" (click)="onNavigate('category', 'list')">
-            Visualizar Categorias
+            {{ 'MAIN.HOME.BUTTON1' | translate }}
           </button>
           <button class="btn btn-outline-dark px-4 py-2" (click)="onNavigate('group', 'list')">
-            Gerenciar Grupos
+            {{ 'MAIN.HOME.BUTTON2' | translate }}
           </button>
         </div>
       </div>

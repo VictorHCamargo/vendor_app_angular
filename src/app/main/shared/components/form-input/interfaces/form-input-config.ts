@@ -5,6 +5,7 @@ export interface IFormInputConfig<MODEL> {
   nameLabel?: string;
   type?: string;
   options?: TOpitons[];
+  readonly? : boolean;
 }
 
 export type TTypeInput = 'input' | 'radio' | 'select' | 'active';

@@ -1,10 +1,12 @@
-<table class="table table-hover table-bordered align-middle mb-3">
+<table class="table table-hover align-middle mb-3">
   <thead>
     <tr>
       @for (title of tableConfig()?.titles; track $index) {
-        <th>{{ title.name }}</th>
+        <th>{{ title.name | translate }}</th>
       }
-      <th>Ações</th>
+      @if (tableConfig()?.buttons?.length != 0) {
+        <th>Ações</th>
+      }
     </tr>
   </thead>
   <tbody>
@@ -19,16 +21,29 @@
             }
           </td>
         }
-        <td>
+        @if (tableConfig()?.buttons?.length == 0) {
           @for (button of tableConfig()?.buttons; track $index) {
-            @if (button.show()) {
-              <button type="button" [classList]="button.style" (click)="button.action(model, i)">
-                {{ button.name }}
-              </button>
-              &nbsp;
-            }
+            <td>
+              @if (button.show()) {
+                <button type="button" [classList]="button.style" (click)="button.action(model, i)">
+                  {{ button.name | translate }}
+                </button>
+                &nbsp;
+              }
+            </td>
           }
-        </td>
+        } @else {
+          <td>
+            @for (button of tableConfig()?.buttons; track $index) {
+              @if (button.show()) {
+                <button type="button" [classList]="button.style" (click)="button.action(model, i)">
+                  {{ button.name | translate }}
+                </button>
+                &nbsp;
+              }
+            }
+          </td>
+        }
       </tr>
     } @empty {
       <tr>

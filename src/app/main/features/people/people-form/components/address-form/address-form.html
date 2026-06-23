@@ -1,6 +1,6 @@
 <div class="row mb-3 mt-3">
   <div class="col">
-    <h1>Cadastro de Endereços</h1>
+    <h1>{{"MAIN.FEATURES.ADDRESSES.FORMTITLE" | translate}}</h1>
   </div>
 </div>
 <div class="row">
@@ -12,15 +12,15 @@
       [info]="{
         options: [
           {
-            data: 'Moradia',
+            data: 'MAIN.FEATURES.ADDRESSES.TYPEADDRESSES.HOUSING' | translate,
             value: 'M',
           },
           {
-            data: 'Cobrança',
+            data: 'MAIN.FEATURES.ADDRESSES.TYPEADDRESSES.CHARGE' | translate,
             value: 'C',
           },
           {
-            data: 'Entrega',
+            data: 'MAIN.FEATURES.ADDRESSES.TYPEADDRESSES.DELIVERY' | translate,
             value: 'E',
           },
         ],
@@ -36,8 +36,8 @@
       [type]="'input'"
       [info]="{
         idLabel: 'zipCode',
-        nameLabel: 'CEP',
-        type: 'text',
+        nameLabel: 'MAIN.FEATURES.ADDRESSES.ZIPCODE' | translate,
+        type: 'text'
       }"
       (onChange)="getByZipCode($event)"
     />
@@ -49,7 +49,7 @@
       [type]="'input'"
       [info]="{
         idLabel: 'street',
-        nameLabel: 'Logradouro',
+        nameLabel: 'MAIN.FEATURES.ADDRESSES.STREET' | translate,
         type: 'text',
       }"
     />
@@ -62,7 +62,7 @@
       [type]="'input'"
       [info]="{
         idLabel: 'number',
-        nameLabel: 'Número',
+        nameLabel: 'MAIN.FEATURES.ADDRESSES.NUMBER' | translate,
         type: 'text',
       }"
     />
@@ -75,7 +75,7 @@
       [type]="'select'"
       [info]="{
         idLabel: 'state',
-        nameLabel: 'Estado',
+        nameLabel: 'MAIN.FEATURES.ADDRESSES.STATE' | translate,
         options: selectState(),
       }"
     />
@@ -89,7 +89,7 @@
       [type]="'input'"
       [info]="{
         idLabel: 'city',
-        nameLabel: 'Cidade',
+        nameLabel: 'MAIN.FEATURES.ADDRESSES.CITY' | translate,
         type: 'text',
       }"
     />
@@ -102,7 +102,7 @@
       [type]="'input'"
       [info]="{
         idLabel: 'neighborhood',
-        nameLabel: 'Bairro',
+        nameLabel: 'MAIN.FEATURES.ADDRESSES.NEIGHBORHOOD' | translate,
         type: 'text',
       }"
     />
@@ -118,7 +118,7 @@
         [info]="{
           options: [
             {
-              data: 'Ativo',
+              data: 'MAIN.FEATURES.ADDRESSES.ACTIVE' | translate,
               value: 'A',
             },
           ],
@@ -134,7 +134,11 @@
     } @else {
       <button type="button" class="btn btn-danger" (click)="onCancel()">Cancelar</button>
       <button [disabled]="isDisabled" type="button" class="btn btn-primary" (click)="onSalve()">
-        {{ onEditing() ? 'Editar' : 'Salvar' }}
+        @if(onEditing()) {
+          {{ "COMMONS.EDIT" | translate}}
+        } @else{
+          {{ "COMMONS.SAVE" | translate}}
+        }
       </button>
     }
   </div>

@@ -1,0 +1,74 @@
+{
+  "COMMONS": {
+    "VIEW" : "Ver",
+    "CANCEL": "Voltar",
+    "SAVE": "Salvar",
+    "EDIT" : "Editar",
+    "DEL" : "Inativar"
+  },
+  "MAIN": {
+    "FEATURES": {
+      "PEOPLE": {
+        "NAMEF": "Nome",
+        "NICKNAMEF": "Apelido",
+        "STATEDOCUMENTF": "RG",
+        "FEDERALDOCUMENTF": "CPF",
+        "GENDER": "Sexo",
+        "GENDERLABELMAN": "Masculino",
+        "GENDERLABELFEMAN": "Feminino",
+        "DATE": "Data de aniversario",
+        "TITLEF": "Cadastro de Pessoa Física",
+        "NAMEJ": "Razao Social",
+        "NICKNAMEJ": "Nome Fantasia",
+        "STATEDOCUMENTJ": "Inscricao Estadual",
+        "FEDERALDOCUMENTJ": "CNPJ",
+        "BOND": "Vinculo",
+        "TITLEJ": "Cadastro de Pessoa Jurídica",
+        "ACTIVE": "Ativo"
+      },
+      "ADDRESSES" : {
+        "TYPEADDRESSES" : {
+            "DELIVERY" : "Entrega",
+            "CHARGE" : "Cobrança",
+            "HOUSING" : "Moradia"
+        },
+        "ZIPCODE" : "CEP",
+        "STREET" : "Logradouro",
+        "NUMBER" : "Número",
+        "STATE" : "Estado",
+        "CITY" : "Cidade",
+        "NEIGHBORHOOD" : "Bairro",
+        "ACTIVE" : "Ativo",
+        "FORMTITLE" : "Cadastro de Endereços",
+        "LISTTITLE" : "Lista de Endereços",
+        "TYPEADDRESS" : "Tipo de Endereço"
+      }
+    },
+    "SHARED" : {
+      "NAVBAR" : {
+        "TITLE" : "Vendor App (Angular)",
+        "LANGUAGES" : "Idiomas",
+        "PRODUCTS" : {
+          "NAME" : "Produtos",
+          "CATEGORY" : "Categoria",
+          "GROUP" : "Grupo",
+          "COIN" : "Moeda",
+          "MEASURE" : "Medida"
+        },
+        "PEOPLE" : {
+          "NAME" : "Pessoas",
+          "NATURAL" : "Física",
+          "LEGAL" : "Jurídica"
+        }
+      }
+    },
+    "HOME" : {
+      "WELCOME" : "Bem-vindo de volta!",
+      "TITLE" : "Painel de Controle",
+      "ACTION" : "Ações Rápidas",
+      "BUTTON1" : "Visualizar Categorias",
+      "BUTTON2" : "Gerenciar Grupos"
+    }
+  }
+  
+}

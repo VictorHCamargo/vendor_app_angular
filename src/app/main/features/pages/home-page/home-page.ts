@@ -1,10 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthStoreService } from '../../../shared/services/auth-store-service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })

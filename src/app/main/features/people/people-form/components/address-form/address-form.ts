@@ -3,10 +3,11 @@ import { BaseForms } from '../../../../../shared/class/base-form';
 import { IAddressModel } from '../../../interfaces/address-model';
 import { FormInput } from '../../../../../shared/components/form-input/form-input';
 import { disabled, maxLength, minLength, pattern, required } from '@angular/forms/signals';
-import { AddressService } from './service/address-service';
+import { AddressService } from '../../../services/address-service';
 import { IAddressEvent } from '../../../interfaces/address-event';
 import { IStateModel } from '../../../interfaces/state-model';
 import { TOpitons } from '../../../../../shared/components/form-input/interfaces/form-input-config';
+import { TranslatePipe } from '@ngx-translate/core';
 
 const PATTERNS = {
   CEP: /^\d{5}-\d{3}$/,
@@ -14,7 +15,7 @@ const PATTERNS = {
 
 @Component({
   selector: 'app-address-form',
-  imports: [FormInput],
+  imports: [FormInput, TranslatePipe],
   templateUrl: './address-form.html',
   styleUrl: './address-form.scss',
 })
