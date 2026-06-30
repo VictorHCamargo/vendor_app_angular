@@ -1,4 +1,4 @@
-import { Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, OnInit, AfterViewInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IGroupModel } from '../interfaces/group-model';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -13,7 +13,8 @@ import { ToastService } from '../../../../shared/components/toast-messages/servi
   templateUrl: './group-list.html',
   styleUrl: './group-list.scss',
 })
-export class GroupList extends BaseList<IGroupModel> {
+export class GroupList extends BaseList<IGroupModel>{
+
   router = inject(Router);
   route = inject(ActivatedRoute);
   groupService = inject(GroupService);

@@ -67,6 +67,21 @@ export class PeopleService extends BaseServices<TPersonModel, any> {
     }
   }
 
+  override delete(id: string | number): Observable<TPersonModel> {
+    const results = this.http
+      .put(`${this.host}${this.endPoint}i/${id}`, null)
+      .pipe(
+        map((value: any) => {
+          const data = value.data;
+          return {
+            id : data.id_pessoa
+          } as TPersonModel
+        }),
+      );
+
+    return results;
+  }
+
   searchByQuery(typePerson: TPersonType): Observable<TPersonModel[]> {
     const results = this.http.get(`${this.host}${this.endPoint}/?esp=${typePerson}`).pipe(
       map((value: any) => {
@@ -199,16 +214,16 @@ export class PeopleService extends BaseServices<TPersonModel, any> {
     }));
   }
 
-  private mapDtoAddressesOut(ids: any): IAddressModel[] {
-    const addresses: IAddressModel[] = [];
+  private mapDtoAddressesOut(ids: any): Partial<IAddressModel>[] {
+    const addresses: Partial<IAddressModel>[] = [];
 
-    ids.forEach((value: any) => {
-      if (value)
-        this.searchAddress(value).subscribe({
-          next: (valueData) => {
-            addresses.push(valueData);
-          },
-        });
+    ids.map((value: number | null) => {
+      if (value) {
+        const partAddress: Partial<IAddressModel> = {
+          id: value,
+        };
+        addresses.push(partAddress);
+      }
     });
 
     return addresses;
@@ -249,9 +264,9 @@ export class PeopleService extends BaseServices<TPersonModel, any> {
     const dateOut = date.split('T');
     const dateSplit = dateOut[0].split('-');
 
-    const day = dateSplit[2]
-    const month = dateSplit[1]
-    const year = dateSplit[0]
+    const day = dateSplit[2];
+    const month = dateSplit[1];
+    const year = dateSplit[0];
 
     return `${year}-${month}-${day}`;
   }

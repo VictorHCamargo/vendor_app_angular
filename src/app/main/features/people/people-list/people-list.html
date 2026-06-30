@@ -14,6 +14,10 @@
   </div>
 </div>
 
-<app-modal [isOpen]="isOpen()" (closed)="onClosed()">
-  <app-modal-view [person]="havePerson()" [isNaturalPerson]="isNaturalPerson()" (onClosed)="onClosed()"/>
+<app-modal [isOpen]="isOpen()">
+  @if (isDeactivating()) {
+    <app-modal-deactivate [person]="havePerson()" (onClosed)="onClosed()" (onDeactivate)="onDeactivate($event)" />
+  } @else {
+    <app-modal-view [person]="havePerson()" (onClosed)="onClosed()" />
+  }
 </app-modal>

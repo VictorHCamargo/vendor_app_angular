@@ -3,7 +3,7 @@ import { ResolveFn, Router } from '@angular/router';
 import { PeopleService } from '../services/people-service';
 import { catchError, EMPTY, map, tap } from 'rxjs';
 
-export const peopleDataResolverForm: ResolveFn<any> = (route) => {
+export const peopleDataResolverForm: ResolveFn<any> = (route, _state) => {
   const peopleService = inject(PeopleService);
   const router = inject(Router);
   const id = route.paramMap.get('id')!;
@@ -32,7 +32,7 @@ export const peopleDataResolverForm: ResolveFn<any> = (route) => {
     }),
     catchError(() => {
       router.navigate(['people', 'form', isNaturalRoute ? 'naturalPerson' : 'legalPerson']);
-      return EMPTY
-    })
+      return EMPTY;
+    }),
   );
 };

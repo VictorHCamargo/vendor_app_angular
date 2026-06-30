@@ -26,6 +26,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Modal } from '../../../shared/components/modal/modal';
 import { ModalDeactivate } from './components/modal-deactivate/modal-deactivate';
+import { LoadingComponentsService } from '../../../shared/components/loading-components/service/loading-components-service';
 
 @Component({
   selector: 'app-peoples',
@@ -34,6 +35,7 @@ import { ModalDeactivate } from './components/modal-deactivate/modal-deactivate'
   styleUrl: './people.scss',
 })
 export class People extends BaseForms<TPersonModel> {
+
   toastService = inject(ToastService);
 
   peopleService = inject(PeopleService);
@@ -82,7 +84,7 @@ export class People extends BaseForms<TPersonModel> {
         return this.makeLegalPersonModel();
       }
     }
-  }
+  } 
 
   override onSalve(): void {
     this.peopleService.save(this.model(), this.model().id).subscribe({

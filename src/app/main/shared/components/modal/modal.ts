@@ -9,8 +9,6 @@ import { Component, effect, ElementRef, input, output, Signal, viewChild } from 
 export class Modal {
   isOpen = input<boolean>(false);
 
-  closed = output<void>();
-
   dialogElement : Signal<ElementRef<HTMLDialogElement> | undefined> = viewChild('dialogRef');
 
   constructor() {
@@ -27,7 +25,4 @@ export class Modal {
     });
   }
 
-  onDialogClose() {
-    this.closed.emit();
-  }
 }

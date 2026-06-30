@@ -14,55 +14,27 @@ import { ILegalPerson, INaturalPerson, TPersonModel } from '../../../interfaces/
 import { BadgeActivePipe } from '../../../../../shared/pipe/badge-active-pipe';
 import { FormInput } from '../../../../../shared/components/form-input/form-input';
 import { FieldTree, form } from '@angular/forms/signals';
-import { Router } from '@angular/router';
-import { Table } from '../../../../../shared/components/table/table';
-import { ITableConfig } from '../../../../../shared/components/table/interfaces/table-config';
-import { IAddressModel, TTypeAddress } from '../../../interfaces/address-model';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IPersonWebFormConfig } from '../../../interfaces/person-web-config';
 import { ENTITIES_PERSON_FORM, NATURAL_PERSON_FORM } from '../../../tools/person-setup';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-modal-view',
-  imports: [BadgeActivePipe, FormInput, Table, TranslatePipe],
+  imports: [BadgeActivePipe, FormInput, TranslatePipe],
   templateUrl: './modal-view.html',
   styleUrl: './modal-view.scss',
 })
-export class ModalView implements OnInit{
+export class ModalView implements OnInit {
   person = input<TPersonModel | null>(null);
-
-  isNaturalPerson = input.required<boolean>();
 
   onClosed = output<void>();
 
   router = inject(Router);
 
-  html! : IPersonWebFormConfig;
+  route = inject(ActivatedRoute);
 
-  tableConfig = computed<ITableConfig<IAddressModel>>(() => {
-    return {
-      buttons: [],
-      data: this.person()?.addresses!,
-      titles: [
-        {
-          name: 'MAIN.FEATURES.ADDRESSES.TYPEADDRESS',
-          dataField: 'typeAddress',
-          transform: (value: TTypeAddress) =>
-            ({
-              M: 'bi bi-house-door',
-              C: 'bi bi-building',
-              E: 'bi bi-truck',
-            })[value] ?? 'bi bi-geo-alt',
-        },
-        { dataField: 'zipCode', name: 'MAIN.FEATURES.ADDRESSES.ZIPCODE' },
-        { dataField: 'city', name: 'MAIN.FEATURES.ADDRESSES.CITY' },
-        { dataField: 'state', name: 'MAIN.FEATURES.ADDRESSES.STATE' },
-        { dataField: 'neighborhood', name: 'MAIN.FEATURES.ADDRESSES.NEIGHBORHOOD' },
-        { dataField: 'street', name: 'MAIN.FEATURES.ADDRESSES.STREET' },
-        { dataField: 'number', name: 'MAIN.FEATURES.ADDRESSES.NUMBER' },
-      ],
-    };
-  });
+  html!: IPersonWebFormConfig;
 
   private model: WritableSignal<TPersonModel> = signal({
     id: null,
@@ -75,6 +47,7 @@ export class ModalView implements OnInit{
     date: '',
     gender: 'M',
     addresses: [],
+    bond: null,
   } as TPersonModel);
 
   private formData: WritableSignal<FieldTree<TPersonModel>> = signal(form(this.model));
@@ -86,8 +59,12 @@ export class ModalView implements OnInit{
         this.model.set(person);
       }
     });
-    
   }
+
+  isNaturalPerson() {
+    return (this.route.snapshot.routeConfig?.path?.includes('naturalPerson') ? 'F' : 'J') == 'F';
+  }
+
   ngOnInit(): void {
     this.setHtmlConfig()
   }
@@ -103,13 +80,12 @@ export class ModalView implements OnInit{
   }
 
   setHtmlConfig() {
-      if (this.isNaturalPerson()) {
-        this.html = NATURAL_PERSON_FORM;
-      } else {
-        this.html = ENTITIES_PERSON_FORM;
-      }
+    if (this.isNaturalPerson()) {
+      this.html = NATURAL_PERSON_FORM;
+    } else {
+      this.html = ENTITIES_PERSON_FORM;
     }
-  
+  }
 
   get formName() {
     return this.formData().name;
@@ -137,5 +113,9 @@ export class ModalView implements OnInit{
   }
   get formBond() {
     return (this.formData() as FieldTree<ILegalPerson>).bond;
+  }
+
+  get addressesLength() {
+    return this.model().addresses.length;
   }
 }

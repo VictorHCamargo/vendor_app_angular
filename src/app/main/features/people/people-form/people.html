@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" style="view-transition-name: routeAnimation">
   <form>
     <div class="row mb-3 mt-3">
       <div class="col">
-        <h1>{{ html.title | translate}}</h1>
+        <h1>{{ html.title | translate }}</h1>
       </div>
     </div>
     <div class="row mb-3">
@@ -65,15 +65,15 @@
             [info]="{
               idLabel: 'gender',
               nameLabel: html.genderLabel | translate,
-              options : [
+              options: [
                 {
-                  data: 'MAIN.FEATURES.PEOPLE.GENDERLABELMAN'| translate,
+                  data: 'MAIN.FEATURES.PEOPLE.GENDERLABELMAN' | translate,
                   value: 'M',
                 },
                 {
-                  data: 'MAIN.FEATURES.PEOPLE.GENDERLABELFEMAN'| translate,
+                  data: 'MAIN.FEATURES.PEOPLE.GENDERLABELFEMAN' | translate,
                   value: 'F',
-                }
+                },
               ],
             }"
           />
@@ -89,7 +89,7 @@
               nameLabel: html.dateLabel | translate,
               type: 'date',
             }"
-          /> 
+          />
         </div>
       } @else {
         <div class="col">
@@ -116,8 +116,8 @@
             [type]="'active'"
             [info]="{
               options: [
-                { 
-                  data: 'MAIN.FEATURES.PEOPLE.ACTIVE'| translate,
+                {
+                  data: 'MAIN.FEATURES.PEOPLE.ACTIVE' | translate,
                   value: 'A',
                 },
               ],
@@ -145,14 +145,16 @@
           @if (this.saving()) {
             <img src="../../../../assets/loading.png" class="rounded loading-animation" />
           } @else {
-            <button type="button" class="btn btn-danger" (click)="onCancel()">{{"COMMONS.CANCEL" | translate}}</button>
+            <button type="button" class="btn btn-danger" (click)="onCancel()">
+              {{ 'COMMONS.CANCEL' | translate }}
+            </button>
             <button
               [disabled]="isDisabled"
               type="button"
               class="btn btn-primary"
               (click)="onSalve()"
             >
-              {{"COMMONS.SAVE" | translate}}
+              {{ 'COMMONS.SAVE' | translate }}
             </button>
           }
         </div>
@@ -162,5 +164,9 @@
 </div>
 
 <app-modal [isOpen]="onDeactivating()" (closed)="onClosedModal()">
-  <app-modal-deactivate (onClosed)="onClosedModal()" [address]="deactivateAddress()!" (onDeactivate)="onDelModal($event)" />
+  <app-modal-deactivate
+    (onClosed)="onClosedModal()"
+    [address]="deactivateAddress()!"
+    (onDeactivate)="onDelModal($event)"
+  />
 </app-modal>

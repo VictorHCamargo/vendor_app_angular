@@ -4,10 +4,11 @@ import { INavbarConfig } from './shared/components/navbar/interfaces/navbar-conf
 import { RouterOutlet } from '@angular/router';
 import { AuthStoreService } from './shared/services/auth-store-service';
 import { ILanguagesConfig } from './shared/components/navbar/interfaces/languages-config';
+import { LoadingComponents } from './shared/components/loading-components/loading-components';
 
 @Component({
   selector: 'app-main',
-  imports: [RouterOutlet, Navbar],
+  imports: [RouterOutlet, Navbar,LoadingComponents],
   templateUrl: './main.html',
   styleUrl: './main.scss',
 })

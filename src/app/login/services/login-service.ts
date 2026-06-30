@@ -23,4 +23,8 @@ export class LoginService {
       }),
     );
   }
+
+  verifyCredentials() {
+    return this.authStoreService.isLogged
+  }
 }

@@ -1,11 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-.loading-animation {
-  overflow: none;
-  animation-name: anima;
-  animation-duration: 1.2s;
-  animation-iteration-count: infinite;
-}
-
 @keyframes anima {
   0% {
     transform: rotate(0deg);
@@ -18,4 +11,31 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+@keyframes slide-out {
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+::view-transition-old(routeAnimation) {
+  animation: 300ms ease slide-out;
+}
+::view-transition-new(routeAnimation) {
+  animation: 300ms ease slide-in;
+}
+
+.loading-animation {
+  overflow: none;
+  animation-name: anima;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
 }
