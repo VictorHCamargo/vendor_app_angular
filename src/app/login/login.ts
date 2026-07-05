@@ -22,12 +22,6 @@ export class Login extends BaseForms<ILoginModel> {
 
   showPassword = signal<boolean>(false);
 
-  private _isLogged = signal<boolean>(false);
-
-  isLogged = computed(
-    () => this._isLogged()
-  )
-
   constructor() {
     super();
     this.createForm(
@@ -45,7 +39,9 @@ export class Login extends BaseForms<ILoginModel> {
     effect(
       () => {
         const isLogged = this.loginService.verifyCredentials();
-        this._isLogged.set(isLogged())
+        if(isLogged()) {
+          this.router.navigate(['home']);
+        }
       }
     )
   }
@@ -67,7 +63,7 @@ export class Login extends BaseForms<ILoginModel> {
   }
 
   onLogin() {
-    this.router.navigate(['home']);
+
   }
 
 }

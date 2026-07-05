@@ -7,7 +7,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-address-list',
-  imports: [Table,TranslatePipe],
+  imports: [Table, TranslatePipe],
   templateUrl: './address-list.html',
   styleUrl: './address-list.scss',
 })
@@ -33,12 +33,15 @@ export class AddressList extends BaseList<IAddressModel> {
           {
             name: 'MAIN.FEATURES.ADDRESSES.TYPEADDRESS',
             dataField: 'typeAddress',
-            transform: (value: TTypeAddress) =>
+            transform: {
+              type : 'icon',
+              function : (value: TTypeAddress) =>
               ({
                 M: 'bi bi-house-door',
                 C: 'bi bi-building',
                 E: 'bi bi-truck',
-              })[value] ?? 'bi bi-geo-alt',
+              })[value] ?? 'bi bi-geo-alt'
+            },
           },
           { dataField: 'zipCode', name: 'MAIN.FEATURES.ADDRESSES.ZIPCODE' },
           { dataField: 'city', name: 'MAIN.FEATURES.ADDRESSES.CITY' },

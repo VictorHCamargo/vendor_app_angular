@@ -52,47 +52,36 @@
         ></app-error-messages>
       </div>
 
-      @if (!isLogged()) {
-        @if (!atLogin()) {
-          @if (isDisabled) {
-            <button
-              type="button"
-              class="btn btn-primary w-100 py-2 fw-bold shadow-sm"
-              style="border-radius: 8px"
-              disabled
-            >
-              Entrar no Painel
-            </button>
-          } @else {
-            <button
-              (click)="onSign()"
-              type="button"
-              class="btn btn-primary w-100 py-2 fw-bold shadow-sm"
-              style="border-radius: 8px"
-            >
-              Entrar no Painel
-            </button>
-          }
-        } @else {
+      @if (!atLogin()) {
+        @if (isDisabled) {
           <button
             type="button"
             class="btn btn-primary w-100 py-2 fw-bold shadow-sm"
             style="border-radius: 8px"
             disabled
           >
-            <div class="spinner-border text-light" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
+            Entrar no Painel
+          </button>
+        } @else {
+          <button
+            (click)="onSign()"
+            type="button"
+            class="btn btn-primary w-100 py-2 fw-bold shadow-sm"
+            style="border-radius: 8px"
+          >
+            Entrar no Painel
           </button>
         }
       } @else {
         <button
-          (click)="onLogin()"
           type="button"
           class="btn btn-primary w-100 py-2 fw-bold shadow-sm"
           style="border-radius: 8px"
+          disabled
         >
-          Acessar
+          <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         </button>
       }
     </form>

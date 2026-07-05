@@ -48,6 +48,11 @@ export class Main {
           children: [],
           external: true,
         },
+        {
+          name : 'MAIN.SHARED.NAVBAR.PRODUCTS.COLOR',
+          way : '/color/list',
+          children : []
+        }
       ],
     },
     {

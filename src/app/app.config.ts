@@ -11,7 +11,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withFetch(), withInterceptors([HttpAuthInterceptor])),
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
+    provideRouter(routes,withViewTransitions()),
     provideClientHydration(withEventReplay()),
     provideTranslateService({
       lang: 'pt-BR',

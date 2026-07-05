@@ -1,5 +1,5 @@
 @if (type() != 'radio') {
-  <label [for]="info().idLabel" class="form-label">{{ info().nameLabel }}</label>
+  <label [for]="info().idLabel" class="form-label">{{ info().nameLabel | translate}}</label>
 }
 @switch (type()) {
   @case ('active') {

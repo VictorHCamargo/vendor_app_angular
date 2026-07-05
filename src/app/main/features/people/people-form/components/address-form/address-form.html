@@ -132,7 +132,7 @@
     @if (this.saving()) {
       <img src="../../../../assets/loading.png" class="rounded loading-animation" />
     } @else {
-      <button type="button" class="btn btn-danger" (click)="onCancel()">Cancelar</button>
+      <button type="button" class="btn btn-danger" (click)="onCancel()">{{ "COMMONS.CANCEL" | translate}}</button>
       <button [disabled]="isDisabled" type="button" class="btn btn-primary" (click)="onSalve()">
         @if(onEditing()) {
           {{ "COMMONS.EDIT" | translate}}

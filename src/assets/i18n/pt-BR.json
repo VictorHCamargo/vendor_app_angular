@@ -4,7 +4,8 @@
     "CANCEL": "Voltar",
     "SAVE": "Salvar",
     "EDIT" : "Editar",
-    "DEL" : "Inativar"
+    "DEL" : "Inativar",
+    "DELE" : "Deletar"
   },
   "MAIN": {
     "FEATURES": {
@@ -42,6 +43,13 @@
         "FORMTITLE" : "Cadastro de Endereços",
         "LISTTITLE" : "Lista de Endereços",
         "TYPEADDRESS" : "Tipo de Endereço"
+      },
+      "COLOR" : {
+        "HEX" : "Hexadecimal",
+        "ACTIVE" : "Ativo",
+        "LISTTITLE" : "Lista de cores",
+        "LISTBUTTON" : "Cadastrar nova cor",
+        "FORMTITLE" : "Cadastrado de cores"
       }
     },
     "SHARED" : {
@@ -53,7 +61,8 @@
           "CATEGORY" : "Categoria",
           "GROUP" : "Grupo",
           "COIN" : "Moeda",
-          "MEASURE" : "Medida"
+          "MEASURE" : "Medida",
+          "COLOR" : "Cores"
         },
         "PEOPLE" : {
           "NAME" : "Pessoas",
@@ -70,5 +79,5 @@
       "BUTTON2" : "Gerenciar Grupos"
     }
   }
-  
+
 }

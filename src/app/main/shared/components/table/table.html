@@ -13,9 +13,19 @@
     @for (model of tableConfig()?.data; track $index; let i = $index) {
       <tr >
         @for (title of tableConfig()?.titles; track $index) {
-          <td [class.opacity-50]="active(model)">
+          <td [class.text-black-50]="isInactive(model)">
             @if (title.transform) {
-              <i [class]="title.transform(model[title.dataField])"></i>
+              @switch (title.transform.type) {
+                @case ('make') {
+                  <span [innerHTML]="title.transform.function(model[title.dataField]) | fake"></span>
+                }
+                @case('active') {
+                  <span [innerHTML]="title.transform.function(model[title.dataField]) | badgeActive"></span>
+                }
+                @case ('icon') {
+                  <i [class]="title.transform.function(model[title.dataField])" ></i>
+                }
+              }
             } @else {
               {{ model[title.dataField] }}
             }

@@ -1,5 +1,3 @@
-import { FieldTree } from '@angular/forms/signals';
-
 export interface IFormInputConfig<MODEL> {
   idLabel?: keyof MODEL;
   nameLabel?: string;
@@ -8,7 +6,7 @@ export interface IFormInputConfig<MODEL> {
   readonly? : boolean;
 }
 
-export type TTypeInput = 'input' | 'radio' | 'select' | 'active';
+export type TTypeInput = 'input' | 'radio' | 'select' | 'active' | 'color';
 
 export type TOpitons = {
   value: string;

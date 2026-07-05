@@ -2,10 +2,11 @@ import { Component, input, output } from '@angular/core';
 import { Field, FieldTree } from '@angular/forms/signals';
 import { IFormInputConfig, TTypeInput } from './interfaces/form-input-config';
 import { ErrorMessages } from '../error-messages/error-messages';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-form-input',
-  imports: [Field, ErrorMessages],
+  imports: [Field, ErrorMessages,TranslatePipe],
   templateUrl: './form-input.html',
   styleUrl: './form-input.scss',
 })

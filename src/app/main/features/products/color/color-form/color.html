@@ -1,0 +1,54 @@
+<div class="container">
+  <form>
+    <div class="row mb-3 mt-3">
+      <div class="col">
+        <h1>{{ 'MAIN.FEATURES.COLOR.FORMTITLE' | translate }}</h1>
+      </div>
+    </div>
+    <div class="row justify-content-evenly">
+      <div class="col col-lg-2">
+        <app-form-input
+          [fieldTree]="formHexadecimal"
+          [info]="{
+            type: 'color',
+            nameLabel: 'MAIN.FEATURES.COLOR.HEX',
+          }"
+          [type]="'input'"
+          [messageId]="'hexadecimal'"
+        />
+      </div>
+      <div class="col">
+        <div class="form-check form-switch">
+          <app-form-input
+            [messageId]="'active'"
+            [fieldTree]="formActive"
+            [type]="'active'"
+            [info]="{
+              options: [
+                {
+                  data: 'MAIN.FEATURES.ADDRESSES.ACTIVE' | translate,
+                  value: 'A',
+                },
+              ],
+            }"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+        @if (this.saving()) {
+          <img src="../../../../assets/loading.png" class="rounded loading-animation" />
+        } @else {
+          <button type="button" class="btn btn-danger" (click)="onCancel()">
+            {{ 'COMMONS.CANCEL' | translate }}
+          </button>
+          <button [disabled]="isDisabled" type="button" class="btn btn-primary" (click)="onSalve()">
+            {{ 'COMMONS.SAVE' | translate }}
+          </button>
+        }
+      </div>
+    </div>
+  </form>
+</div>
