@@ -52,6 +52,11 @@ export class Main {
           name : 'MAIN.SHARED.NAVBAR.PRODUCTS.COLOR',
           way : '/color/list',
           children : []
+        },
+        {
+          name : 'MAIN.FEATURES.MARK.',
+          way : '/mark/list',
+          children : []
         }
       ],
     },

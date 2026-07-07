@@ -2,20 +2,19 @@
   <form>
     <div class="row mb-3 mt-3">
       <div class="col">
-        <h1>Grupo de Produtos</h1>
+        <h1>{{ 'MAIN.FEATURES.MARK.FORMTITLE' | translate}}</h1>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col">
-        <label for="nome" class="form-label">Nome do Grupo</label>
-        <input
-          [field]="formData.name"
-          type="text"
-          class="form-control"
-          id="nome"
-          aria-describedby="nomeHelp"
+        <app-form-input [fieldTree]="formName" [info]="{
+          nameLabel : 'MAIN.FEATURES.MARK.',
+          type : 'text',
+          idLabel : 'name'
+        }"
+        [messageId]="'name'"
+        [type]="'input'"
         />
-        <app-error-messages [message]="formData.name()" [messageId]="idHelp"></app-error-messages>
       </div>
     </div>
 

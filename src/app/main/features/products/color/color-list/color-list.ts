@@ -95,8 +95,8 @@ export class ColorList extends BaseList<IColorModel> {
 
   override reloadData(): void {
     this.toastService.show('Os dados foram atualizados!', 'info');
-    this.colorService.search().subscribe((result) => {
-      this.dataModel.set(result as IColorModel[]);
+    this.colorService.search().subscribe((value) => {
+      this.dataModel.set(value as IColorModel[]);
     });
   }
 

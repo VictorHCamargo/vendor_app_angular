@@ -50,6 +50,12 @@
         "LISTTITLE" : "Lista de cores",
         "LISTBUTTON" : "Cadastrar nova cor",
         "FORMTITLE" : "Cadastrado de cores"
+      },
+      "MARK" : {
+        "LISTTITLE" :"Lista de marcas",
+        "LISTBUTTON" :"Cadastrar nova marca",
+        "" : "Marca",
+        "FORMTITLE" : "Cadastrado de marcas"
       }
     },
     "SHARED" : {

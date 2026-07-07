@@ -47,6 +47,11 @@ export const routes: Routes = [
           import('./main/features/products/color/routes/color.routes').then((m) => m.colorRoutes),
       },
       {
+        path: 'mark',
+        loadChildren: () =>
+          import('./main/features/products/mark/routes/mark.routes').then((m) => m.markRoutes),
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',

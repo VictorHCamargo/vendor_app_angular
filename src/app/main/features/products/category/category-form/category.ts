@@ -36,7 +36,7 @@ export class Category extends BaseForms<ICategoryModel> {
     );
   }
 
-  override onSalve(): void {
+  override onSave(): void {
     submit(this.formData, async () => {
       this.saving.set(true);
       this.categoryService.save(this.model(), this.model().id).subscribe({

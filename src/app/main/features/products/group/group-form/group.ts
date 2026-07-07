@@ -6,10 +6,11 @@ import { GroupService } from '../services/group-service';
 import { ErrorMessages } from '../../../../shared/components/error-messages/error-messages';
 import { ToastService } from '../../../../shared/components/toast-messages/services/toast-service';
 import { BaseForms } from '../../../../shared/class/base-form';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-group',
-  imports: [ErrorMessages, Field],
+  imports: [ErrorMessages, Field, TranslatePipe],
   templateUrl: './group.html',
   styleUrl: './group.scss',
 })
@@ -35,7 +36,7 @@ export class Group extends BaseForms<IGroupModel> {
     );
   }
 
-  override onSalve(): void {
+  override onSave(): void {
     submit(this.formData, async () => {
       this.saving.set(true);
       this.groupService.save(this.model(), this.model()?.id).subscribe({

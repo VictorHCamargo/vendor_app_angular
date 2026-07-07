@@ -45,7 +45,7 @@ export class Color extends BaseForms<IColorModel> {
     this.router.navigate(['color', 'list']);
   }
 
-  override onSalve(): void {
+  override onSave(): void {
     this.saving.set(true);
     this.colorService.save(this.model(), this.model().id).subscribe({
       next: (_) => {
@@ -57,7 +57,7 @@ export class Color extends BaseForms<IColorModel> {
         this.router.navigate(['color', 'list']);
       },
       error: (error) => {
-        console.log(error)
+        console.log(error);
         this.toastService.show(
           this.model().id ? 'nao foi possivel atualizar!' : 'nao foi possivel cadastrar!',
           'danger',

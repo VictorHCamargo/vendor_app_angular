@@ -27,7 +27,7 @@ export class BaseForms<MODEL> {
     }
   }
 
-  onSalve() {
+  onSave() {
     throw new Error('Method not implemented');
   }
 

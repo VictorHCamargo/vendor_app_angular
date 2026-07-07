@@ -134,7 +134,7 @@ export class AddressForm extends BaseForms<IAddressModel> implements OnInit {
     }
   }
 
-  override onSalve(): void {
+  override onSave(): void {
     if (this.onEditing()) {
       this.salve.emit({
         address: this.model(),

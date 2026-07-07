@@ -35,7 +35,6 @@ import { LoadingComponentsService } from '../../../shared/components/loading-com
   styleUrl: './people.scss',
 })
 export class People extends BaseForms<TPersonModel> {
-
   toastService = inject(ToastService);
 
   peopleService = inject(PeopleService);
@@ -84,9 +83,9 @@ export class People extends BaseForms<TPersonModel> {
         return this.makeLegalPersonModel();
       }
     }
-  } 
+  }
 
-  override onSalve(): void {
+  override onSave(): void {
     this.peopleService.save(this.model(), this.model().id).subscribe({
       next: () => {
         this.router.navigate([

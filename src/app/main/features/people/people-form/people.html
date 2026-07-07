@@ -152,7 +152,7 @@
               [disabled]="isDisabled"
               type="button"
               class="btn btn-primary"
-              (click)="onSalve()"
+              (click)="onSave()"
             >
               {{ 'COMMONS.SAVE' | translate }}
             </button>
@@ -163,7 +163,7 @@
   </form>
 </div>
 
-<app-modal [isOpen]="onDeactivating()" (closed)="onClosedModal()">
+<app-modal [isOpen]="onDeactivating()">
   <app-modal-deactivate
     (onClosed)="onClosedModal()"
     [address]="deactivateAddress()!"
