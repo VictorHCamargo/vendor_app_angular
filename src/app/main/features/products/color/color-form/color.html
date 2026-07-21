@@ -2,7 +2,7 @@
   <form>
     <div class="row mb-3 mt-3">
       <div class="col">
-        <h1>{{ 'MAIN.FEATURES.COLOR.FORMTITLE' | translate }}</h1>
+        <h1>{{ 'MAIN.FEATURES.PRODUCT_MASTER.COLOR.FORMTITLE' | translate }}</h1>
       </div>
     </div>
     <div class="row justify-content-evenly">
@@ -11,7 +11,7 @@
           [fieldTree]="formHexadecimal"
           [info]="{
             type: 'color',
-            nameLabel: 'MAIN.FEATURES.COLOR.HEX',
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.HEX',
           }"
           [type]="'input'"
           [messageId]="'hexadecimal'"
@@ -26,7 +26,7 @@
             [info]="{
               options: [
                 {
-                  data: 'MAIN.FEATURES.ADDRESSES.ACTIVE' | translate,
+                  data: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.ACTIVE' | translate,
                   value: 'A',
                 },
               ],

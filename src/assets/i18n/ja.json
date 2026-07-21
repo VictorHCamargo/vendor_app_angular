@@ -1,0 +1,80 @@
+{
+  "COMMONS": {
+    "VIEW": "表示",
+    "CANCEL": "戻る",
+    "SAVE": "保存",
+    "EDIT": "編集",
+    "DEL": "無効化",
+    "DELE": "削除",
+    "ACTIONS": "操作",
+    "NO_RECORDS": "該当するデータはありません"
+  },
+  "MAIN": {
+    "FEATURES": {
+      "PRODUCT_MASTER": {
+        "FIELDS": { "NAME": "名前", "HEX": "16進数", "ACTIVE": "有効" },
+        "ENTITIES": {
+          "CATEGORY": "カテゴリー",
+          "GROUP": "グループ",
+          "MARK": "ブランド",
+          "COLOR": "色"
+        },
+        "CATEGORY": {
+          "LISTTITLE": "カテゴリー一覧",
+          "LISTBUTTON": "カテゴリーを追加",
+          "FORMTITLE": "カテゴリー登録"
+        },
+        "GROUP": {
+          "LISTTITLE": "グループ一覧",
+          "LISTBUTTON": "グループを追加",
+          "FORMTITLE": "グループ登録"
+        },
+        "MARK": {
+          "LISTTITLE": "ブランド一覧",
+          "LISTBUTTON": "ブランドを追加",
+          "FORMTITLE": "ブランド登録"
+        },
+        "COLOR": { "LISTTITLE": "色一覧", "LISTBUTTON": "色を追加", "FORMTITLE": "色登録" },
+        "VALIDATION": {
+          "REQUIRED": "この項目は必須です。",
+          "MIN_LENGTH": "3文字以上で入力してください。",
+          "HEX": "有効な16進カラーを入力してください（例: #000000）。"
+        },
+        "SAVE": {
+          "CREATED": "登録しました。",
+          "UPDATED": "更新しました。",
+          "ERROR": "保存できませんでした。"
+        },
+        "MESSAGES": {
+          "DELETE": {
+            "SUCCESS": "{{entity}}を削除しました。",
+            "ERROR": "関連付けられているため、この{{entity}}は削除できません。"
+          }
+        },
+        "DELETE": { "TITLE": "削除の確認", "CONFIRM": "{{entity}}「{{name}}」を削除しますか？" }
+      }
+    },
+    "SHARED": {
+      "NAVBAR": {
+        "TITLE": "Vendor App (Angular)",
+        "LANGUAGES": "言語",
+        "PRODUCTS": {
+          "NAME": "製品",
+          "CATEGORY": "カテゴリー",
+          "GROUP": "グループ",
+          "COIN": "通貨",
+          "MEASURE": "単位",
+          "COLOR": "色"
+        },
+        "PEOPLE": { "NAME": "人", "NATURAL": "個人", "LEGAL": "法人" }
+      }
+    },
+    "HOME": {
+      "WELCOME": "おかえりなさい！",
+      "TITLE": "ダッシュボード",
+      "ACTION": "クイックアクション",
+      "BUTTON1": "カテゴリーを見る",
+      "BUTTON2": "グループを管理"
+    }
+  }
+}

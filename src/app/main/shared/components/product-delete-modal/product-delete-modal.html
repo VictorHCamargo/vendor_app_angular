@@ -1,0 +1,21 @@
+<div class="modal-dialog modal-sm">
+  <div class="modal-content border-top border-danger border-4 px-2">
+    <div class="modal-header bg-light">
+      <h5 class="modal-title text-danger">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ 'MAIN.FEATURES.PRODUCT_MASTER.DELETE.TITLE' | translate }}
+      </h5>
+      <button type="button" class="btn-close" (click)="closed.emit()"></button>
+    </div>
+    <div class="modal-body text-secondary">
+      <p class="mb-3">
+        {{ 'MAIN.FEATURES.PRODUCT_MASTER.DELETE.CONFIRM' | translate: { entity: (entityKey() | translate), name: name() } }}
+      </p>
+    </div>
+    <div class="modal-footer border-top-0 pt-0">
+      <button type="button" class="btn btn-danger" (click)="confirmed.emit()">
+        <i class="bi bi-x-circle me-1"></i>{{ 'COMMONS.DELE' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

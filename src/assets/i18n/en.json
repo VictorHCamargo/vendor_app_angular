@@ -4,7 +4,10 @@
     "CANCEL": "Back",
     "SAVE": "Save",
     "EDIT": "Edit",
-    "DEL": "Inactivate"
+    "DEL": "Inactivate",
+    "DELE": "Delete",
+    "ACTIONS": "Actions",
+    "NO_RECORDS": "No records found"
   },
   "MAIN": {
     "FEATURES": {
@@ -42,6 +45,50 @@
         "FORMTITLE": "Address Registration",
         "LISTTITLE": "Address List",
         "TYPEADDRESS": "Address Type"
+      },
+      "PRODUCT_MASTER": {
+        "FIELDS": { "NAME": "Name", "HEX": "Hexadecimal", "ACTIVE": "Active" },
+        "ENTITIES": { "CATEGORY": "category", "GROUP": "group", "MARK": "brand", "COLOR": "color" },
+        "CATEGORY": {
+          "LISTTITLE": "Category list",
+          "LISTBUTTON": "Add category",
+          "FORMTITLE": "Category registration"
+        },
+        "GROUP": {
+          "LISTTITLE": "Group list",
+          "LISTBUTTON": "Add group",
+          "FORMTITLE": "Group registration"
+        },
+        "MARK": {
+          "LISTTITLE": "Brand list",
+          "LISTBUTTON": "Add brand",
+          "FORMTITLE": "Brand registration"
+        },
+        "COLOR": {
+          "LISTTITLE": "Color list",
+          "LISTBUTTON": "Add color",
+          "FORMTITLE": "Color registration"
+        },
+        "VALIDATION": {
+          "REQUIRED": "This field is required.",
+          "MIN_LENGTH": "This field must have at least 3 characters.",
+          "HEX": "Enter a valid hexadecimal color (e.g. #000000)."
+        },
+        "SAVE": {
+          "CREATED": "Record saved successfully.",
+          "UPDATED": "Record updated successfully.",
+          "ERROR": "Unable to save the record."
+        },
+        "MESSAGES": {
+          "DELETE": {
+            "SUCCESS": "{{entity}} deleted successfully.",
+            "ERROR": "This {{entity}} cannot be deleted because it is linked."
+          }
+        },
+        "DELETE": {
+          "TITLE": "Confirm deletion",
+          "CONFIRM": "Do you want to delete {{entity}} {{name}}?"
+        }
       }
     },
     "SHARED": {

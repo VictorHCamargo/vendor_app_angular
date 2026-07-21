@@ -2,31 +2,32 @@
   <form>
     <div class="row mb-3 mt-3">
       <div class="col">
-        <h1>Grupo de Produtos</h1>
+        <h1>{{ 'MAIN.FEATURES.PRODUCT_MASTER.GROUP.FORMTITLE' | translate }}</h1>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col">
-        <label for="nome" class="form-label">Nome do Grupo</label>
-        <input
-          [field]="formData.name"
-          type="text"
-          class="form-control"
-          id="nome"
-          aria-describedby="nomeHelp"
+        <app-form-input
+          [fieldTree]="formName"
+          [info]="{
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.NAME',
+            type: 'text',
+            idLabel: 'name',
+          }"
+          messageId="name"
+          type="input"
         />
-        <app-error-messages [message]="formData.name()" [messageId]="idHelp"></app-error-messages>
       </div>
     </div>
-
     <div class="row">
       <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-        @if (this.saving()) {
+        @if (saving()) {
           <img src="../../../../assets/loading.png" class="rounded loading-animation" />
         } @else {
-          <button type="button" class="btn btn-danger" (click)="onCancel()">{{'COMMONS.CANCEL' |translate}}</button>
-          <button [disabled]="isDisabled" type="button" class="btn btn-primary" (click)="onSave()">
-            {{'COMMONS.SAVE' |translate}}
+          <button type="button" class="btn btn-danger" (click)="onCancel()">
+            {{ 'COMMONS.CANCEL' | translate }}</button
+          ><button [disabled]="isDisabled" type="button" class="btn btn-primary" (click)="onSave()">
+            {{ 'COMMONS.SAVE' | translate }}
           </button>
         }
       </div>

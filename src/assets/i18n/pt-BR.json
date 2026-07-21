@@ -1,11 +1,13 @@
 {
   "COMMONS": {
-    "VIEW" : "Ver",
+    "VIEW": "Ver",
     "CANCEL": "Voltar",
     "SAVE": "Salvar",
-    "EDIT" : "Editar",
-    "DEL" : "Inativar",
-    "DELE" : "Deletar"
+    "EDIT": "Editar",
+    "DEL": "Inativar",
+    "DELE": "Deletar",
+    "ACTIONS": "Ações",
+    "NO_RECORDS": "Nenhum registro encontrado"
   },
   "MAIN": {
     "FEATURES": {
@@ -27,63 +29,106 @@
         "TITLEJ": "Cadastro de Pessoa Jurídica",
         "ACTIVE": "Ativo"
       },
-      "ADDRESSES" : {
-        "TYPEADDRESSES" : {
-            "DELIVERY" : "Entrega",
-            "CHARGE" : "Cobrança",
-            "HOUSING" : "Moradia"
+      "ADDRESSES": {
+        "TYPEADDRESSES": {
+          "DELIVERY": "Entrega",
+          "CHARGE": "Cobrança",
+          "HOUSING": "Moradia"
         },
-        "ZIPCODE" : "CEP",
-        "STREET" : "Logradouro",
-        "NUMBER" : "Número",
-        "STATE" : "Estado",
-        "CITY" : "Cidade",
-        "NEIGHBORHOOD" : "Bairro",
-        "ACTIVE" : "Ativo",
-        "FORMTITLE" : "Cadastro de Endereços",
-        "LISTTITLE" : "Lista de Endereços",
-        "TYPEADDRESS" : "Tipo de Endereço"
+        "ZIPCODE": "CEP",
+        "STREET": "Logradouro",
+        "NUMBER": "Número",
+        "STATE": "Estado",
+        "CITY": "Cidade",
+        "NEIGHBORHOOD": "Bairro",
+        "ACTIVE": "Ativo",
+        "FORMTITLE": "Cadastro de Endereços",
+        "LISTTITLE": "Lista de Endereços",
+        "TYPEADDRESS": "Tipo de Endereço"
       },
-      "COLOR" : {
-        "HEX" : "Hexadecimal",
-        "ACTIVE" : "Ativo",
-        "LISTTITLE" : "Lista de cores",
-        "LISTBUTTON" : "Cadastrar nova cor",
-        "FORMTITLE" : "Cadastrado de cores"
+      "COLOR": {
+        "HEX": "Hexadecimal",
+        "ACTIVE": "Ativo",
+        "LISTTITLE": "Lista de cores",
+        "LISTBUTTON": "Cadastrar nova cor",
+        "FORMTITLE": "Cadastrado de cores"
       },
-      "MARK" : {
-        "LISTTITLE" :"Lista de marcas",
-        "LISTBUTTON" :"Cadastrar nova marca",
-        "" : "Marca",
-        "FORMTITLE" : "Cadastrado de marcas"
-      }
-    },
-    "SHARED" : {
-      "NAVBAR" : {
-        "TITLE" : "Vendor App (Angular)",
-        "LANGUAGES" : "Idiomas",
-        "PRODUCTS" : {
-          "NAME" : "Produtos",
-          "CATEGORY" : "Categoria",
-          "GROUP" : "Grupo",
-          "COIN" : "Moeda",
-          "MEASURE" : "Medida",
-          "COLOR" : "Cores"
+      "MARK": {
+        "LISTTITLE": "Lista de marcas",
+        "LISTBUTTON": "Cadastrar nova marca",
+        "": "Marca",
+        "FORMTITLE": "Cadastrado de marcas"
+      },
+      "PRODUCT_MASTER": {
+        "FIELDS": { "NAME": "Nome", "HEX": "Hexadecimal", "ACTIVE": "Ativo" },
+        "ENTITIES": { "CATEGORY": "categoria", "GROUP": "grupo", "MARK": "marca", "COLOR": "cor" },
+        "CATEGORY": {
+          "LISTTITLE": "Lista de categorias",
+          "LISTBUTTON": "Cadastrar nova categoria",
+          "FORMTITLE": "Cadastro de categoria"
         },
-        "PEOPLE" : {
-          "NAME" : "Pessoas",
-          "NATURAL" : "Física",
-          "LEGAL" : "Jurídica"
+        "GROUP": {
+          "LISTTITLE": "Lista de grupos",
+          "LISTBUTTON": "Cadastrar novo grupo",
+          "FORMTITLE": "Cadastro de grupo"
+        },
+        "MARK": {
+          "LISTTITLE": "Lista de marcas",
+          "LISTBUTTON": "Cadastrar nova marca",
+          "FORMTITLE": "Cadastro de marca"
+        },
+        "COLOR": {
+          "LISTTITLE": "Lista de cores",
+          "LISTBUTTON": "Cadastrar nova cor",
+          "FORMTITLE": "Cadastro de cor"
+        },
+        "VALIDATION": {
+          "REQUIRED": "O campo é obrigatório.",
+          "MIN_LENGTH": "O campo deve ter pelo menos 3 caracteres.",
+          "HEX": "Informe uma cor hexadecimal válida (ex.: #000000)."
+        },
+        "SAVE": {
+          "CREATED": "Cadastro salvo com sucesso.",
+          "UPDATED": "Cadastro atualizado com sucesso.",
+          "ERROR": "Não foi possível salvar o cadastro."
+        },
+        "MESSAGES": {
+          "DELETE": {
+            "SUCCESS": "{{entity}} excluída com sucesso.",
+            "ERROR": "Não é possível excluir esta {{entity}} porque ela está vinculada."
+          }
+        },
+        "DELETE": {
+          "TITLE": "Confirmar exclusão",
+          "CONFIRM": "Tem certeza que deseja excluir a {{entity}} {{name}}?"
         }
       }
     },
-    "HOME" : {
-      "WELCOME" : "Bem-vindo de volta!",
-      "TITLE" : "Painel de Controle",
-      "ACTION" : "Ações Rápidas",
-      "BUTTON1" : "Visualizar Categorias",
-      "BUTTON2" : "Gerenciar Grupos"
+    "SHARED": {
+      "NAVBAR": {
+        "TITLE": "Vendor App (Angular)",
+        "LANGUAGES": "Idiomas",
+        "PRODUCTS": {
+          "NAME": "Produtos",
+          "CATEGORY": "Categoria",
+          "GROUP": "Grupo",
+          "COIN": "Moeda",
+          "MEASURE": "Medida",
+          "COLOR": "Cores"
+        },
+        "PEOPLE": {
+          "NAME": "Pessoas",
+          "NATURAL": "Física",
+          "LEGAL": "Jurídica"
+        }
+      }
+    },
+    "HOME": {
+      "WELCOME": "Bem-vindo de volta!",
+      "TITLE": "Painel de Controle",
+      "ACTION": "Ações Rápidas",
+      "BUTTON1": "Visualizar Categorias",
+      "BUTTON2": "Gerenciar Grupos"
     }
   }
-
 }

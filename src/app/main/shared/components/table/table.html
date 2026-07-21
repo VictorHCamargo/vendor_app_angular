@@ -5,7 +5,7 @@
         <th>{{ title.name | translate }}</th>
       }
       @if (tableConfig()?.buttons?.length != 0) {
-        <th>Ações</th>
+        <th>{{ 'COMMONS.ACTIONS' | translate }}</th>
       }
     </tr>
   </thead>
@@ -57,7 +57,7 @@
       </tr>
     } @empty {
       <tr>
-        <td [attr.colspan]="colspan()" class="text-center">Nenhum registro encontrado</td>
+        <td [attr.colspan]="colspan()" class="text-center">{{ 'COMMONS.NO_RECORDS' | translate }}</td>
       </tr>
     }
   </tbody>

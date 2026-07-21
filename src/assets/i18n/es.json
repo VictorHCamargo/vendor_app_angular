@@ -4,7 +4,10 @@
     "CANCEL": "Volver",
     "SAVE": "Guardar",
     "EDIT": "Editar",
-    "DEL": "Inactivar"
+    "DEL": "Inactivar",
+    "DELE": "Eliminar",
+    "ACTIONS": "Acciones",
+    "NO_RECORDS": "No se encontraron registros"
   },
   "MAIN": {
     "FEATURES": {
@@ -42,6 +45,55 @@
         "FORMTITLE": "Registro de Direcciones",
         "LISTTITLE": "Lista de Direcciones",
         "TYPEADDRESS": "Tipo de Dirección"
+      },
+      "PRODUCT_MASTER": {
+        "FIELDS": { "NAME": "Nombre", "HEX": "Hexadecimal", "ACTIVE": "Activo" },
+        "ENTITIES": {
+          "CATEGORY": "categoría",
+          "GROUP": "grupo",
+          "MARK": "marca",
+          "COLOR": "color"
+        },
+        "CATEGORY": {
+          "LISTTITLE": "Lista de categorías",
+          "LISTBUTTON": "Agregar categoría",
+          "FORMTITLE": "Registro de categoría"
+        },
+        "GROUP": {
+          "LISTTITLE": "Lista de grupos",
+          "LISTBUTTON": "Agregar grupo",
+          "FORMTITLE": "Registro de grupo"
+        },
+        "MARK": {
+          "LISTTITLE": "Lista de marcas",
+          "LISTBUTTON": "Agregar marca",
+          "FORMTITLE": "Registro de marca"
+        },
+        "COLOR": {
+          "LISTTITLE": "Lista de colores",
+          "LISTBUTTON": "Agregar color",
+          "FORMTITLE": "Registro de color"
+        },
+        "VALIDATION": {
+          "REQUIRED": "Este campo es obligatorio.",
+          "MIN_LENGTH": "Este campo debe tener al menos 3 caracteres.",
+          "HEX": "Ingrese un color hexadecimal válido (p. ej. #000000)."
+        },
+        "SAVE": {
+          "CREATED": "Registro guardado correctamente.",
+          "UPDATED": "Registro actualizado correctamente.",
+          "ERROR": "No se pudo guardar el registro."
+        },
+        "MESSAGES": {
+          "DELETE": {
+            "SUCCESS": "{{entity}} eliminada correctamente.",
+            "ERROR": "No se puede eliminar esta {{entity}} porque está vinculada."
+          }
+        },
+        "DELETE": {
+          "TITLE": "Confirmar eliminación",
+          "CONFIRM": "¿Desea eliminar la {{entity}} {{name}}?"
+        }
       }
     },
     "SHARED": {

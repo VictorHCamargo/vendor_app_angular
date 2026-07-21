@@ -90,6 +90,10 @@ export class Main {
     {
       acronym : 'es',
       name : 'Español'
+    },
+    {
+      acronym : 'ja',
+      name : '日本語'
     }
   ]
   private makeUrlExternalPartner(basePath: string, url: string) {
