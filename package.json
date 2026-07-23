@@ -1,13 +1,14 @@
 {
   "name": "angular",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:angular": "node dist/angular/server/server.mjs"
+    "build": "ng build --configuration production",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "npm run lint:fix"
   },
   "prettier": {
     "printWidth": 100,
@@ -41,14 +42,20 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@angular-eslint/eslint-plugin": "^22.1.0",
+    "@angular-eslint/eslint-plugin-template": "^22.1.0",
+    "@angular-eslint/template-parser": "^22.1.0",
     "@angular/build": "^21.0.4",
     "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "^21.0.0",
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",
+    "eslint": "^10.7.0",
+    "eslint-plugin-unicorn": "^72.0.0",
     "jsdom": "^27.1.0",
     "prettier": "3.8.3",
     "typescript": "~5.9.2",
+    "typescript-eslint": "^8.65.0",
     "vitest": "^4.0.8"
   }
 }
