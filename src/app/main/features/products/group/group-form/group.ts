@@ -7,9 +7,10 @@ import { FormInput } from '../../../../shared/components/form-input/form-input';
 import { ToastService } from '../../../../shared/components/toast-messages/services/toast-service';
 import { IGroupModel } from '../interfaces/group-model';
 import { GroupService } from '../services/group-service';
+import { FormActions } from '../../../../shared/components/form-actions/form-actions';
 @Component({
   selector: 'app-group',
-  imports: [FormInput, TranslatePipe],
+  imports: [FormInput, TranslatePipe, FormActions],
   templateUrl: './group.html',
   styleUrl: './group.scss',
 })

@@ -7,9 +7,10 @@ import { FormInput } from '../../../../shared/components/form-input/form-input';
 import { ToastService } from '../../../../shared/components/toast-messages/services/toast-service';
 import { IBrandModel } from '../interfaces/brand-model';
 import { BrandService } from '../services/brand-service';
+import { FormActions } from '../../../../shared/components/form-actions/form-actions';
 @Component({
   selector: 'app-brand',
-  imports: [FormInput, TranslatePipe],
+  imports: [FormInput, TranslatePipe,FormActions],
   templateUrl: './brand.html',
   styleUrl: './brand.scss',
 })

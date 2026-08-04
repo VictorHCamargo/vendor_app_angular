@@ -21,10 +21,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Modal } from '../../../shared/components/modal/modal';
 import { ModalDeactivate } from './components/modal-deactivate/modal-deactivate';
+import { FormActions } from '../../../shared/components/form-actions/form-actions';
 
 @Component({
   selector: 'app-peoples',
-  imports: [FormInput, AddressForm, AddressList, TranslatePipe, Modal, ModalDeactivate],
+  imports: [FormInput, AddressForm, AddressList, TranslatePipe, Modal, ModalDeactivate, FormActions],
   templateUrl: './people.html',
   styleUrl: './people.scss',
 })

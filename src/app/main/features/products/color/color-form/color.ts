@@ -7,10 +7,11 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { pattern, required } from '@angular/forms/signals';
 import { ColorService } from '../services/color-service';
 import { ToastService } from '../../../../shared/components/toast-messages/services/toast-service';
+import { FormActions } from '../../../../shared/components/form-actions/form-actions';
 
 @Component({
   selector: 'app-color',
-  imports: [FormInput, TranslatePipe],
+  imports: [FormInput, TranslatePipe, FormActions],
   templateUrl: './color.html',
   styleUrl: './color.scss',
 })

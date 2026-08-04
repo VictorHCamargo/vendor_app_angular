@@ -1,6 +1,6 @@
 <div class="row mb-3 mt-3">
   <div class="col">
-    <h1>{{"MAIN.FEATURES.ADDRESSES.FORMTITLE" | translate}}</h1>
+    <h1>{{ 'MAIN.FEATURES.ADDRESSES.FORMTITLE' | translate }}</h1>
   </div>
 </div>
 <div class="row">
@@ -37,9 +37,9 @@
       [info]="{
         idLabel: 'zipCode',
         nameLabel: 'MAIN.FEATURES.ADDRESSES.ZIPCODE' | translate,
-        type: 'text'
+        type: 'text',
       }"
-      (onChange)="getByZipCode($event)"
+      (changed)="getByZipCode($event)"
     />
   </div>
   <div class="col">
@@ -127,19 +127,10 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
-    @if (this.saving()) {
-      <img src="../../../../assets/loading.png" alt="Carregando..." class="rounded loading-animation" />
-    } @else {
-      <button type="button" class="btn btn-danger" (click)="onCancel()">{{ "COMMONS.CANCEL" | translate}}</button>
-      <button [disabled]="isDisabled" type="button" class="btn btn-primary" (click)="onSave()">
-        @if(onEditing()) {
-          {{ "COMMONS.EDIT" | translate}}
-        } @else{
-          {{ "COMMONS.SAVE" | translate}}
-        }
-      </button>
-    }
-  </div>
-</div>
+<app-form-actions
+  [saving]="saving()"
+  [disabled]="isDisabled"
+  [isEditing]="onEditing()"
+  (canceled)="onCancel()"
+  (save)="onSave()"
+/>

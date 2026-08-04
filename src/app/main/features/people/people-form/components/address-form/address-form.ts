@@ -8,6 +8,7 @@ import { IAddressEvent } from '../../../interfaces/address-event';
 import { IStateModel } from '../../../interfaces/state-model';
 import { TOpitons } from '../../../../../shared/components/form-input/interfaces/form-input-config';
 import { TranslatePipe } from '@ngx-translate/core';
+import { FormActions } from '../../../../../shared/components/form-actions/form-actions';
 
 const PATTERNS = {
   CEP: /^\d{5}-\d{3}$/,
@@ -15,7 +16,7 @@ const PATTERNS = {
 
 @Component({
   selector: 'app-address-form',
-  imports: [FormInput, TranslatePipe],
+  imports: [FormInput, TranslatePipe, FormActions],
   templateUrl: './address-form.html',
   styleUrl: './address-form.scss',
 })
@@ -95,6 +96,7 @@ export class AddressForm extends BaseForms<IAddressModel> implements OnInit {
   getByZipCode(event: Event) {
     const element = event.target as any;
     const zipCode = element.value as string;
+    console.log(zipCode);
 
     const infoByZipCode = this.addressService.getAddressByZipCode(zipCode);
     infoByZipCode.subscribe({
