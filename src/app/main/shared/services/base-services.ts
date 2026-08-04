@@ -4,7 +4,7 @@ import { catchError, Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
 
-export class BaseServices<MODEL, SERVICE> {
+export class BaseServices<MODEL, _SERVICE> {
   http = inject(HttpClient);
   router = inject(Router);
   host: string = environment.apiUrl;
@@ -55,7 +55,7 @@ export class BaseServices<MODEL, SERVICE> {
     );
   }
 
-  mapDto(model : MODEL) {
-    throw Error('method not implemented')
+  mapDto(_model: MODEL) {
+    throw Error('method not implemented');
   }
 }

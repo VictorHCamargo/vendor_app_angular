@@ -7,7 +7,6 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { pattern, required } from '@angular/forms/signals';
 import { ColorService } from '../services/color-service';
 import { ToastService } from '../../../../shared/components/toast-messages/services/toast-service';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-color',
@@ -59,10 +58,7 @@ export class Color extends BaseForms<IColorModel> {
       },
       error: (error) => {
         console.log(error);
-        this.toastService.show(
-          this.traduction('SAVE.ERROR'),
-          'danger',
-        );
+        this.toastService.show(this.traduction('SAVE.ERROR'), 'danger');
         this.saving.set(false);
       },
     });

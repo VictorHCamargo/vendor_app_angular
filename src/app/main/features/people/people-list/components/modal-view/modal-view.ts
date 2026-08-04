@@ -1,12 +1,10 @@
 import {
   Component,
-  computed,
   effect,
   inject,
   input,
   OnInit,
   output,
-  Signal,
   signal,
   WritableSignal,
 } from '@angular/core';
@@ -28,7 +26,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class ModalView implements OnInit {
   person = input<TPersonModel | null>(null);
 
-  onClosed = output<void>();
+  closed = output<void>();
 
   router = inject(Router);
 
@@ -66,16 +64,16 @@ export class ModalView implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setHtmlConfig()
+    this.setHtmlConfig();
   }
 
   onEdit(id: any) {
     if (this.isNaturalPerson()) {
       this.router.navigate(['people', 'form', 'naturalPerson', `${id}`]);
-      this.onClosed.emit();
+      this.closed.emit();
     } else {
       this.router.navigate(['people', 'form', 'legalPerson', `${id}`]);
-      this.onClosed.emit();
+      this.closed.emit();
     }
   }
 

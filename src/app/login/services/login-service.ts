@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ILoginModel } from '../interfaces/login-model';
 import { map, Observable, switchMap } from 'rxjs';
@@ -25,6 +24,6 @@ export class LoginService {
   }
 
   verifyCredentials() {
-    return this.authStoreService.isLogged
+    return this.authStoreService.isLogged;
   }
 }

@@ -8,9 +8,8 @@ describe('ToastMessages', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToastMessages]
-    })
-    .compileComponents();
+      imports: [ToastMessages],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ToastMessages);
     component = fixture.componentInstance;

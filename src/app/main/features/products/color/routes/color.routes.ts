@@ -10,15 +10,15 @@ export const colorRoutes: Routes = [
   {
     path: 'list',
     loadComponent: () => import('../color-list/color-list').then((m) => m.ColorList),
-    resolve : {
-      data : colorResolveDataList
-    }
+    resolve: {
+      data: colorResolveDataList,
+    },
   },
   {
     path: 'form/:id',
     loadComponent: () => import('../color-form/color').then((m) => m.Color),
-    resolve : {
-      data : colorResolveDataForm
-    }
+    resolve: {
+      data: colorResolveDataForm,
+    },
   },
 ];

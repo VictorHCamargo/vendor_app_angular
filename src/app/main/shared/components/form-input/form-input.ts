@@ -6,7 +6,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-form-input',
-  imports: [Field, ErrorMessages,TranslatePipe],
+  imports: [Field, ErrorMessages, TranslatePipe],
   templateUrl: './form-input.html',
   styleUrl: './form-input.scss',
 })
@@ -16,7 +16,7 @@ export class FormInput<MODEL> {
   messageId = input.required<string>();
   fieldTree = input.required<FieldTree<string | number | boolean | null>>();
 
-  onChange = output<Event>();
+  changed = output<Event>();
 
   get stringField() {
     return this.fieldTree() as FieldTree<string>;

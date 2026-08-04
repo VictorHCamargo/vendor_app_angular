@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IGroupModel } from '../interfaces/group-model';
 import { IGroupServiceModel } from '../interfaces/group-service-model';
-import { map, Observable, retry } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { BaseServices } from '../../../../shared/services/base-services';
 
 @Injectable({

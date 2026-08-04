@@ -1,4 +1,4 @@
-import { ITransformTableTitle } from "./transform-table-title";
+import { ITransformTableTitle } from './transform-table-title';
 
 export interface ITableTitle<MODEL> {
   name: string;

@@ -1,4 +1,4 @@
-import { Component, effect, ElementRef, input, output, Signal, viewChild } from '@angular/core';
+import { Component, effect, ElementRef, input, Signal, viewChild } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -9,10 +9,9 @@ import { Component, effect, ElementRef, input, output, Signal, viewChild } from 
 export class Modal {
   isOpen = input<boolean>(false);
 
-  dialogElement : Signal<ElementRef<HTMLDialogElement> | undefined> = viewChild('dialogRef');
+  dialogElement: Signal<ElementRef<HTMLDialogElement> | undefined> = viewChild('dialogRef');
 
   constructor() {
-
     effect(() => {
       const modal = this.dialogElement()?.nativeElement;
       if (!modal) return;
@@ -24,5 +23,4 @@ export class Modal {
       }
     });
   }
-
 }

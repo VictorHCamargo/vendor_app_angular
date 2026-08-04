@@ -11,7 +11,7 @@ import { TypeAddressNamePipe } from '../../../../../shared/pipe/type-address-nam
 export class ModalDeactivate {
   address = input.required<IAddressEvent>();
 
-  onClosed = output<void>();
+  closed = output<void>();
 
-  onDeactivate = output<IAddressEvent>();
+  deactivate = output<IAddressEvent>();
 }

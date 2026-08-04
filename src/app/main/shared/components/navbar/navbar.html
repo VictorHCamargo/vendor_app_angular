@@ -21,7 +21,7 @@
                 <li class="nav-item dropdown">
                   <a
                     class="nav-link dropdown-toggle"
-                    href="#"
+                    [href]="component.way"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -60,7 +60,7 @@
               <ul class="dropdown-menu">
                 @for (language of languages(); track $index) {
                   <li>
-                    <a class="btn dropdown-item" (click)="changeLanguenges(language.acronym)">{{
+                    <a class="btn dropdown-item" (click)="changeLanguenges(language.acronym)"> {{
                       language.name | translate
                     }}</a>
                   </li>

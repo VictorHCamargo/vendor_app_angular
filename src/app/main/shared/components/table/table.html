@@ -4,7 +4,7 @@
       @for (title of tableConfig()?.titles; track $index) {
         <th>{{ title.name | translate }}</th>
       }
-      @if (tableConfig()?.buttons?.length != 0) {
+      @if (tableConfig()?.buttons?.length !== 0) {
         <th>{{ 'COMMONS.ACTIONS' | translate }}</th>
       }
     </tr>
@@ -31,7 +31,7 @@
             }
           </td>
         }
-        @if (tableConfig()?.buttons?.length == 0) {
+        @if (tableConfig()?.buttons?.length === 0) {
           @for (button of tableConfig()?.buttons; track $index) {
             <td>
               @if (button.show()) {

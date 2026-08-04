@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { ResolveFn, Router } from '@angular/router';
 import { PeopleService } from '../services/people-service';
-import { catchError, EMPTY, map, tap } from 'rxjs';
+import { catchError, EMPTY, map } from 'rxjs';
 
 export const peopleDataResolverForm: ResolveFn<any> = (route, _state) => {
   const peopleService = inject(PeopleService);

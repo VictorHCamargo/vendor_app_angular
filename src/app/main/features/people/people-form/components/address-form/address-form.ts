@@ -2,7 +2,7 @@ import { Component, computed, inject, input, OnInit, output, signal } from '@ang
 import { BaseForms } from '../../../../../shared/class/base-form';
 import { IAddressModel } from '../../../interfaces/address-model';
 import { FormInput } from '../../../../../shared/components/form-input/form-input';
-import { disabled, maxLength, minLength, pattern, required } from '@angular/forms/signals';
+import { disabled, maxLength, pattern, required } from '@angular/forms/signals';
 import { AddressService } from '../../../services/address-service';
 import { IAddressEvent } from '../../../interfaces/address-event';
 import { IStateModel } from '../../../interfaces/state-model';
@@ -30,7 +30,7 @@ export class AddressForm extends BaseForms<IAddressModel> implements OnInit {
 
   salve = output<IAddressEvent>();
 
-  cancel = output<boolean>();
+  canceled = output<boolean>();
 
   states = signal<IStateModel[]>([]);
 
@@ -138,7 +138,7 @@ export class AddressForm extends BaseForms<IAddressModel> implements OnInit {
     if (this.onEditing()) {
       this.salve.emit({
         address: this.model(),
-        index: this.addressEvent()?.index!,
+        index: this.addressEvent()?.index ?? null,
       });
     } else {
       this.salve.emit({
@@ -149,7 +149,7 @@ export class AddressForm extends BaseForms<IAddressModel> implements OnInit {
   }
 
   override onCancel(): void {
-    this.cancel.emit(false);
+    this.canceled.emit(false);
   }
 
   get isZipCoded() {

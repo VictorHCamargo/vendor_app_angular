@@ -1,14 +1,9 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { IPersonWebFormConfig } from '../interfaces/person-web-config';
-import {
-  ILegalPerson,
-  INaturalPerson,
-  TPersonModel,
-  TPersonType,
-} from '../interfaces/person-model';
+import { ILegalPerson, INaturalPerson, TPersonModel } from '../interfaces/person-model';
 import { BaseForms } from '../../../shared/class/base-form';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FieldTree, required } from '@angular/forms/signals';
+import { FieldTree } from '@angular/forms/signals';
 import {
   applyLegalPersonSchemaPath,
   applyNaturalPersonSchemaPath,
@@ -26,7 +21,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Modal } from '../../../shared/components/modal/modal';
 import { ModalDeactivate } from './components/modal-deactivate/modal-deactivate';
-import { LoadingComponentsService } from '../../../shared/components/loading-components/service/loading-components-service';
 
 @Component({
   selector: 'app-peoples',
@@ -109,7 +103,7 @@ export class People extends BaseForms<TPersonModel> {
     return this.createAddress();
   }
 
-  isNaturalPerson(data?: TPersonModel): boolean {
+  isNaturalPerson(_data?: TPersonModel): boolean {
     const peopleType = this.route.snapshot.routeConfig?.path?.includes('naturalPerson') ? 'F' : 'J';
     return peopleType == 'F';
   }

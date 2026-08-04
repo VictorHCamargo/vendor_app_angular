@@ -2,7 +2,7 @@
   <div class="modal-header bg-light">
     <h5 class="modal-title"><i class="bi bi-person-bounding-box me-2"></i></h5>
     <div [innerHTML]="person()?.active! | badgeActive"></div>
-    <button type="button" class="btn-close" (click)="onClosed.emit()"></button>
+    <button type="button" class="btn-close" (click)="closed.emit()"> </button>
   </div>
 
   <div class="modal-body text-secondary">
@@ -86,7 +86,7 @@
               nameLabel: html.dateLabel | translate,
               type: 'date',
             }"
-          /> 
+          />
         </div>
       } @else {
         <div class="col">

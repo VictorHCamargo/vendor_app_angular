@@ -11,7 +11,5 @@ import { LoadingComponentsService } from './service/loading-components-service';
 export class LoadingComponents {
   loadingComponentsService = inject(LoadingComponentsService);
 
-  isLoading = computed(
-    () => this.loadingComponentsService.isLoading()
-  )
+  isLoading = computed(() => this.loadingComponentsService.isLoading());
 }

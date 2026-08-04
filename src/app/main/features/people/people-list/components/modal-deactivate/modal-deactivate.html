@@ -5,7 +5,7 @@
         <h5 class="modal-title text-danger">
           <i class="bi bi-exclamation-triangle-fill me-2"></i>Confirmar Desativação
         </h5>
-        <button type="button" class="btn-close" (click)="onClosed.emit()"></button>
+        <button type="button" class="btn-close" (click)="closed.emit()"> </button>
       </div>
 
       <div class="modal-body text-secondary">
@@ -17,7 +17,7 @@
       </div>
 
       <div class="modal-footer border-top-0 pt-0">
-        <button type="button" class="btn btn-danger" (click)="onDeactivate.emit(person()!)">
+        <button type="button" class="btn btn-danger" (click)="deactivate.emit(person()!)">
           <i class="bi bi-x-circle me-1"></i> Desativar Pessoa
         </button>
       </div>

@@ -129,21 +129,21 @@
 
     @if (isAddressModeForm()) {
       <app-address-form
-        (cancel)="onCancelForm($event)"
+        (canceled)="onCancelForm($event)"
         (salve)="onSalveForm($event)"
         [addressEvent]="editAddress()"
       />
     } @else {
       <app-address-list
         [addresses]="addresses()"
-        (onCreate)="onCancelForm($event)"
-        (onEdit)="onEditForm($event)"
-        (onDel)="onDelList($event)"
+        (create)="onCancelForm($event)"
+        (edit)="onEditForm($event)"
+        (del)="onDelList($event)"
       />
       <div class="row">
         <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
           @if (this.saving()) {
-            <img src="../../../../assets/loading.png" class="rounded loading-animation" />
+            <img src="../../../../assets/loading.png" alt="Carregando..." class="rounded loading-animation" />
           } @else {
             <button type="button" class="btn btn-danger" (click)="onCancel()">
               {{ 'COMMONS.CANCEL' | translate }}
@@ -167,6 +167,6 @@
   <app-modal-deactivate
     (onClosed)="onClosedModal()"
     [address]="deactivateAddress()!"
-    (onDeactivate)="onDelModal($event)"
+    (deactivate)="onDelModal($event)"
   />
 </app-modal>

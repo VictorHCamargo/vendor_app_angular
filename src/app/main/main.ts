@@ -8,7 +8,7 @@ import { LoadingComponents } from './shared/components/loading-components/loadin
 
 @Component({
   selector: 'app-main',
-  imports: [RouterOutlet, Navbar,LoadingComponents],
+  imports: [RouterOutlet, Navbar, LoadingComponents],
   templateUrl: './main.html',
   styleUrl: './main.scss',
 })
@@ -17,7 +17,7 @@ export class Main {
   navbarConfig: INavbarConfig[] = [
     {
       name: 'MAIN.SHARED.NAVBAR.PRODUCTS.NAME',
-      way: '#',
+      way: '/products/list',
       children: [
         {
           name: 'MAIN.SHARED.NAVBAR.PRODUCTS.CATEGORY',
@@ -49,15 +49,15 @@ export class Main {
           external: true,
         },
         {
-          name : 'MAIN.SHARED.NAVBAR.PRODUCTS.COLOR',
-          way : '/color/list',
-          children : []
+          name: 'MAIN.SHARED.NAVBAR.PRODUCTS.COLOR',
+          way: '/color/list',
+          children: [],
         },
         {
-          name : 'MAIN.FEATURES.MARK.',
-          way : '/mark/list',
-          children : []
-        }
+          name: 'MAIN.FEATURES.MARK.',
+          way: '/brand/list',
+          children: [],
+        },
       ],
     },
     {
@@ -78,24 +78,24 @@ export class Main {
     },
   ];
 
-  languagesConfig : ILanguagesConfig[] = [
+  languagesConfig: ILanguagesConfig[] = [
     {
-      acronym : 'pt-BR',
-      name : 'Português (Brasil)'
+      acronym: 'pt-BR',
+      name: 'Português (Brasil)',
     },
     {
-      acronym : 'en',
-      name : 'English'
+      acronym: 'en',
+      name: 'English',
     },
     {
-      acronym : 'es',
-      name : 'Español'
+      acronym: 'es',
+      name: 'Español',
     },
     {
-      acronym : 'ja',
-      name : '日本語'
-    }
-  ]
+      acronym: 'ja',
+      name: '日本語',
+    },
+  ];
   private makeUrlExternalPartner(basePath: string, url: string) {
     return `${basePath}/externalPartner?redirect=${url}&secret=${this.authStoreService.getToken()}&exp=3600`;
   }

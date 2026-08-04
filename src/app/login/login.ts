@@ -1,6 +1,6 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { ILoginModel } from './interfaces/login-model';
-import { form, Field, required, minLength } from '@angular/forms/signals';
+import { Field, required, minLength } from '@angular/forms/signals';
 import { LoginService } from './services/login-service';
 import { Router } from '@angular/router';
 import { ToastService } from '../main/shared/components/toast-messages/services/toast-service';
@@ -36,14 +36,12 @@ export class Login extends BaseForms<ILoginModel> {
       },
     );
 
-    effect(
-      () => {
-        const isLogged = this.loginService.verifyCredentials();
-        if(isLogged()) {
-          this.router.navigate(['home']);
-        }
+    effect(() => {
+      const isLogged = this.loginService.verifyCredentials();
+      if (isLogged()) {
+        this.router.navigate(['home']);
       }
-    )
+    });
   }
 
   onSign() {
@@ -61,9 +59,4 @@ export class Login extends BaseForms<ILoginModel> {
       },
     });
   }
-
-  onLogin() {
-
-  }
-
 }

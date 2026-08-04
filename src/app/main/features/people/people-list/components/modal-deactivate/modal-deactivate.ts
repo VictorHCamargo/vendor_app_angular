@@ -10,7 +10,7 @@ import { TPersonModel } from '../../../interfaces/person-model';
 export class ModalDeactivate {
   person = input<TPersonModel | null>();
 
-  onClosed = output();
+  closed = output();
 
-  onDeactivate = output<TPersonModel>();
+  deactivate = output<TPersonModel>();
 }

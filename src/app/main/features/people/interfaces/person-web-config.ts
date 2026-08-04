@@ -11,5 +11,5 @@ export interface IPersonWebFormConfig {
 
 export interface IPersonWebListConfig {
   title: string;
-  newRegistration : string;
+  newRegistration: string;
 }

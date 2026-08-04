@@ -1,4 +1,4 @@
-import { maxLength, minLength, pattern, required } from '@angular/forms/signals';
+import { minLength, pattern, required } from '@angular/forms/signals';
 import { IPersonWebFormConfig, IPersonWebListConfig } from '../interfaces/person-web-config';
 
 export const NATURAL_PERSON_FORM: IPersonWebFormConfig = {
@@ -20,15 +20,15 @@ export const ENTITIES_PERSON_FORM: IPersonWebFormConfig = {
   bondLabel: 'MAIN.FEATURES.PEOPLE.BOND',
 };
 
-export const NATURAL_PERSON_LIST : IPersonWebListConfig = {
-  newRegistration : 'Cadastrar nova Pessoa Fisica',
-  title : 'Lista de Pessoa Fisica'
-}
+export const NATURAL_PERSON_LIST: IPersonWebListConfig = {
+  newRegistration: 'Cadastrar nova Pessoa Fisica',
+  title: 'Lista de Pessoa Fisica',
+};
 
-export const ENTITIES_PERSON_LIST : IPersonWebListConfig = {
-  title : 'Lista de Pessoa Juridica',
-  newRegistration : 'Cadastrar nova Pessoa Juridica'
-}
+export const ENTITIES_PERSON_LIST: IPersonWebListConfig = {
+  title: 'Lista de Pessoa Juridica',
+  newRegistration: 'Cadastrar nova Pessoa Juridica',
+};
 
 const PATTERNS = {
   CPF: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,

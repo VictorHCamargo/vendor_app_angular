@@ -20,7 +20,7 @@ export class Navbar {
     return false;
   }
 
-  changeLanguenges(acronym : TAcronyms) {
+  changeLanguenges(acronym: TAcronyms) {
     this.translateService.use(acronym);
   }
 }

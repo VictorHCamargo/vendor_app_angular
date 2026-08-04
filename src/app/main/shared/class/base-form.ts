@@ -1,8 +1,7 @@
-import { signal, WritableSignal, Signal } from '@angular/core';
+import { signal, WritableSignal } from '@angular/core';
 import { FieldTree, FormOptions, SchemaOrSchemaFn, form } from '@angular/forms/signals';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { IToastConfig } from '../components/toast-messages/interfaces/toast-config';
 
 export class BaseForms<MODEL> {
   model!: WritableSignal<MODEL>;

@@ -6,7 +6,7 @@ import {
   TPersonModel,
   TPersonType,
 } from '../interfaces/person-model';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { IAddressModel } from '../interfaces/address-model';
 import { ToastService } from '../../../shared/components/toast-messages/services/toast-service';
 import { AddressService } from './address-service';
@@ -15,7 +15,7 @@ import { AddressService } from './address-service';
   providedIn: 'root',
 })
 export class PeopleService extends BaseServices<TPersonModel, any> {
-  override endPoint: string = '/victor/pessoa/';
+  override endPoint = '/victor/pessoa/';
   toastService = inject(ToastService);
   addressService = inject(AddressService);
 
@@ -68,16 +68,14 @@ export class PeopleService extends BaseServices<TPersonModel, any> {
   }
 
   override delete(id: string | number): Observable<TPersonModel> {
-    const results = this.http
-      .put(`${this.host}${this.endPoint}i/${id}`, null)
-      .pipe(
-        map((value: any) => {
-          const data = value.data;
-          return {
-            id : data.id_pessoa
-          } as TPersonModel
-        }),
-      );
+    const results = this.http.put(`${this.host}${this.endPoint}i/${id}`, null).pipe(
+      map((value: any) => {
+        const data = value.data;
+        return {
+          id: data.id_pessoa,
+        } as TPersonModel;
+      }),
+    );
 
     return results;
   }

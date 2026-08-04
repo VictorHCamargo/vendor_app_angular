@@ -5,11 +5,14 @@ import { TTypeAddress } from '../../features/people/interfaces/address-model';
   name: 'typeAddressName',
 })
 export class TypeAddressNamePipe implements PipeTransform {
-  transform(value: TTypeAddress, ...args: unknown[]): string {
-    switch(value) {
-      case 'M': return 'Moradia'
-      case 'C': return 'Cobranca'
-      case 'E': return 'Entrega'
+  transform(value: TTypeAddress, ..._args: unknown[]): string {
+    switch (value) {
+      case 'M':
+        return 'Moradia';
+      case 'C':
+        return 'Cobranca';
+      case 'E':
+        return 'Entrega';
     }
   }
 }

@@ -8,7 +8,7 @@ export class ToastService {
   private idCounter = 0;
   toasts = signal<IToastConfig[]>([]);
 
-  show(message: string, style: 'success' | 'danger' | 'info', duration: number = 3000) {
+  show(message: string, style: 'success' | 'danger' | 'info', duration = 3000) {
     const id = this.idCounter++;
     const newToast: IToastConfig = {
       id,

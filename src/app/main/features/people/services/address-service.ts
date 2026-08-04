@@ -8,7 +8,7 @@ import { IStateModel } from '../interfaces/state-model';
   providedIn: 'root',
 })
 export class AddressService extends BaseServices<IAddressModel, null> {
-  override endPoint: string = '/victor/endereco';
+  override endPoint = '/victor/endereco';
 
   getStates() {
     return this.http.get(`${this.host}${this.endPoint}/estados`).pipe(
@@ -37,7 +37,7 @@ export class AddressService extends BaseServices<IAddressModel, null> {
           } as Partial<IAddressModel>;
         } else {
           return {
-            hasZipCode : false
+            hasZipCode: false,
           };
         }
       }),

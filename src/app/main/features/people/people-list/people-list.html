@@ -16,8 +16,8 @@
 
 <app-modal [isOpen]="isOpen()">
   @if (isDeactivating()) {
-    <app-modal-deactivate [person]="havePerson()" (onClosed)="onClosed()" (onDeactivate)="onDeactivate($event)" />
+    <app-modal-deactivate [person]="havePerson()" (closed)="onClosed()" (deactivate)="onDeactivate($event)" />
   } @else {
-    <app-modal-view [person]="havePerson()" (onClosed)="onClosed()" />
+    <app-modal-view [person]="havePerson()" (closed)="onClosed()" />
   }
 </app-modal>

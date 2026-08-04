@@ -1,4 +1,4 @@
-@if (type() != 'radio') {
+@if (type() !== 'radio') {
   <label [for]="info().idLabel" class="form-label">{{ info().nameLabel | translate}}</label>
 }
 @switch (type()) {
@@ -41,7 +41,7 @@
       [id]="info().idLabel"
       [aria-describedby]="messageId()"
       [readOnly]="info().readonly"
-      (change)="onChange.emit($event)"
+      (change)="changed.emit($event)"
     />
   }
 }

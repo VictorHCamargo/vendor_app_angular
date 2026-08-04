@@ -3,12 +3,12 @@ export interface IFormInputConfig<MODEL> {
   nameLabel?: string;
   type?: string;
   options?: TOpitons[];
-  readonly? : boolean;
+  readonly?: boolean;
 }
 
 export type TTypeInput = 'input' | 'radio' | 'select' | 'active' | 'color';
 
-export type TOpitons = {
+export interface TOpitons {
   value: string;
   data: string;
-};
+}

@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { IAddressModel, TTypeAddress } from '../../../interfaces/address-model';
 import { BaseList } from '../../../../../shared/class/base-list';
 import { Table } from '../../../../../shared/components/table/table';
@@ -14,11 +14,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class AddressList extends BaseList<IAddressModel> {
   addresses = input.required<IAddressModel[]>();
 
-  onCreate = output<boolean>();
+  create = output<boolean>();
 
-  onEdit = output<IAddressEvent>();
+  edit = output<IAddressEvent>();
 
-  onDel = output<IAddressEvent>();
+  del = output<IAddressEvent>();
 
   constructor() {
     super();
@@ -34,13 +34,13 @@ export class AddressList extends BaseList<IAddressModel> {
             name: 'MAIN.FEATURES.ADDRESSES.TYPEADDRESS',
             dataField: 'typeAddress',
             transform: {
-              type : 'icon',
-              function : (value: TTypeAddress) =>
-              ({
-                M: 'bi bi-house-door',
-                C: 'bi bi-building',
-                E: 'bi bi-truck',
-              })[value] ?? 'bi bi-geo-alt'
+              type: 'icon',
+              function: (value: TTypeAddress) =>
+                ({
+                  M: 'bi bi-house-door',
+                  C: 'bi bi-building',
+                  E: 'bi bi-truck',
+                })[value] ?? 'bi bi-geo-alt',
             },
           },
           { dataField: 'zipCode', name: 'MAIN.FEATURES.ADDRESSES.ZIPCODE' },
@@ -53,7 +53,7 @@ export class AddressList extends BaseList<IAddressModel> {
         buttons: [
           {
             action: (data, index) => {
-              this.onDel.emit({ address: data, index });
+              this.del.emit({ address: data, index });
             },
             name: 'COMMONS.DEL',
             show: () => true,
@@ -61,7 +61,7 @@ export class AddressList extends BaseList<IAddressModel> {
           },
           {
             action: (data, index) => {
-              this.onEdit.emit({ address: data, index });
+              this.edit.emit({ address: data, index });
             },
             name: 'COMMONS.EDIT',
             show: () => true,
@@ -73,6 +73,6 @@ export class AddressList extends BaseList<IAddressModel> {
   }
 
   override onNewRegister(): void {
-    this.onCreate.emit(true);
+    this.create.emit(true);
   }
 }

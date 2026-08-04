@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { BaseServices } from '../../../../shared/services/base-services';
 import { IColorModel } from '../interfaces/color-model';
 import { IColorServiceModel } from '../interfaces/color-service-model';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ColorService extends BaseServices<IColorModel, IColorServiceModel> {
-  override endPoint: string = '/victor/cor';
+  override endPoint = '/victor/cor';
 
   override search(): Observable<IColorModel[]> {
     const results = this.http.get(`${this.host}${this.endPoint}`).pipe(

@@ -25,13 +25,6 @@ export const routes: Routes = [
         component: HomePage,
       },
       {
-        path: 'category',
-        loadChildren: () =>
-          import('./main/features/products/category/routes/category.routes').then(
-            (m) => m.categoryRoutes,
-          ),
-      },
-      {
         path: 'group',
         loadChildren: () =>
           import('./main/features/products/group/routes/group.routes').then((m) => m.groupRoutes),
@@ -47,9 +40,14 @@ export const routes: Routes = [
           import('./main/features/products/color/routes/color.routes').then((m) => m.colorRoutes),
       },
       {
-        path: 'mark',
+        path: 'brand',
         loadChildren: () =>
-          import('./main/features/products/mark/routes/mark.routes').then((m) => m.markRoutes),
+          import('./main/features/products/brand/routes/brand.routes').then((m) => m.brandRoutes),
+      },
+      {
+        path: 'products',
+        loadChildren: () =>
+          import('./main/features/products/routes/products.routes').then((m) => m.productsRoutes),
       },
       {
         path: '',

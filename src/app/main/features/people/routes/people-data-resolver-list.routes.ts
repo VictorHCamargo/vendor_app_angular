@@ -1,7 +1,6 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { PeopleService } from '../services/people-service';
-import { map } from 'rxjs';
 
 export const peopleDataResolverList: ResolveFn<any> = (route, _state) => {
   const peopleService = inject(PeopleService);

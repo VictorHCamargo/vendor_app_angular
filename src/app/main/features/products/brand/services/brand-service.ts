@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BaseServices } from '../../../../shared/services/base-services';
-import { IMarkModel } from '../interfaces/mark-model';
-import { map, Observable, of } from 'rxjs';
+import { IBrandModel } from '../interfaces/brand-model';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MarkService extends BaseServices<IMarkModel, any> {
-  override endPoint: string = '/victor/marca';
+export class BrandService extends BaseServices<IBrandModel, any> {
+  override endPoint = '/victor/marca';
 
-  override search(): Observable<IMarkModel[]> {
+  override search(): Observable<IBrandModel[]> {
     const results = this.http.get(`${this.host}${this.endPoint}`).pipe(
       map((value: any) => {
         const data = value.data;
@@ -18,7 +18,7 @@ export class MarkService extends BaseServices<IMarkModel, any> {
             ({
               id: valueData.id,
               name: valueData.nome,
-            }) as IMarkModel,
+            }) as IBrandModel,
         );
       }),
     );
@@ -26,7 +26,7 @@ export class MarkService extends BaseServices<IMarkModel, any> {
     return results;
   }
 
-  override searchId(id: string | number): Observable<IMarkModel> {
+  override searchId(id: string | number): Observable<IBrandModel> {
     const results = this.http.get(`${this.host}${this.endPoint}/${id}`).pipe(
       map((value: any) => {
         const [data] = value.data;
@@ -34,21 +34,21 @@ export class MarkService extends BaseServices<IMarkModel, any> {
         return {
           id: data.id,
           name: data.nome,
-        } as IMarkModel;
+        } as IBrandModel;
       }),
     );
 
     return results;
   }
 
-  override save(model: IMarkModel, id: string | number | null): Observable<IMarkModel> {
+  override save(model: IBrandModel, id: string | number | null): Observable<IBrandModel> {
     if (id) {
       const results = this.http.put(`${this.host}${this.endPoint}/${id}`, this.mapDto(model)).pipe(
         map((value: any) => {
           const data = value.data;
           return {
             id: data.id,
-          } as IMarkModel;
+          } as IBrandModel;
         }),
       );
 
@@ -59,7 +59,7 @@ export class MarkService extends BaseServices<IMarkModel, any> {
           const data = value.data;
           return {
             id: data.id,
-          } as IMarkModel;
+          } as IBrandModel;
         }),
       );
 
@@ -67,20 +67,20 @@ export class MarkService extends BaseServices<IMarkModel, any> {
     }
   }
 
-  override delete(id: string | number): Observable<IMarkModel> {
+  override delete(id: string | number): Observable<IBrandModel> {
     const results = this.http.delete(`${this.host}${this.endPoint}/${id}`).pipe(
       map((value: any) => {
         const data = value.data;
         return {
           id: data.id,
-        } as IMarkModel;
+        } as IBrandModel;
       }),
     );
 
     return results;
   }
 
-  override mapDto(model: IMarkModel): any {
+  override mapDto(model: IBrandModel): any {
     return {
       id: model.id,
       nome: model.name,
