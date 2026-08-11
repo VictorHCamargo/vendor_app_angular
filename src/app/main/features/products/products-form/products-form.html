@@ -1,1 +1,148 @@
-<p>products-form works!</p>
+<div class="container">
+  <form>
+    <div class="row mb-3 mt-3">
+      <div class="col">
+        <h1>{{ 'MAIN.FEATURES.PRODUCT_MASTER.PRODUCT.FORMTITLE' | translate }}</h1>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <app-form-input
+          [fieldTree]="formName"
+          [info]="{
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.NAME',
+            type: 'text',
+            idLabel: 'name',
+          }"
+          messageId="name"
+          type="input"
+        />
+      </div>
+      <div class="col-md-2">
+        <app-form-input
+          [fieldTree]="formIdCoin"
+          [info]="{
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.COIN',
+            idLabel: 'idCoin',
+            options: selectCoins(),
+          }"
+          messageId="idCoin"
+          type="select"
+        />
+      </div>
+      <div class="col-md-2">
+        <app-form-input
+          [fieldTree]="formPriceBuy"
+          [info]="{
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.PRICEBUY',
+            type: 'number',
+            idLabel: 'priceBuy',
+          }"
+          messageId="priceBuy"
+          type="input"
+        />
+      </div>
+      <div class="col-md-2">
+        <app-form-input
+          [fieldTree]="formPriceSell"
+          [info]="{
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.PRICESELL',
+            type: 'number',
+            idLabel: 'priceSell',
+          }"
+          messageId="priceSell"
+          type="input"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <app-form-input
+          [fieldTree]="formIdGroup"
+          [info]="{
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.GROUP',
+            idLabel: 'idGroup',
+            options: selectGroups(),
+          }"
+          messageId="idGroup"
+          type="select"
+        />
+      </div>
+      <div class="col-md-6">
+        <app-form-input
+          [fieldTree]="formIdCategory"
+          [info]="{
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.CATEGORY',
+            idLabel: 'idCategory',
+            options: selectCategories(),
+          }"
+          messageId="idCategory"
+          type="select"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <app-form-input
+          [fieldTree]="formIdUnitMeasure"
+          [info]="{
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.MEASURE',
+            idLabel: 'idUnitMeasure',
+            options: selectMeasures(),
+          }"
+          messageId="idUnitMeasure"
+          type="select"
+        />
+      </div>
+      <div class="col-md-4">
+        <app-form-input
+          [fieldTree]="formIdBrand"
+          [info]="{
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.MARK',
+            idLabel: 'idBrand',
+            options: selectBrands(),
+          }"
+          messageId="idBrand"
+          type="select"
+        />
+      </div>
+      <div class="col-md-4">
+        <app-form-input
+          [fieldTree]="formIdColor"
+          [info]="{
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.COLOR',
+            idLabel: 'idColor',
+            options: selectColors(),
+          }"
+          messageId="idColor"
+          type="select"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col">
+        <app-form-input
+          [fieldTree]="formDescribe"
+          [info]="{
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.DESCRIBE',
+            type: 'text',
+            idLabel: 'describe',
+          }"
+          messageId="describe"
+          type="input"
+        />
+      </div>
+    </div>
+
+    <app-form-actions
+      [saving]="saving()"
+      [disabled]="isDisabled"
+      (canceled)="onCancel()"
+      (save)="onSave()"
+    />
+  </form>
+</div>

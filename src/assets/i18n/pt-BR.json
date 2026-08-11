@@ -60,8 +60,27 @@
         "FORMTITLE": "Cadastrado de marcas"
       },
       "PRODUCT_MASTER": {
-        "FIELDS": { "NAME": "Nome", "HEX": "Hexadecimal", "ACTIVE": "Ativo" },
-        "ENTITIES": { "CATEGORY": "categoria", "GROUP": "grupo", "MARK": "marca", "COLOR": "cor" },
+        "FIELDS": {
+          "NAME": "Nome",
+          "HEX": "Hexadecimal",
+          "ACTIVE": "Ativo",
+          "DESCRIBE": "Descrição",
+          "COIN": "Moeda",
+          "PRICEBUY": "Preço de Compra",
+          "PRICESELL": "Preço de Venda",
+          "GROUP": "Grupo",
+          "CATEGORY": "Categoria",
+          "MARK": "Marca",
+          "COLOR": "Cor",
+          "MEASURE": "Unidade de Medida"
+        },
+        "ENTITIES": {
+          "CATEGORY": "categoria",
+          "GROUP": "grupo",
+          "MARK": "marca",
+          "COLOR": "cor",
+          "PRODUCT": "produto"
+        },
         "CATEGORY": {
           "LISTTITLE": "Lista de categorias",
           "LISTBUTTON": "Cadastrar nova categoria",
@@ -82,9 +101,19 @@
           "LISTBUTTON": "Cadastrar nova cor",
           "FORMTITLE": "Cadastro de cor"
         },
+        "PRODUCT": {
+          "LISTTITLE": "Lista de produtos",
+          "LISTBUTTON": "Cadastrar novo produto",
+          "FORMTITLE": "Cadastro de produto",
+          "FILTERLABEL": "Filtrar produtos",
+          "SELECT_PLACEHOLDER": "Selecione...",
+          "LOAD_OPTIONS_ERROR": "Não foi possível carregar as opções do formulário."
+        },
         "VALIDATION": {
           "REQUIRED": "O campo é obrigatório.",
           "MIN_LENGTH": "O campo deve ter pelo menos 3 caracteres.",
+          "MAX_LENGTH": "O campo excedeu o tamanho máximo permitido.",
+          "MIN_PRICE": "O valor deve ser maior que zero.",
           "HEX": "Informe uma cor hexadecimal válida (ex.: #000000)."
         },
         "SAVE": {

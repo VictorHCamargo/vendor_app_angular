@@ -10,4 +10,10 @@ export interface IProductsServiceModel {
   id_grupo: number | null;
   preco_compra: number;
   preco_venda: number;
+  nome_categoria?: string;
+  nome_moeda?: string;
+  nome_marca?: string;
+  nome_grupo?: string;
+  nome_medida?: string;
+  hexadecimal?: string;
 }

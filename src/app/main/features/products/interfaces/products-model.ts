@@ -10,4 +10,10 @@ export interface IProductsModel {
   idGroup: number | null;
   priceBuy: number;
   priceSell: number;
+  nameCategory?: string;
+  nameCoin?: string;
+  nameBrand?: string;
+  nameGroup?: string;
+  nameMeasure?: string;
+  colorHex?: string;
 }

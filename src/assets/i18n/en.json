@@ -47,8 +47,27 @@
         "TYPEADDRESS": "Address Type"
       },
       "PRODUCT_MASTER": {
-        "FIELDS": { "NAME": "Name", "HEX": "Hexadecimal", "ACTIVE": "Active" },
-        "ENTITIES": { "CATEGORY": "category", "GROUP": "group", "MARK": "brand", "COLOR": "color" },
+        "FIELDS": {
+          "NAME": "Name",
+          "HEX": "Hexadecimal",
+          "ACTIVE": "Active",
+          "DESCRIBE": "Description",
+          "COIN": "Coin",
+          "PRICEBUY": "Buy Price",
+          "PRICESELL": "Sell Price",
+          "GROUP": "Group",
+          "CATEGORY": "Category",
+          "MARK": "Brand",
+          "COLOR": "Color",
+          "MEASURE": "Unit of Measure"
+        },
+        "ENTITIES": {
+          "CATEGORY": "category",
+          "GROUP": "group",
+          "MARK": "brand",
+          "COLOR": "color",
+          "PRODUCT": "product"
+        },
         "CATEGORY": {
           "LISTTITLE": "Category list",
           "LISTBUTTON": "Add category",
@@ -69,9 +88,19 @@
           "LISTBUTTON": "Add color",
           "FORMTITLE": "Color registration"
         },
+        "PRODUCT": {
+          "LISTTITLE": "Product list",
+          "LISTBUTTON": "Add product",
+          "FORMTITLE": "Product registration",
+          "FILTERLABEL": "Filter products",
+          "SELECT_PLACEHOLDER": "Select...",
+          "LOAD_OPTIONS_ERROR": "Unable to load form options."
+        },
         "VALIDATION": {
           "REQUIRED": "This field is required.",
           "MIN_LENGTH": "This field must have at least 3 characters.",
+          "MAX_LENGTH": "This field exceeded the maximum allowed length.",
+          "MIN_PRICE": "The value must be greater than zero.",
           "HEX": "Enter a valid hexadecimal color (e.g. #000000)."
         },
         "SAVE": {

@@ -1,1 +1,36 @@
-<p>products-list works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>{{ 'MAIN.FEATURES.PRODUCT_MASTER.PRODUCT.LISTTITLE' | translate }}</h2>
+    </div>
+    <div class="col text-end">
+      <button type="button" class="btn btn-primary" (click)="onNewRegister()">
+        {{ 'MAIN.FEATURES.PRODUCT_MASTER.PRODUCT.LISTBUTTON' | translate }}
+      </button>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label for="productFilter" class="form-label">
+        {{ 'MAIN.FEATURES.PRODUCT_MASTER.PRODUCT.FILTERLABEL' | translate }}
+      </label>
+      <input
+        id="productFilter"
+        type="text"
+        class="form-control"
+        [value]="filterValue()"
+        (input)="onFilter($event)"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <app-table [tableConfig]="configTable()"></app-table>
+  </div>
+</div>
+<app-modal [isOpen]="openModal()"
+  ><app-product-delete-modal
+    [name]="selected()?.name ?? ''"
+    entityKey="MAIN.FEATURES.PRODUCT_MASTER.ENTITIES.PRODUCT"
+    (closed)="closeModal()"
+    (confirmed)="deleteSelected()"
+/></app-modal>

@@ -47,12 +47,26 @@
         "TYPEADDRESS": "Tipo de Dirección"
       },
       "PRODUCT_MASTER": {
-        "FIELDS": { "NAME": "Nombre", "HEX": "Hexadecimal", "ACTIVE": "Activo" },
+        "FIELDS": {
+          "NAME": "Nombre",
+          "HEX": "Hexadecimal",
+          "ACTIVE": "Activo",
+          "DESCRIBE": "Descripción",
+          "COIN": "Moneda",
+          "PRICEBUY": "Precio de Compra",
+          "PRICESELL": "Precio de Venta",
+          "GROUP": "Grupo",
+          "CATEGORY": "Categoría",
+          "MARK": "Marca",
+          "COLOR": "Color",
+          "MEASURE": "Unidad de Medida"
+        },
         "ENTITIES": {
           "CATEGORY": "categoría",
           "GROUP": "grupo",
           "MARK": "marca",
-          "COLOR": "color"
+          "COLOR": "color",
+          "PRODUCT": "producto"
         },
         "CATEGORY": {
           "LISTTITLE": "Lista de categorías",
@@ -74,9 +88,19 @@
           "LISTBUTTON": "Agregar color",
           "FORMTITLE": "Registro de color"
         },
+        "PRODUCT": {
+          "LISTTITLE": "Lista de productos",
+          "LISTBUTTON": "Agregar producto",
+          "FORMTITLE": "Registro de producto",
+          "FILTERLABEL": "Filtrar productos",
+          "SELECT_PLACEHOLDER": "Seleccione...",
+          "LOAD_OPTIONS_ERROR": "No se pudieron cargar las opciones del formulario."
+        },
         "VALIDATION": {
           "REQUIRED": "Este campo es obligatorio.",
           "MIN_LENGTH": "Este campo debe tener al menos 3 caracteres.",
+          "MAX_LENGTH": "Este campo superó el tamaño máximo permitido.",
+          "MIN_PRICE": "El valor debe ser mayor que cero.",
           "HEX": "Ingrese un color hexadecimal válido (p. ej. #000000)."
         },
         "SAVE": {

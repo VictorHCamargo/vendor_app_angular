@@ -12,12 +12,26 @@
   "MAIN": {
     "FEATURES": {
       "PRODUCT_MASTER": {
-        "FIELDS": { "NAME": "名前", "HEX": "16進数", "ACTIVE": "有効" },
+        "FIELDS": {
+          "NAME": "名前",
+          "HEX": "16進数",
+          "ACTIVE": "有効",
+          "DESCRIBE": "説明",
+          "COIN": "通貨",
+          "PRICEBUY": "仕入価格",
+          "PRICESELL": "販売価格",
+          "GROUP": "グループ",
+          "CATEGORY": "カテゴリー",
+          "MARK": "ブランド",
+          "COLOR": "色",
+          "MEASURE": "単位"
+        },
         "ENTITIES": {
           "CATEGORY": "カテゴリー",
           "GROUP": "グループ",
           "MARK": "ブランド",
-          "COLOR": "色"
+          "COLOR": "色",
+          "PRODUCT": "製品"
         },
         "CATEGORY": {
           "LISTTITLE": "カテゴリー一覧",
@@ -35,9 +49,19 @@
           "FORMTITLE": "ブランド登録"
         },
         "COLOR": { "LISTTITLE": "色一覧", "LISTBUTTON": "色を追加", "FORMTITLE": "色登録" },
+        "PRODUCT": {
+          "LISTTITLE": "製品一覧",
+          "LISTBUTTON": "製品を追加",
+          "FORMTITLE": "製品登録",
+          "FILTERLABEL": "製品を絞り込む",
+          "SELECT_PLACEHOLDER": "選択してください...",
+          "LOAD_OPTIONS_ERROR": "フォームの選択肢を読み込めませんでした。"
+        },
         "VALIDATION": {
           "REQUIRED": "この項目は必須です。",
           "MIN_LENGTH": "3文字以上で入力してください。",
+          "MAX_LENGTH": "この項目は最大文字数を超えています。",
+          "MIN_PRICE": "値は0より大きい必要があります。",
           "HEX": "有効な16進カラーを入力してください（例: #000000）。"
         },
         "SAVE": {
