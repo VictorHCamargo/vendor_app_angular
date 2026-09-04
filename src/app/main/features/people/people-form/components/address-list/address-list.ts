@@ -12,7 +12,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './address-list.scss',
 })
 export class AddressList extends BaseList<IAddressModel> {
-  addresses = input.required<IAddressModel[]>();
+  addresses = input<IAddressModel[]>([]);
 
   create = output<boolean>();
 
@@ -35,12 +35,12 @@ export class AddressList extends BaseList<IAddressModel> {
             dataField: 'typeAddress',
             transform: {
               type: 'icon',
-              function: (value: TTypeAddress) =>
+              transform: (value: unknown) =>
                 ({
                   M: 'bi bi-house-door',
                   C: 'bi bi-building',
                   E: 'bi bi-truck',
-                })[value] ?? 'bi bi-geo-alt',
+                })[value as TTypeAddress] ?? 'bi bi-geo-alt',
             },
           },
           { dataField: 'zipCode', name: 'MAIN.FEATURES.ADDRESSES.ZIPCODE' },

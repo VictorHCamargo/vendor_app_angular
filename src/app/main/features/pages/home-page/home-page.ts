@@ -10,14 +10,15 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './home-page.scss',
 })
 export class HomePage {
-  authStoreService = inject(AuthStoreService);
-  router = inject(Router);
+  private readonly authStoreService = inject(AuthStoreService);
+  private readonly router = inject(Router);
 
-  onNavigate(path: string, subPath?: string) {
-    this.router.navigate([path, subPath]);
+  onNavigate(path: string): void {
+    void this.router.navigateByUrl(path);
   }
 
-  get username() {
-    return this.authStoreService.getUser().nomecredencial;
+  get username(): string {
+    const user = this.authStoreService.getUser();
+    return user.nomecredencial ?? '';
   }
 }

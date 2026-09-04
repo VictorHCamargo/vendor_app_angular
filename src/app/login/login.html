@@ -4,13 +4,15 @@
     style="width: 100%; max-width: 400px; border-radius: 15px"
   >
     <div class="text-center mb-4">
-      <h2 class="fw-bold text-primary">VENDOR</h2>
-      <p class="text-muted small">Entre com suas credenciais para acessar</p>
+      <h2 class="fw-bold text-primary">{{ 'LOGIN.TITLE' | translate }}</h2>
+      <p class="text-muted small">{{ 'LOGIN.SUBTITLE' | translate }}</p>
     </div>
 
     <form>
       <div class="mb-3">
-        <label for="floatingInput" class="form-label fw-semibold">Email</label>
+        <label for="floatingInput" class="form-label fw-semibold">{{
+          'LOGIN.EMAIL' | translate
+        }}</label>
         <div class="input-group">
           <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope"></i></span>
           <input
@@ -18,7 +20,7 @@
             type="email"
             class="form-control border-start-0 bg-light"
             id="floatingInput"
-            placeholder="nome@exemplo.com"
+            [placeholder]="'LOGIN.EMAIL_PLACEHOLDER' | translate"
           />
         </div>
         <app-error-messages
@@ -28,7 +30,9 @@
       </div>
 
       <div class="mb-4">
-        <label for="floatingPassword" class="form-label fw-semibold">Senha</label>
+        <label for="floatingPassword" class="form-label fw-semibold">{{
+          'LOGIN.PASSWORD' | translate
+        }}</label>
         <div class="input-group">
           <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock"></i></span>
           <input
@@ -44,6 +48,7 @@
             (click)="showPassword.set(!showPassword())"
           >
             <i class="bi" [class]="showPassword() ? 'bi-eye-slash' : 'bi-eye'"></i>
+            <span class="visually-hidden">{{ 'LOGIN.TOGGLE_PASSWORD' | translate }}</span>
           </button>
         </div>
         <app-error-messages
@@ -60,7 +65,7 @@
             style="border-radius: 8px"
             disabled
           >
-            Entrar no Painel
+            {{ 'LOGIN.SUBMIT' | translate }}
           </button>
         } @else {
           <button
@@ -69,7 +74,7 @@
             class="btn btn-primary w-100 py-2 fw-bold shadow-sm"
             style="border-radius: 8px"
           >
-            Entrar no Painel
+            {{ 'LOGIN.SUBMIT' | translate }}
           </button>
         }
       } @else {
@@ -80,7 +85,7 @@
           disabled
         >
           <div class="spinner-border text-light" role="status">
-            <span class="visually-hidden">Loading...</span>
+            <span class="visually-hidden">{{ 'COMMONS.LOADING' | translate }}</span>
           </div>
         </button>
       }

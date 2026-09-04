@@ -1,6 +1,6 @@
 export interface ITransformTableTitle {
-  type: TTypeTransofrm;
-  function: (value?: any) => any;
+  type: TTableTransformType;
+  transform: (value: unknown) => unknown;
 }
 
-export type TTypeTransofrm = 'icon' | 'make' | 'active';
+export type TTableTransformType = 'icon' | 'color' | 'active';

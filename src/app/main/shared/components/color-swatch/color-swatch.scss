@@ -1,0 +1,13 @@
+:host {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+.swatch {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.25rem;
+  display: inline-block;
+  height: 1.25rem;
+  width: 1.25rem;
+}

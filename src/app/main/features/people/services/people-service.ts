@@ -19,7 +19,7 @@ export class PeopleService extends BaseServices<TPersonModel, any> {
   toastService = inject(ToastService);
   addressService = inject(AddressService);
 
-  override save(model: TPersonModel, id: string | number | null): Observable<TPersonModel> {
+  save(model: TPersonModel, id: string | number | null): Observable<TPersonModel> {
     if (id) {
       const results = this.http.put(`${this.host}${this.endPoint}${id}`, this.mapDto(model)).pipe(
         map((value: any) => {
@@ -44,7 +44,7 @@ export class PeopleService extends BaseServices<TPersonModel, any> {
     }
   }
 
-  override searchId(id: string | number): Observable<TPersonModel> {
+  searchId(id: string | number): Observable<TPersonModel> {
     const results = this.http.get(`${this.host}${this.endPoint}${id}`).pipe(
       map((value: any) => {
         const data = value.data;
@@ -67,7 +67,7 @@ export class PeopleService extends BaseServices<TPersonModel, any> {
     }
   }
 
-  override delete(id: string | number): Observable<TPersonModel> {
+  delete(id: string | number): Observable<TPersonModel> {
     const results = this.http.put(`${this.host}${this.endPoint}i/${id}`, null).pipe(
       map((value: any) => {
         const data = value.data;

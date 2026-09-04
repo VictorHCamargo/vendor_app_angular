@@ -5,9 +5,36 @@
     "SAVE": "Salvar",
     "EDIT": "Editar",
     "DEL": "Inativar",
-    "DELE": "Deletar",
+    "DELE": "Excluir",
     "ACTIONS": "Ações",
-    "NO_RECORDS": "Nenhum registro encontrado"
+    "NO_RECORDS": "Nenhum registro encontrado",
+    "ACTIVE": "Ativo",
+    "INACTIVE": "Inativo",
+    "LOADING": "Carregando",
+    "CLOSE": "Fechar"
+  },
+  "LOGIN": {
+    "TITLE": "VENDOR",
+    "SUBTITLE": "Entre com suas credenciais para acessar.",
+    "EMAIL": "E-mail",
+    "EMAIL_PLACEHOLDER": "nome@exemplo.com",
+    "PASSWORD": "Senha",
+    "TOGGLE_PASSWORD": "Mostrar ou ocultar senha",
+    "SUBMIT": "Entrar no painel",
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "O e-mail é obrigatório.",
+      "PASSWORD_REQUIRED": "A senha é obrigatória.",
+      "PASSWORD_MIN_LENGTH": "A senha deve ter pelo menos 6 caracteres."
+    },
+    "MESSAGES": {
+      "AUTHENTICATED": "Usuário autorizado.",
+      "INVALID_CREDENTIALS": "E-mail ou senha inválidos."
+    }
+  },
+  "UNAUTHORIZED": {
+    "TITLE": "Acesso negado",
+    "MESSAGE": "Suas credenciais não foram reconhecidas ou sua sessão expirou. Você não tem permissão para visualizar esta página.",
+    "ACTION": "Ir para o login"
   },
   "MAIN": {
     "FEATURES": {
@@ -19,22 +46,50 @@
         "GENDER": "Sexo",
         "GENDERLABELMAN": "Masculino",
         "GENDERLABELFEMAN": "Feminino",
-        "DATE": "Data de aniversario",
-        "TITLEF": "Cadastro de Pessoa Física",
-        "NAMEJ": "Razao Social",
-        "NICKNAMEJ": "Nome Fantasia",
-        "STATEDOCUMENTJ": "Inscricao Estadual",
+        "DATE": "Data de aniversário",
+        "TITLEF": "Cadastro de pessoa física",
+        "NAMEJ": "Razão social",
+        "NICKNAMEJ": "Nome fantasia",
+        "STATEDOCUMENTJ": "Inscrição estadual",
         "FEDERALDOCUMENTJ": "CNPJ",
-        "BOND": "Vinculo",
-        "TITLEJ": "Cadastro de Pessoa Jurídica",
-        "ACTIVE": "Ativo"
+        "BOND": "Vínculo",
+        "TITLEJ": "Cadastro de pessoa jurídica",
+        "ACTIVE": "Ativo",
+        "LIST": {
+          "NATURAL": { "TITLE": "Lista de pessoas físicas", "NEW": "Cadastrar pessoa física" },
+          "LEGAL": { "TITLE": "Lista de pessoas jurídicas", "NEW": "Cadastrar pessoa jurídica" }
+        },
+        "VALIDATION": {
+          "NICKNAME_REQUIRED": "O apelido é obrigatório.",
+          "NAME_REQUIRED": "O nome é obrigatório.",
+          "COMPANY_NAME_REQUIRED": "A razão social é obrigatória.",
+          "NAME_MIN_LENGTH": "O nome deve ter pelo menos 3 caracteres.",
+          "CPF_REQUIRED": "O CPF é obrigatório.",
+          "CPF_FORMAT": "Informe o CPF no formato 000.000.000-00.",
+          "RG_REQUIRED": "O RG é obrigatório.",
+          "RG_FORMAT": "Informe o RG no formato 00.000.000-0.",
+          "GENDER_REQUIRED": "O sexo é obrigatório.",
+          "BIRTH_DATE_REQUIRED": "A data de nascimento é obrigatória.",
+          "CNPJ_REQUIRED": "O CNPJ é obrigatório.",
+          "CNPJ_FORMAT": "Informe o CNPJ no formato 00.000.000/0000-00.",
+          "STATE_ID_REQUIRED": "A inscrição estadual é obrigatória.",
+          "STATE_ID_FORMAT": "Informe a inscrição estadual no formato 000.000.000.000."
+        },
+        "MESSAGES": {
+          "LIST_REFRESHED": "As informações foram atualizadas.",
+          "SAVE": {
+            "CREATED": "Pessoa cadastrada com sucesso.",
+            "UPDATED": "Pessoa atualizada com sucesso."
+          }
+        },
+        "DEACTIVATE": {
+          "TITLE": "Confirmar inativação",
+          "CONFIRM": "Tem certeza que deseja inativar {{name}}? Esta ação impedirá novos faturamentos ou entregas.",
+          "ACTION": "Inativar pessoa"
+        }
       },
       "ADDRESSES": {
-        "TYPEADDRESSES": {
-          "DELIVERY": "Entrega",
-          "CHARGE": "Cobrança",
-          "HOUSING": "Moradia"
-        },
+        "TYPEADDRESSES": { "DELIVERY": "Entrega", "CHARGE": "Cobrança", "HOUSING": "Moradia" },
         "ZIPCODE": "CEP",
         "STREET": "Logradouro",
         "NUMBER": "Número",
@@ -42,22 +97,33 @@
         "CITY": "Cidade",
         "NEIGHBORHOOD": "Bairro",
         "ACTIVE": "Ativo",
-        "FORMTITLE": "Cadastro de Endereços",
-        "LISTTITLE": "Lista de Endereços",
-        "TYPEADDRESS": "Tipo de Endereço"
-      },
-      "COLOR": {
-        "HEX": "Hexadecimal",
-        "ACTIVE": "Ativo",
-        "LISTTITLE": "Lista de cores",
-        "LISTBUTTON": "Cadastrar nova cor",
-        "FORMTITLE": "Cadastrado de cores"
-      },
-      "MARK": {
-        "LISTTITLE": "Lista de marcas",
-        "LISTBUTTON": "Cadastrar nova marca",
-        "": "Marca",
-        "FORMTITLE": "Cadastrado de marcas"
+        "FORMTITLE": "Cadastro de endereço",
+        "LISTTITLE": "Lista de endereços",
+        "TYPEADDRESS": "Tipo de endereço",
+        "LINKED_COUNT": "Endereços vinculados: {{count}}",
+        "VALIDATION": {
+          "MIN_LENGTH": "Cadastre pelo menos um endereço.",
+          "ZIP_CODE_FORMAT": "Informe o CEP no formato 00000-000.",
+          "ZIP_CODE_MAX": "O CEP deve ter no máximo 9 caracteres.",
+          "STREET_REQUIRED": "O logradouro é obrigatório.",
+          "STREET_MAX": "O logradouro deve ter no máximo 128 caracteres.",
+          "NUMBER_REQUIRED": "O número é obrigatório.",
+          "NUMBER_MAX": "O número deve ter no máximo 12 caracteres.",
+          "NEIGHBORHOOD_REQUIRED": "O bairro é obrigatório.",
+          "NEIGHBORHOOD_MAX": "O bairro deve ter no máximo 64 caracteres.",
+          "CITY_REQUIRED": "A cidade é obrigatória.",
+          "CITY_MAX": "A cidade deve ter no máximo 64 caracteres.",
+          "STATE_REQUIRED": "O estado é obrigatório."
+        },
+        "MESSAGES": {
+          "DUPLICATED_TYPE": "Não é possível cadastrar dois endereços do mesmo tipo.",
+          "HOUSING_REQUIRED": "O endereço de moradia não pode ser inativado."
+        },
+        "DEACTIVATE": {
+          "TITLE": "Confirmar inativação",
+          "CONFIRM": "Tem certeza que deseja inativar o endereço de {{type}}? Esta ação impedirá seu uso em novos faturamentos ou entregas.",
+          "ACTION": "Inativar endereço"
+        }
       },
       "PRODUCT_MASTER": {
         "FIELDS": {
@@ -66,13 +132,13 @@
           "ACTIVE": "Ativo",
           "DESCRIBE": "Descrição",
           "COIN": "Moeda",
-          "PRICEBUY": "Preço de Compra",
-          "PRICESELL": "Preço de Venda",
+          "PRICEBUY": "Preço de compra",
+          "PRICESELL": "Preço de venda",
           "GROUP": "Grupo",
           "CATEGORY": "Categoria",
           "MARK": "Marca",
           "COLOR": "Cor",
-          "MEASURE": "Unidade de Medida"
+          "MEASURE": "Unidade de medida"
         },
         "ENTITIES": {
           "CATEGORY": "categoria",
@@ -83,27 +149,27 @@
         },
         "CATEGORY": {
           "LISTTITLE": "Lista de categorias",
-          "LISTBUTTON": "Cadastrar nova categoria",
+          "LISTBUTTON": "Cadastrar categoria",
           "FORMTITLE": "Cadastro de categoria"
         },
         "GROUP": {
           "LISTTITLE": "Lista de grupos",
-          "LISTBUTTON": "Cadastrar novo grupo",
+          "LISTBUTTON": "Cadastrar grupo",
           "FORMTITLE": "Cadastro de grupo"
         },
         "MARK": {
           "LISTTITLE": "Lista de marcas",
-          "LISTBUTTON": "Cadastrar nova marca",
+          "LISTBUTTON": "Cadastrar marca",
           "FORMTITLE": "Cadastro de marca"
         },
         "COLOR": {
           "LISTTITLE": "Lista de cores",
-          "LISTBUTTON": "Cadastrar nova cor",
+          "LISTBUTTON": "Cadastrar cor",
           "FORMTITLE": "Cadastro de cor"
         },
         "PRODUCT": {
           "LISTTITLE": "Lista de produtos",
-          "LISTBUTTON": "Cadastrar novo produto",
+          "LISTBUTTON": "Cadastrar produto",
           "FORMTITLE": "Cadastro de produto",
           "FILTERLABEL": "Filtrar produtos",
           "SELECT_PLACEHOLDER": "Selecione...",
@@ -143,21 +209,18 @@
           "GROUP": "Grupo",
           "COIN": "Moeda",
           "MEASURE": "Medida",
-          "COLOR": "Cores"
+          "COLOR": "Cores",
+          "BRAND": "Marcas"
         },
-        "PEOPLE": {
-          "NAME": "Pessoas",
-          "NATURAL": "Física",
-          "LEGAL": "Jurídica"
-        }
+        "PEOPLE": { "NAME": "Pessoas", "NATURAL": "Física", "LEGAL": "Jurídica" }
       }
     },
     "HOME": {
       "WELCOME": "Bem-vindo de volta!",
-      "TITLE": "Painel de Controle",
-      "ACTION": "Ações Rápidas",
-      "BUTTON1": "Visualizar Categorias",
-      "BUTTON2": "Gerenciar Grupos"
+      "TITLE": "Painel de controle",
+      "ACTION": "Ações rápidas",
+      "BUTTON1": "Visualizar produtos",
+      "BUTTON2": "Gerenciar grupos"
     }
   }
 }

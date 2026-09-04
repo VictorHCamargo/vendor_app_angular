@@ -63,18 +63,22 @@ export class AddressForm extends BaseForms<IAddressModel> implements OnInit {
       }),
       (Path) => {
         pattern(Path.zipCode, PATTERNS.CEP, {
-          message: 'CEP inválido. Formato esperado: 00000-000',
+          message: 'MAIN.FEATURES.ADDRESSES.VALIDATION.ZIP_CODE_FORMAT',
         });
-        maxLength(Path.zipCode, 9, { message: 'CEP deve ter no máximo 9 caracteres' });
-        required(Path.street, { message: 'Logradouro é obrigatório' });
-        maxLength(Path.street, 128, { message: 'Logradouro deve ter no máximo 128 caracteres' });
-        required(Path.number, { message: 'Número é obrigatório' });
-        maxLength(Path.number, 12, { message: 'Número deve ter no máximo 12 caracteres' });
-        required(Path.neighborhood, { message: 'Bairro é obrigatório' });
-        maxLength(Path.neighborhood, 64, { message: 'Bairro deve ter no máximo 64 caracteres' });
-        required(Path.city, { message: 'Cidade é obrigatória' });
-        maxLength(Path.city, 64, { message: 'Cidade deve ter no máximo 64 caracteres' });
-        required(Path.state, { message: 'Estado é obrigatório' });
+        maxLength(Path.zipCode, 9, { message: 'MAIN.FEATURES.ADDRESSES.VALIDATION.ZIP_CODE_MAX' });
+        required(Path.street, { message: 'MAIN.FEATURES.ADDRESSES.VALIDATION.STREET_REQUIRED' });
+        maxLength(Path.street, 128, { message: 'MAIN.FEATURES.ADDRESSES.VALIDATION.STREET_MAX' });
+        required(Path.number, { message: 'MAIN.FEATURES.ADDRESSES.VALIDATION.NUMBER_REQUIRED' });
+        maxLength(Path.number, 12, { message: 'MAIN.FEATURES.ADDRESSES.VALIDATION.NUMBER_MAX' });
+        required(Path.neighborhood, {
+          message: 'MAIN.FEATURES.ADDRESSES.VALIDATION.NEIGHBORHOOD_REQUIRED',
+        });
+        maxLength(Path.neighborhood, 64, {
+          message: 'MAIN.FEATURES.ADDRESSES.VALIDATION.NEIGHBORHOOD_MAX',
+        });
+        required(Path.city, { message: 'MAIN.FEATURES.ADDRESSES.VALIDATION.CITY_REQUIRED' });
+        maxLength(Path.city, 64, { message: 'MAIN.FEATURES.ADDRESSES.VALIDATION.CITY_MAX' });
+        required(Path.state, { message: 'MAIN.FEATURES.ADDRESSES.VALIDATION.STATE_REQUIRED' });
         disabled(Path.street, () => this.isZipCoded);
         disabled(Path.neighborhood, () => this.isZipCoded);
         disabled(Path.city, () => this.isZipCoded);
@@ -93,10 +97,9 @@ export class AddressForm extends BaseForms<IAddressModel> implements OnInit {
     });
   }
 
-  getByZipCode(event: Event) {
-    const element = event.target as any;
+  getByZipCode(event: Event): void {
+    const element = event.target as HTMLInputElement;
     const zipCode = element.value as string;
-    console.log(zipCode);
 
     const infoByZipCode = this.addressService.getAddressByZipCode(zipCode);
     infoByZipCode.subscribe({
@@ -112,7 +115,7 @@ export class AddressForm extends BaseForms<IAddressModel> implements OnInit {
           } as IAddressModel;
         });
       },
-      error: (value) => {
+      error: () => {
         this.model.update((valueModel) => {
           return {
             ...valueModel,
@@ -120,7 +123,7 @@ export class AddressForm extends BaseForms<IAddressModel> implements OnInit {
             state: '',
             neighborhood: '',
             street: '',
-            hasZipCode: value.hasZipCode,
+            hasZipCode: false,
           } as IAddressModel;
         });
       },

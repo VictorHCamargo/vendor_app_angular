@@ -19,15 +19,14 @@
             <ul class="navbar-nav">
               @for (component of components(); track $index) {
                 <li class="nav-item dropdown">
-                  <a
+                  <button
+                    type="button"
                     class="nav-link dropdown-toggle"
-                    [href]="component.way"
-                    role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     {{ component.name | translate }}
-                  </a>
+                  </button>
                   <ul class="dropdown-menu">
                     @for (item of component.children; track $index) {
                       <li>
@@ -47,22 +46,25 @@
           </div>
           <div class="col-auto">
             <div class="dropdown">
-              <a
+              <button
+                type="button"
                 class="btn dropdown-toggle"
-                href="#"
-                role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 {{ 'MAIN.SHARED.NAVBAR.LANGUAGES' | translate }}
-              </a>
+              </button>
 
               <ul class="dropdown-menu">
                 @for (language of languages(); track $index) {
                   <li>
-                    <a class="btn dropdown-item" (click)="changeLanguenges(language.acronym)"> {{
-                      language.name | translate
-                    }}</a>
+                    <button
+                      type="button"
+                      class="dropdown-item"
+                      (click)="changeLanguage(language.acronym)"
+                    >
+                      {{ language.name | translate }}
+                    </button>
                   </li>
                 }
               </ul>

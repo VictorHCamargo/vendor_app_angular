@@ -4,60 +4,72 @@ import { BaseServices } from '../../../shared/services/base-services';
 import { IProductsModel } from '../interfaces/products-model';
 import { IProductsServiceModel } from '../interfaces/products-service-model';
 import { IProductsSelectOption } from '../interfaces/products-select-option-model';
+import { IApiResponse } from '../../../shared/interfaces/api-response';
+
+interface IProductsSelectApiModel {
+  id: number;
+  nome: string | null;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService extends BaseServices<IProductsModel, IProductsServiceModel> {
-  override endPoint = '/victor/produto';
+  override readonly endPoint = '/victor/produto';
 
-  override search(): Observable<IProductsModel[]> {
-    return this.http.get(`${this.host}${this.endPoint}`).pipe(
-      map((value: any) => {
-        const data = (value.data ?? []) as IProductsServiceModel[];
-        return data.map((item) => this.mapModel(item));
-      }),
-    );
+  search(): Observable<IProductsModel[]> {
+    return this.processObservable(
+      this.http.get<IApiResponse<IProductsServiceModel[]>>(`${this.host}${this.endPoint}`),
+    ).pipe(map(({ data }) => data.map((item) => this.mapModel(item))));
   }
 
   searchByName(nome: string): Observable<IProductsModel[]> {
-    return this.http.get(`${this.host}${this.endPoint}`, { params: { nome } }).pipe(
-      map((value: any) => {
-        const data = (value.data ?? []) as IProductsServiceModel[];
-        return data.map((item) => this.mapModel(item));
+    return this.processObservable(
+      this.http.get<IApiResponse<IProductsServiceModel[]>>(`${this.host}${this.endPoint}`, {
+        params: { nome },
       }),
-    );
+    ).pipe(map(({ data }) => data.map((item) => this.mapModel(item))));
   }
 
-  override searchId(id: string | number): Observable<IProductsModel> {
-    return this.http.get(`${this.host}${this.endPoint}/${id}`).pipe(
-      map((value: any) => {
-        const [data] = (value.data ?? []) as IProductsServiceModel[];
-        return this.mapModel(data);
-      }),
-    );
+  searchId(id: string | number): Observable<IProductsModel> {
+    return this.processObservable(
+      this.http.get<IApiResponse<IProductsServiceModel[]>>(`${this.host}${this.endPoint}/${id}`),
+    ).pipe(map(({ data }) => this.mapModel(data[0])));
   }
 
-  override save(model: IProductsModel, id: string | number | null): Observable<IProductsModel> {
-    const payload = this.mapDto(model);
+  save(model: IProductsModel, id: string | number | null): Observable<IProductsModel> {
     const request$ = id
-      ? this.http.put(`${this.host}${this.endPoint}/${id}`, payload)
-      : this.http.post(`${this.host}${this.endPoint}`, payload);
+      ? this.http.put<IApiResponse<{ id: number }[]>>(
+          `${this.host}${this.endPoint}/${id}`,
+          this.mapDto(model),
+        )
+      : this.http.post<IApiResponse<{ id: number }[]>>(
+          `${this.host}${this.endPoint}`,
+          this.mapDto(model),
+        );
 
-    return request$.pipe(
-      map((value: any) => {
-        const [data] = (value.data ?? []) as { id: number }[];
-        return { id: data?.id ?? id } as IProductsModel;
-      }),
+    return this.processObservable(request$).pipe(
+      map(({ data }) => ({ ...model, id: data[0]?.id ?? id })),
     );
   }
 
-  override delete(id: string | number): Observable<IProductsModel> {
-    return this.http.delete(`${this.host}${this.endPoint}/${id}`).pipe(
-      map((value: any) => {
-        const [data] = (value.data ?? []) as { id: number }[];
-        return { id: data?.id ?? id } as IProductsModel;
-      }),
+  delete(id: string | number): Observable<IProductsModel> {
+    return this.processObservable(
+      this.http.delete<IApiResponse<{ id: number }[]>>(`${this.host}${this.endPoint}/${id}`),
+    ).pipe(
+      map(({ data }) => ({
+        id: data[0]?.id ?? id,
+        name: '',
+        describe: '',
+        idCategory: null,
+        idCoin: null,
+        idBrand: null,
+        idColor: null,
+        idUnitMeasure: null,
+        idGroup: null,
+        priceBuy: 0,
+        priceSell: 0,
+      })),
     );
   }
 
@@ -78,28 +90,27 @@ export class ProductsService extends BaseServices<IProductsModel, IProductsServi
   }
 
   searchCategories(): Observable<IProductsSelectOption[]> {
-    return this.http
-      .get(`${this.host}/victor/categoria`)
-      .pipe(map((value: any) => this.mapSelectOptions(value)));
+    return this.getSelectOptions('/victor/categoria');
   }
 
   searchCoins(): Observable<IProductsSelectOption[]> {
-    return this.http
-      .get(`${this.host}/victor/moeda`)
-      .pipe(map((value: any) => this.mapSelectOptions(value)));
+    return this.getSelectOptions('/victor/moeda');
   }
 
   searchMeasures(): Observable<IProductsSelectOption[]> {
-    return this.http
-      .get(`${this.host}/victor/medida`)
-      .pipe(map((value: any) => this.mapSelectOptions(value)));
+    return this.getSelectOptions('/victor/medida');
   }
 
-  private mapSelectOptions(value: any): IProductsSelectOption[] {
-    const data = (value?.data ?? []) as { id: number; nome: string }[];
+  private getSelectOptions(path: string): Observable<IProductsSelectOption[]> {
+    return this.processObservable(
+      this.http.get<IApiResponse<IProductsSelectApiModel[]>>(`${this.host}${path}`),
+    ).pipe(map(({ data }) => this.mapSelectOptions(data)));
+  }
+
+  private mapSelectOptions(data: IProductsSelectApiModel[]): IProductsSelectOption[] {
     return data
       .filter((item) => item.nome != null)
-      .map((item) => ({ id: item.id, name: item.nome }));
+      .map((item) => ({ id: item.id, name: item.nome ?? '' }));
   }
 
   private mapModel(item: IProductsServiceModel): IProductsModel {

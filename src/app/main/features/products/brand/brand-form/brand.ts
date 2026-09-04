@@ -10,7 +10,7 @@ import { BrandService } from '../services/brand-service';
 import { FormActions } from '../../../../shared/components/form-actions/form-actions';
 @Component({
   selector: 'app-brand',
-  imports: [FormInput, TranslatePipe,FormActions],
+  imports: [FormInput, TranslatePipe, FormActions],
   templateUrl: './brand.html',
   styleUrl: './brand.scss',
 })

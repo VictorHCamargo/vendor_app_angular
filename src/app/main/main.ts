@@ -14,7 +14,7 @@ import { LoadingComponents } from './shared/components/loading-components/loadin
 })
 export class Main {
   private authStoreService = inject(AuthStoreService);
-  navbarConfig: INavbarConfig[] = [
+  readonly navbarConfig: INavbarConfig[] = [
     {
       name: 'MAIN.SHARED.NAVBAR.PRODUCTS.NAME',
       way: '/products/list',
@@ -54,7 +54,7 @@ export class Main {
           children: [],
         },
         {
-          name: 'MAIN.FEATURES.MARK.',
+          name: 'MAIN.SHARED.NAVBAR.PRODUCTS.BRAND',
           way: '/brand/list',
           children: [],
         },
@@ -78,7 +78,7 @@ export class Main {
     },
   ];
 
-  languagesConfig: ILanguagesConfig[] = [
+  readonly languagesConfig: ILanguagesConfig[] = [
     {
       acronym: 'pt-BR',
       name: 'Português (Brasil)',
@@ -96,7 +96,13 @@ export class Main {
       name: '日本語',
     },
   ];
-  private makeUrlExternalPartner(basePath: string, url: string) {
-    return `${basePath}/externalPartner?redirect=${url}&secret=${this.authStoreService.getToken()}&exp=3600`;
+  private makeUrlExternalPartner(basePath: string, url: string): string {
+    const params = new URLSearchParams({
+      exp: '3600',
+      redirect: url,
+      secret: this.authStoreService.getToken(),
+    });
+
+    return `${basePath}/externalPartner?${params}`;
   }
 }

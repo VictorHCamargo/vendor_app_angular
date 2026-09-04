@@ -25,7 +25,15 @@ import { FormActions } from '../../../shared/components/form-actions/form-action
 
 @Component({
   selector: 'app-peoples',
-  imports: [FormInput, AddressForm, AddressList, TranslatePipe, Modal, ModalDeactivate, FormActions],
+  imports: [
+    FormInput,
+    AddressForm,
+    AddressList,
+    TranslatePipe,
+    Modal,
+    ModalDeactivate,
+    FormActions,
+  ],
   templateUrl: './people.html',
   styleUrl: './people.scss',
 })
@@ -100,13 +108,12 @@ export class People extends BaseForms<TPersonModel> {
     }
   }
 
-  isAddressModeForm() {
+  isAddressModeForm(): boolean {
     return this.createAddress();
   }
 
-  isNaturalPerson(_data?: TPersonModel): boolean {
-    const peopleType = this.route.snapshot.routeConfig?.path?.includes('naturalPerson') ? 'F' : 'J';
-    return peopleType == 'F';
+  isNaturalPerson(): boolean {
+    return this.route.snapshot.routeConfig?.path?.includes('naturalPerson') ?? false;
   }
 
   setHtmlConfig() {
@@ -173,7 +180,7 @@ export class People extends BaseForms<TPersonModel> {
       (value) => value.typeAddress === address.typeAddress,
     );
     if (thereIsTypeAddress) {
-      this.toastService.show('Não é possivel cadastrar dois endereços do mesmo tipo!', 'danger');
+      this.toastService.show('MAIN.FEATURES.ADDRESSES.MESSAGES.DUPLICATED_TYPE', 'danger');
       return false;
     }
 
@@ -186,10 +193,7 @@ export class People extends BaseForms<TPersonModel> {
     );
 
     if (thereIsTypeAddress) {
-      this.toastService.show(
-        'Não é possivel atualizar o tipo de endereço para um existente!',
-        'danger',
-      );
+      this.toastService.show('MAIN.FEATURES.ADDRESSES.MESSAGES.DUPLICATED_TYPE', 'danger');
       return false;
     }
 
@@ -201,8 +205,8 @@ export class People extends BaseForms<TPersonModel> {
       (value, position) => value.typeAddress === address.typeAddress && position == index,
     );
 
-    if (thereIsTypeAddress?.typeAddress == 'M') {
-      this.toastService.show('Não é possivel desativar o tipo de endereço moradia!', 'danger');
+    if (thereIsTypeAddress?.typeAddress === 'M') {
+      this.toastService.show('MAIN.FEATURES.ADDRESSES.MESSAGES.HOUSING_REQUIRED', 'danger');
       return false;
     }
 

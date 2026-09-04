@@ -10,10 +10,18 @@
       <div class="p-4 bg-light rounded border">
         <h5 class="mb-3">{{ 'MAIN.HOME.ACTION' | translate }}</h5>
         <div class="d-flex flex-wrap gap-3">
-          <button class="btn btn-primary px-4 py-2" (click)="onNavigate('category', 'list')">
+          <button
+            type="button"
+            class="btn btn-primary px-4 py-2"
+            (click)="onNavigate('/products/list')"
+          >
             {{ 'MAIN.HOME.BUTTON1' | translate }}
           </button>
-          <button class="btn btn-outline-dark px-4 py-2" (click)="onNavigate('group', 'list')">
+          <button
+            type="button"
+            class="btn btn-outline-dark px-4 py-2"
+            (click)="onNavigate('/group/list')"
+          >
             {{ 'MAIN.HOME.BUTTON2' | translate }}
           </button>
         </div>

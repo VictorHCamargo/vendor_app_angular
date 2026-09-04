@@ -7,10 +7,121 @@
     "DEL": "無効化",
     "DELE": "削除",
     "ACTIONS": "操作",
-    "NO_RECORDS": "該当するデータはありません"
+    "NO_RECORDS": "該当するデータはありません",
+    "ACTIVE": "有効",
+    "INACTIVE": "無効",
+    "LOADING": "読み込み中",
+    "CLOSE": "閉じる"
+  },
+  "LOGIN": {
+    "TITLE": "VENDOR",
+    "SUBTITLE": "認証情報を入力して続行してください。",
+    "EMAIL": "メールアドレス",
+    "EMAIL_PLACEHOLDER": "name@example.com",
+    "PASSWORD": "パスワード",
+    "TOGGLE_PASSWORD": "パスワードの表示を切り替える",
+    "SUBMIT": "ログイン",
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "メールアドレスは必須です。",
+      "PASSWORD_REQUIRED": "パスワードは必須です。",
+      "PASSWORD_MIN_LENGTH": "パスワードは6文字以上で入力してください。"
+    },
+    "MESSAGES": {
+      "AUTHENTICATED": "ユーザーを認証しました。",
+      "INVALID_CREDENTIALS": "メールアドレスまたはパスワードが正しくありません。"
+    }
+  },
+  "UNAUTHORIZED": {
+    "TITLE": "アクセスが拒否されました",
+    "MESSAGE": "認証情報が確認できないか、セッションの有効期限が切れています。このページを表示する権限がありません。",
+    "ACTION": "ログインへ戻る"
   },
   "MAIN": {
     "FEATURES": {
+      "PEOPLE": {
+        "NAMEF": "氏名",
+        "NICKNAMEF": "通称",
+        "STATEDOCUMENTF": "州ID",
+        "FEDERALDOCUMENTF": "納税者番号",
+        "GENDER": "性別",
+        "GENDERLABELMAN": "男性",
+        "GENDERLABELFEMAN": "女性",
+        "DATE": "生年月日",
+        "TITLEF": "個人登録",
+        "NAMEJ": "会社名",
+        "NICKNAMEJ": "商号",
+        "STATEDOCUMENTJ": "州納税者番号",
+        "FEDERALDOCUMENTJ": "連邦納税者番号",
+        "BOND": "関係",
+        "TITLEJ": "法人登録",
+        "ACTIVE": "有効",
+        "LIST": {
+          "NATURAL": { "TITLE": "個人一覧", "NEW": "個人を登録" },
+          "LEGAL": { "TITLE": "法人一覧", "NEW": "法人を登録" }
+        },
+        "VALIDATION": {
+          "NICKNAME_REQUIRED": "通称は必須です。",
+          "NAME_REQUIRED": "氏名は必須です。",
+          "COMPANY_NAME_REQUIRED": "会社名は必須です。",
+          "NAME_MIN_LENGTH": "名前は3文字以上で入力してください。",
+          "CPF_REQUIRED": "納税者番号は必須です。",
+          "CPF_FORMAT": "納税者番号を000.000.000-00の形式で入力してください。",
+          "RG_REQUIRED": "州IDは必須です。",
+          "RG_FORMAT": "州IDを00.000.000-0の形式で入力してください。",
+          "GENDER_REQUIRED": "性別は必須です。",
+          "BIRTH_DATE_REQUIRED": "生年月日は必須です。",
+          "CNPJ_REQUIRED": "連邦納税者番号は必須です。",
+          "CNPJ_FORMAT": "連邦納税者番号を00.000.000/0000-00の形式で入力してください。",
+          "STATE_ID_REQUIRED": "州納税者番号は必須です。",
+          "STATE_ID_FORMAT": "州納税者番号を000.000.000.000の形式で入力してください。"
+        },
+        "MESSAGES": {
+          "LIST_REFRESHED": "情報を更新しました。",
+          "SAVE": { "CREATED": "登録しました。", "UPDATED": "更新しました。" }
+        },
+        "DEACTIVATE": {
+          "TITLE": "無効化の確認",
+          "CONFIRM": "{{name}}を無効にしますか？この操作により、新しい請求や配送では使用できなくなります。",
+          "ACTION": "個人を無効化"
+        }
+      },
+      "ADDRESSES": {
+        "TYPEADDRESSES": { "DELIVERY": "配送", "CHARGE": "請求", "HOUSING": "居住" },
+        "ZIPCODE": "郵便番号",
+        "STREET": "住所",
+        "NUMBER": "番号",
+        "STATE": "州",
+        "CITY": "市",
+        "NEIGHBORHOOD": "地区",
+        "ACTIVE": "有効",
+        "FORMTITLE": "住所登録",
+        "LISTTITLE": "住所一覧",
+        "TYPEADDRESS": "住所種別",
+        "LINKED_COUNT": "関連する住所: {{count}}",
+        "VALIDATION": {
+          "MIN_LENGTH": "少なくとも1件の住所を登録してください。",
+          "ZIP_CODE_FORMAT": "郵便番号を00000-000の形式で入力してください。",
+          "ZIP_CODE_MAX": "郵便番号は9文字以内で入力してください。",
+          "STREET_REQUIRED": "住所は必須です。",
+          "STREET_MAX": "住所は128文字以内で入力してください。",
+          "NUMBER_REQUIRED": "番号は必須です。",
+          "NUMBER_MAX": "番号は12文字以内で入力してください。",
+          "NEIGHBORHOOD_REQUIRED": "地区は必須です。",
+          "NEIGHBORHOOD_MAX": "地区は64文字以内で入力してください。",
+          "CITY_REQUIRED": "市は必須です。",
+          "CITY_MAX": "市は64文字以内で入力してください。",
+          "STATE_REQUIRED": "州は必須です。"
+        },
+        "MESSAGES": {
+          "DUPLICATED_TYPE": "同じ種別の住所を複数登録することはできません。",
+          "HOUSING_REQUIRED": "居住用住所は無効にできません。"
+        },
+        "DEACTIVATE": {
+          "TITLE": "無効化の確認",
+          "CONFIRM": "{{type}}住所を無効にしますか？この操作により、新しい請求や配送では使用できなくなります。",
+          "ACTION": "住所を無効化"
+        }
+      },
       "PRODUCT_MASTER": {
         "FIELDS": {
           "NAME": "名前",
@@ -88,7 +199,8 @@
           "GROUP": "グループ",
           "COIN": "通貨",
           "MEASURE": "単位",
-          "COLOR": "色"
+          "COLOR": "色",
+          "BRAND": "ブランド"
         },
         "PEOPLE": { "NAME": "人", "NATURAL": "個人", "LEGAL": "法人" }
       }
@@ -97,7 +209,7 @@
       "WELCOME": "おかえりなさい！",
       "TITLE": "ダッシュボード",
       "ACTION": "クイックアクション",
-      "BUTTON1": "カテゴリーを見る",
+      "BUTTON1": "製品を見る",
       "BUTTON2": "グループを管理"
     }
   }

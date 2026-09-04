@@ -7,44 +7,127 @@
     "DEL": "Inactivar",
     "DELE": "Eliminar",
     "ACTIONS": "Acciones",
-    "NO_RECORDS": "No se encontraron registros"
+    "NO_RECORDS": "No se encontraron registros",
+    "ACTIVE": "Activo",
+    "INACTIVE": "Inactivo",
+    "LOADING": "Cargando",
+    "CLOSE": "Cerrar"
+  },
+  "LOGIN": {
+    "TITLE": "VENDOR",
+    "SUBTITLE": "Ingrese con sus credenciales para continuar.",
+    "EMAIL": "Correo electrónico",
+    "EMAIL_PLACEHOLDER": "nombre@ejemplo.com",
+    "PASSWORD": "Contraseña",
+    "TOGGLE_PASSWORD": "Mostrar u ocultar contraseña",
+    "SUBMIT": "Ingresar",
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "El correo electrónico es obligatorio.",
+      "PASSWORD_REQUIRED": "La contraseña es obligatoria.",
+      "PASSWORD_MIN_LENGTH": "La contraseña debe tener al menos 6 caracteres."
+    },
+    "MESSAGES": {
+      "AUTHENTICATED": "Usuario autorizado.",
+      "INVALID_CREDENTIALS": "Correo electrónico o contraseña inválidos."
+    }
+  },
+  "UNAUTHORIZED": {
+    "TITLE": "Acceso denegado",
+    "MESSAGE": "Sus credenciales no fueron reconocidas o su sesión expiró. No tiene permiso para ver esta página.",
+    "ACTION": "Ir al inicio de sesión"
   },
   "MAIN": {
     "FEATURES": {
       "PEOPLE": {
         "NAMEF": "Nombre",
         "NICKNAMEF": "Apodo",
-        "STATEDOCUMENTF": "Documento Estatal",
-        "FEDERALDOCUMENTF": "Documento Federal",
+        "STATEDOCUMENTF": "Documento estatal",
+        "FEDERALDOCUMENTF": "Documento fiscal",
         "GENDER": "Género",
         "GENDERLABELMAN": "Masculino",
         "GENDERLABELFEMAN": "Femenino",
-        "DATE": "Fecha de cumpleaños",
-        "TITLEF": "Registro de Persona Física",
-        "NAMEJ": "Razón Social",
-        "NICKNAMEJ": "Nombre Fantasía",
-        "STATEDOCUMENTJ": "Inscripción Estatal",
-        "FEDERALDOCUMENTJ": "Documento Federal / CNPJ",
+        "DATE": "Fecha de nacimiento",
+        "TITLEF": "Registro de persona física",
+        "NAMEJ": "Razón social",
+        "NICKNAMEJ": "Nombre comercial",
+        "STATEDOCUMENTJ": "Inscripción estatal",
+        "FEDERALDOCUMENTJ": "Documento fiscal federal",
         "BOND": "Vínculo",
-        "TITLEJ": "Registro de Persona Jurídica",
-        "ACTIVE": "Activo"
+        "TITLEJ": "Registro de persona jurídica",
+        "ACTIVE": "Activo",
+        "LIST": {
+          "NATURAL": { "TITLE": "Lista de personas físicas", "NEW": "Registrar persona física" },
+          "LEGAL": { "TITLE": "Lista de personas jurídicas", "NEW": "Registrar persona jurídica" }
+        },
+        "VALIDATION": {
+          "NICKNAME_REQUIRED": "El apodo es obligatorio.",
+          "NAME_REQUIRED": "El nombre es obligatorio.",
+          "COMPANY_NAME_REQUIRED": "La razón social es obligatoria.",
+          "NAME_MIN_LENGTH": "El nombre debe tener al menos 3 caracteres.",
+          "CPF_REQUIRED": "El documento fiscal es obligatorio.",
+          "CPF_FORMAT": "Ingrese el documento fiscal en formato 000.000.000-00.",
+          "RG_REQUIRED": "El documento estatal es obligatorio.",
+          "RG_FORMAT": "Ingrese el documento estatal en formato 00.000.000-0.",
+          "GENDER_REQUIRED": "El género es obligatorio.",
+          "BIRTH_DATE_REQUIRED": "La fecha de nacimiento es obligatoria.",
+          "CNPJ_REQUIRED": "El documento fiscal federal es obligatorio.",
+          "CNPJ_FORMAT": "Ingrese el documento fiscal federal en formato 00.000.000/0000-00.",
+          "STATE_ID_REQUIRED": "La inscripción estatal es obligatoria.",
+          "STATE_ID_FORMAT": "Ingrese la inscripción estatal en formato 000.000.000.000."
+        },
+        "MESSAGES": {
+          "LIST_REFRESHED": "La información fue actualizada.",
+          "SAVE": {
+            "CREATED": "Persona registrada correctamente.",
+            "UPDATED": "Persona actualizada correctamente."
+          }
+        },
+        "DEACTIVATE": {
+          "TITLE": "Confirmar inactivación",
+          "CONFIRM": "¿Desea inactivar a {{name}}? Esta acción impedirá nuevas facturaciones o entregas.",
+          "ACTION": "Inactivar persona"
+        }
       },
       "ADDRESSES": {
         "TYPEADDRESSES": {
           "DELIVERY": "Entrega",
           "CHARGE": "Facturación",
-          "HOUSING": "Vivienda"
+          "HOUSING": "Residencial"
         },
-        "ZIPCODE": "Código Postal",
-        "STREET": "Calle / Dirección",
+        "ZIPCODE": "Código postal",
+        "STREET": "Dirección",
         "NUMBER": "Número",
         "STATE": "Estado",
         "CITY": "Ciudad",
         "NEIGHBORHOOD": "Barrio",
         "ACTIVE": "Activo",
-        "FORMTITLE": "Registro de Direcciones",
-        "LISTTITLE": "Lista de Direcciones",
-        "TYPEADDRESS": "Tipo de Dirección"
+        "FORMTITLE": "Registro de dirección",
+        "LISTTITLE": "Lista de direcciones",
+        "TYPEADDRESS": "Tipo de dirección",
+        "LINKED_COUNT": "Direcciones vinculadas: {{count}}",
+        "VALIDATION": {
+          "MIN_LENGTH": "Registre al menos una dirección.",
+          "ZIP_CODE_FORMAT": "Ingrese el código postal en formato 00000-000.",
+          "ZIP_CODE_MAX": "El código postal debe tener como máximo 9 caracteres.",
+          "STREET_REQUIRED": "La dirección es obligatoria.",
+          "STREET_MAX": "La dirección debe tener como máximo 128 caracteres.",
+          "NUMBER_REQUIRED": "El número es obligatorio.",
+          "NUMBER_MAX": "El número debe tener como máximo 12 caracteres.",
+          "NEIGHBORHOOD_REQUIRED": "El barrio es obligatorio.",
+          "NEIGHBORHOOD_MAX": "El barrio debe tener como máximo 64 caracteres.",
+          "CITY_REQUIRED": "La ciudad es obligatoria.",
+          "CITY_MAX": "La ciudad debe tener como máximo 64 caracteres.",
+          "STATE_REQUIRED": "El estado es obligatorio."
+        },
+        "MESSAGES": {
+          "DUPLICATED_TYPE": "No es posible registrar dos direcciones del mismo tipo.",
+          "HOUSING_REQUIRED": "La dirección residencial no puede ser inactivada."
+        },
+        "DEACTIVATE": {
+          "TITLE": "Confirmar inactivación",
+          "CONFIRM": "¿Desea inactivar la dirección de {{type}}? Esta acción impedirá su uso en nuevas facturaciones o entregas.",
+          "ACTION": "Inactivar dirección"
+        }
       },
       "PRODUCT_MASTER": {
         "FIELDS": {
@@ -53,13 +136,13 @@
           "ACTIVE": "Activo",
           "DESCRIBE": "Descripción",
           "COIN": "Moneda",
-          "PRICEBUY": "Precio de Compra",
-          "PRICESELL": "Precio de Venta",
+          "PRICEBUY": "Precio de compra",
+          "PRICESELL": "Precio de venta",
           "GROUP": "Grupo",
           "CATEGORY": "Categoría",
           "MARK": "Marca",
           "COLOR": "Color",
-          "MEASURE": "Unidad de Medida"
+          "MEASURE": "Unidad de medida"
         },
         "ENTITIES": {
           "CATEGORY": "categoría",
@@ -129,21 +212,19 @@
           "CATEGORY": "Categoría",
           "GROUP": "Grupo",
           "COIN": "Moneda",
-          "MEASURE": "Medida"
+          "MEASURE": "Medida",
+          "COLOR": "Colores",
+          "BRAND": "Marcas"
         },
-        "PEOPLE": {
-          "NAME": "Personas",
-          "NATURAL": "Física",
-          "LEGAL": "Jurídica"
-        }
+        "PEOPLE": { "NAME": "Personas", "NATURAL": "Física", "LEGAL": "Jurídica" }
       }
     },
     "HOME": {
       "WELCOME": "¡Bienvenido de nuevo!",
-      "TITLE": "Panel de Control",
-      "ACTION": "Acciones Rápidas",
-      "BUTTON1": "Ver Categorías",
-      "BUTTON2": "Gestionar Grupos"
+      "TITLE": "Panel de control",
+      "ACTION": "Acciones rápidas",
+      "BUTTON1": "Ver productos",
+      "BUTTON2": "Gestionar grupos"
     }
   }
 }

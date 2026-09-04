@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { ToastService } from './services/toast-service';
 
 @Component({
   selector: 'app-toast-messages',
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './toast-messages.html',
   styleUrl: './toast-messages.scss',
 })

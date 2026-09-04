@@ -2,88 +2,68 @@ import { Injectable } from '@angular/core';
 import { BaseServices } from '../../../../shared/services/base-services';
 import { IBrandModel } from '../interfaces/brand-model';
 import { map, Observable } from 'rxjs';
+import { IBrandServiceModel } from '../interfaces/brand-service-model';
+import { IApiResponse } from '../../../../shared/interfaces/api-response';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BrandService extends BaseServices<IBrandModel, any> {
-  override endPoint = '/victor/marca';
+export class BrandService extends BaseServices<IBrandModel, IBrandServiceModel> {
+  override readonly endPoint = '/victor/marca';
 
-  override search(): Observable<IBrandModel[]> {
-    const results = this.http.get(`${this.host}${this.endPoint}`).pipe(
-      map((value: any) => {
-        const data = value.data;
-        return data.map(
-          (valueData: any) =>
-            ({
-              id: valueData.id,
-              name: valueData.nome,
-            }) as IBrandModel,
+  search(): Observable<IBrandModel[]> {
+    return this.processObservable(
+      this.http.get<IApiResponse<IBrandServiceModel[]>>(`${this.host}${this.endPoint}`),
+    ).pipe(map(({ data }) => data.map((item) => this.mapModel(item))));
+  }
+
+  searchId(id: string | number): Observable<IBrandModel> {
+    return this.processObservable(
+      this.http.get<IApiResponse<IBrandServiceModel[]>>(`${this.host}${this.endPoint}/${id}`),
+    ).pipe(map(({ data }) => this.mapModel(data[0])));
+  }
+
+  save(model: IBrandModel, id: string | number | null): Observable<IBrandModel> {
+    const request = id
+      ? this.http.put<IApiResponse<IBrandServiceModel[]>>(
+          `${this.host}${this.endPoint}/${id}`,
+          this.mapDto(model),
+        )
+      : this.http.post<IApiResponse<IBrandServiceModel[]>>(
+          `${this.host}${this.endPoint}`,
+          this.mapDto(model),
         );
+
+    return this.processObservable(request).pipe(
+      map(({ data }) => {
+        const item = data[0];
+        return item ? this.mapModel(item) : { ...model, id };
       }),
     );
-
-    return results;
   }
 
-  override searchId(id: string | number): Observable<IBrandModel> {
-    const results = this.http.get(`${this.host}${this.endPoint}/${id}`).pipe(
-      map((value: any) => {
-        const [data] = value.data;
-
-        return {
-          id: data.id,
-          name: data.nome,
-        } as IBrandModel;
+  delete(id: string | number): Observable<IBrandModel> {
+    return this.processObservable(
+      this.http.delete<IApiResponse<IBrandServiceModel[]>>(`${this.host}${this.endPoint}/${id}`),
+    ).pipe(
+      map(({ data }) => {
+        const item = data[0];
+        return item ? this.mapModel(item) : { id, name: '' };
       }),
     );
-
-    return results;
   }
 
-  override save(model: IBrandModel, id: string | number | null): Observable<IBrandModel> {
-    if (id) {
-      const results = this.http.put(`${this.host}${this.endPoint}/${id}`, this.mapDto(model)).pipe(
-        map((value: any) => {
-          const data = value.data;
-          return {
-            id: data.id,
-          } as IBrandModel;
-        }),
-      );
-
-      return results;
-    } else {
-      const results = this.http.post(`${this.host}${this.endPoint}`, this.mapDto(model)).pipe(
-        map((value: any) => {
-          const data = value.data;
-          return {
-            id: data.id,
-          } as IBrandModel;
-        }),
-      );
-
-      return results;
-    }
+  override mapDto(model: IBrandModel): IBrandServiceModel {
+    return {
+      id: typeof model.id === 'number' ? model.id : null,
+      nome: model.name,
+    };
   }
 
-  override delete(id: string | number): Observable<IBrandModel> {
-    const results = this.http.delete(`${this.host}${this.endPoint}/${id}`).pipe(
-      map((value: any) => {
-        const data = value.data;
-        return {
-          id: data.id,
-        } as IBrandModel;
-      }),
-    );
-
-    return results;
-  }
-
-  override mapDto(model: IBrandModel): any {
+  private mapModel(model: IBrandServiceModel): IBrandModel {
     return {
       id: model.id,
-      nome: model.name,
+      name: model.nome,
     };
   }
 }

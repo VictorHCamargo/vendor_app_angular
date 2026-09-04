@@ -11,16 +11,12 @@ import { ILanguagesConfig, TAcronyms } from './interfaces/languages-config';
   styleUrl: './navbar.scss',
 })
 export class Navbar {
-  translateService = inject(TranslateService);
-  components = input<INavbarConfig[]>([]);
-  languages = input<ILanguagesConfig[]>([]);
+  private readonly translateService = inject(TranslateService);
 
-  hasExternalRedirect(url: string): boolean {
-    url.includes('');
-    return false;
-  }
+  readonly components = input<INavbarConfig[]>([]);
+  readonly languages = input<ILanguagesConfig[]>([]);
 
-  changeLanguenges(acronym: TAcronyms) {
+  changeLanguage(acronym: TAcronyms): void {
     this.translateService.use(acronym);
   }
 }

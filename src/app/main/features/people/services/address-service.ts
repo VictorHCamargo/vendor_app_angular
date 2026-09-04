@@ -1,45 +1,63 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { IAddressModel } from '../interfaces/address-model';
 import { BaseServices } from '../../../shared/services/base-services';
 import { IStateModel } from '../interfaces/state-model';
+import { IApiResponse } from '../../../shared/interfaces/api-response';
+
+interface IStateApiModel {
+  sigla: string;
+  nome: string;
+}
+
+interface IZipCodeApiModel {
+  bairro?: string;
+  cep?: string;
+  cidade?: string;
+  estado?: { sigla: string };
+  logradouro?: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AddressService extends BaseServices<IAddressModel, null> {
-  override endPoint = '/victor/endereco';
+  override readonly endPoint = '/victor/endereco';
 
-  getStates() {
-    return this.http.get(`${this.host}${this.endPoint}/estados`).pipe(
-      map((data: any) => {
-        return data.data.map((valueData: any) => {
-          return {
-            abbreviated: valueData.sigla,
-            name: valueData.nome,
-          } as IStateModel;
-        });
-      }),
+  getStates(): Observable<IStateModel[]> {
+    return this.processObservable(
+      this.http.get<IApiResponse<IStateApiModel[]>>(`${this.host}${this.endPoint}/estados`),
+    ).pipe(
+      map(({ data }) =>
+        data.map((state) => ({
+          abbreviated: state.sigla,
+          name: state.nome,
+        })),
+      ),
     );
   }
 
-  getAddressByZipCode(zipCode: string) {
-    return this.http.post(`${this.host}${this.endPoint}/localidade/cep`, { cep: zipCode }).pipe(
-      map((data: any) => {
-        const valueData: any = data.data;
-        if (valueData.cep != '') {
+  getAddressByZipCode(zipCode: string): Observable<Partial<IAddressModel>> {
+    return this.processObservable(
+      this.http.post<IApiResponse<IZipCodeApiModel>>(
+        `${this.host}${this.endPoint}/localidade/cep`,
+        {
+          cep: zipCode,
+        },
+      ),
+    ).pipe(
+      map(({ data }) => {
+        if (data.cep) {
           return {
-            city: valueData.cidade,
-            neighborhood: valueData.bairro,
-            state: valueData.estado.sigla,
-            street: valueData.logradouro,
+            city: data.cidade ?? '',
+            neighborhood: data.bairro ?? '',
+            state: data.estado?.sigla ?? '',
+            street: data.logradouro ?? '',
             hasZipCode: true,
-          } as Partial<IAddressModel>;
-        } else {
-          return {
-            hasZipCode: false,
           };
         }
+
+        return { hasZipCode: false };
       }),
     );
   }

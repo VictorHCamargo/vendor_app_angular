@@ -9,7 +9,7 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { ILegalPerson, INaturalPerson, TPersonModel } from '../../../interfaces/person-model';
-import { BadgeActivePipe } from '../../../../../shared/pipe/badge-active-pipe';
+import { ActiveBadge } from '../../../../../shared/components/active-badge/active-badge';
 import { FormInput } from '../../../../../shared/components/form-input/form-input';
 import { FieldTree, form } from '@angular/forms/signals';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,7 +19,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-modal-view',
-  imports: [BadgeActivePipe, FormInput, TranslatePipe],
+  imports: [ActiveBadge, FormInput, TranslatePipe],
   templateUrl: './modal-view.html',
   styleUrl: './modal-view.scss',
 })
@@ -59,15 +59,19 @@ export class ModalView implements OnInit {
     });
   }
 
-  isNaturalPerson() {
-    return (this.route.snapshot.routeConfig?.path?.includes('naturalPerson') ? 'F' : 'J') == 'F';
+  isNaturalPerson(): boolean {
+    return this.route.snapshot.routeConfig?.path?.includes('naturalPerson') ?? false;
   }
 
   ngOnInit(): void {
     this.setHtmlConfig();
   }
 
-  onEdit(id: any) {
+  onEdit(id: number | null | undefined): void {
+    if (id == null) {
+      return;
+    }
+
     if (this.isNaturalPerson()) {
       this.router.navigate(['people', 'form', 'naturalPerson', `${id}`]);
       this.closed.emit();
@@ -77,7 +81,7 @@ export class ModalView implements OnInit {
     }
   }
 
-  setHtmlConfig() {
+  private setHtmlConfig(): void {
     if (this.isNaturalPerson()) {
       this.html = NATURAL_PERSON_FORM;
     } else {

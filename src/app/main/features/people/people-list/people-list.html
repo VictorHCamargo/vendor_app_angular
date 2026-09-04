@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2>{{ html.title }}</h2>
+      <h2>{{ html.title | translate }}</h2>
     </div>
     <div class="col text-end">
       <button type="button" class="btn btn-primary" (click)="onNewRegister()">
-        {{ html.newRegistration }}
+        {{ html.newRegistration | translate }}
       </button>
     </div>
   </div>
@@ -16,7 +16,11 @@
 
 <app-modal [isOpen]="isOpen()">
   @if (isDeactivating()) {
-    <app-modal-deactivate [person]="havePerson()" (closed)="onClosed()" (deactivate)="onDeactivate($event)" />
+    <app-modal-deactivate
+      [person]="havePerson()"
+      (closed)="onClosed()"
+      (deactivate)="onDeactivate($event)"
+    />
   } @else {
     <app-modal-view [person]="havePerson()" (closed)="onClosed()" />
   }

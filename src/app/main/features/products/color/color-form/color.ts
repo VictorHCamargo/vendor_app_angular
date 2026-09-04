@@ -49,7 +49,7 @@ export class Color extends BaseForms<IColorModel> {
   override onSave(): void {
     this.saving.set(true);
     this.colorService.save(this.model(), this.model().id).subscribe({
-      next: (_) => {
+      next: () => {
         this.toastService.show(
           this.traduction(this.model().id ? 'SAVE.UPDATED' : 'SAVE.CREATED'),
           'success',
@@ -57,8 +57,7 @@ export class Color extends BaseForms<IColorModel> {
         this.saving.set(false);
         this.router.navigate(['color', 'list']);
       },
-      error: (error) => {
-        console.log(error);
+      error: () => {
         this.toastService.show(this.traduction('SAVE.ERROR'), 'danger');
         this.saving.set(false);
       },

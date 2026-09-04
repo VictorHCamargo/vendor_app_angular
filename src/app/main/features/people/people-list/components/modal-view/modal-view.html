@@ -1,115 +1,124 @@
 <div class="modal-content">
   <div class="modal-header bg-light">
     <h5 class="modal-title"><i class="bi bi-person-bounding-box me-2"></i></h5>
-    <div [innerHTML]="person()?.active! | badgeActive"></div>
-    <button type="button" class="btn-close" (click)="closed.emit()"> </button>
+    <app-active-badge [active]="person()?.active ?? false" />
+    <button
+      type="button"
+      class="btn-close"
+      [attr.aria-label]="'COMMONS.CLOSE' | translate"
+      (click)="closed.emit()"
+    ></button>
   </div>
 
   <div class="modal-body text-secondary">
     <form>
       <div class="row mb-3">
-      <div class="col">
-        <app-form-input
-          [messageId]="'name'"
-          [fieldTree]="formName"
-          [type]="'input'"
-          [info]="{
-            idLabel: 'name',
-            nameLabel: html.nameLabel | translate,
-            type: 'text',
-            readonly : true
-          }"
-        />
-      </div>
-      <div class="col">
-        <app-form-input
-          [messageId]="'nickname'"
-          [fieldTree]="formNickname"
-          [type]="'input'"
-          [info]="{
-            idLabel: 'nickname',
-            nameLabel: html.nicknameLabel | translate,
-            type: 'text',
-            readonly : true
-          }"
-        />
-      </div>
-    </div>
-    <div class="row mb-3">
-      <div class="col">
-        <app-form-input
-          [messageId]="'state'"
-          [fieldTree]="formStateDocument"
-          [type]="'input'"
-          [info]="{
-            idLabel: 'stateDocument',
-            nameLabel: html.stateLabel | translate,
-            type: 'text',
-            readonly : true
-          }"
-        />
-      </div>
-      <div class="col">
-        <app-form-input
-          [messageId]="'federal'"
-          [fieldTree]="formFederalDocument"
-          [type]="'input'"
-          [info]="{
-            idLabel: 'federalDocument',
-            nameLabel: html.federalLabel | translate,
-            type: 'text',
-            readonly : true
-          }"
-        />
-      </div>
-      @if (isNaturalPerson()) {
         <div class="col">
           <app-form-input
-            [messageId]="'gender'"
-            [fieldTree]="formGender"
+            [messageId]="'name'"
+            [fieldTree]="formName"
             [type]="'input'"
             [info]="{
-              idLabel: 'gender',
-              nameLabel: html.genderLabel | translate,
-              readonly: true
+              idLabel: 'name',
+              nameLabel: html.nameLabel | translate,
+              type: 'text',
+              readonly: true,
             }"
           />
         </div>
+        <div class="col">
+          <app-form-input
+            [messageId]="'nickname'"
+            [fieldTree]="formNickname"
+            [type]="'input'"
+            [info]="{
+              idLabel: 'nickname',
+              nameLabel: html.nicknameLabel | translate,
+              type: 'text',
+              readonly: true,
+            }"
+          />
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col">
+          <app-form-input
+            [messageId]="'state'"
+            [fieldTree]="formStateDocument"
+            [type]="'input'"
+            [info]="{
+              idLabel: 'stateDocument',
+              nameLabel: html.stateLabel | translate,
+              type: 'text',
+              readonly: true,
+            }"
+          />
+        </div>
+        <div class="col">
+          <app-form-input
+            [messageId]="'federal'"
+            [fieldTree]="formFederalDocument"
+            [type]="'input'"
+            [info]="{
+              idLabel: 'federalDocument',
+              nameLabel: html.federalLabel | translate,
+              type: 'text',
+              readonly: true,
+            }"
+          />
+        </div>
+        @if (isNaturalPerson()) {
+          <div class="col">
+            <app-form-input
+              [messageId]="'gender'"
+              [fieldTree]="formGender"
+              [type]="'input'"
+              [info]="{
+                idLabel: 'gender',
+                nameLabel: html.genderLabel | translate,
+                readonly: true,
+              }"
+            />
+          </div>
 
-        <div class="col">
-          <app-form-input
-            [messageId]="'date'"
-            [fieldTree]="formDate"
-            [type]="'input'"
-            [info]="{
-              idLabel: 'date',
-              nameLabel: html.dateLabel | translate,
-              type: 'date',
-            }"
-          />
-        </div>
-      } @else {
-        <div class="col">
-          <app-form-input
-            [messageId]="'bond'"
-            [fieldTree]="formBond"
-            [type]="'input'"
-            [info]="{
-              idLabel: 'bond',
-              nameLabel: html.bondLabel | translate,
-              type: 'number',
-              readonly : true
-            }"
-          />
-        </div>
-      }
-    </div>
+          <div class="col">
+            <app-form-input
+              [messageId]="'date'"
+              [fieldTree]="formDate"
+              [type]="'input'"
+              [info]="{
+                idLabel: 'date',
+                nameLabel: html.dateLabel | translate,
+                type: 'date',
+              }"
+            />
+          </div>
+        } @else {
+          <div class="col">
+            <app-form-input
+              [messageId]="'bond'"
+              [fieldTree]="formBond"
+              [type]="'input'"
+              [info]="{
+                idLabel: 'bond',
+                nameLabel: html.bondLabel | translate,
+                type: 'number',
+                readonly: true,
+              }"
+            />
+          </div>
+        }
+      </div>
 
-      <h6 class="text-primary border-bottom pb-2 mb-3">Endereços Vinculados: {{ addressesLength }}</h6>
+      <h6 class="text-primary border-bottom pb-2 mb-3">
+        {{ 'MAIN.FEATURES.ADDRESSES.LINKED_COUNT' | translate: { count: addressesLength } }}
+      </h6>
     </form>
   </div>
 
   <div class="modal-footer bg-light">
-    <button type="button" class="btn btn-primary px-4" (click)="onEdit(person()?.id)">Editar</button>
+    <button type="button" class="btn btn-primary px-4" (click)="onEdit(person()?.id)">
+      {{ 'COMMONS.EDIT' | translate }}
+    </button>
   </div>
 </div>
