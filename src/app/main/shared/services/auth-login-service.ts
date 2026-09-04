@@ -4,34 +4,27 @@ import { ILoginModel } from '../../../login/interfaces/login-model';
 import { AuthStoreService } from './auth-store-service';
 import { tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { IApiResponse } from '../interfaces/api-response';
+import { IAuthTokenConfig } from '../interfaces/auth-token-config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthLoginService {
-  authStoreService = inject(AuthStoreService);
+  private readonly authStoreService = inject(AuthStoreService);
 
-  http = inject(HttpClient);
-  private host = environment.apiUrl;
-  private path = `${this.host}/victor/credencial/login`;
+  private readonly http = inject(HttpClient);
+  private readonly path = `${environment.apiUrl}/victor/credencial/login`;
 
   createToken(model: ILoginModel) {
-    const authNoEncode = `${model.email}:${model.password}`;
-
-    const authEncode = btoa(authNoEncode);
-    const encode = `Basic ${authEncode}`;
+    const authorization = `Basic ${btoa(`${model.email}:${model.password}`)}`;
 
     return this.http
-      .post(this.path, null, {
+      .post<IApiResponse<IAuthTokenConfig>>(this.path, null, {
         headers: {
-          Authorization: encode,
+          Authorization: authorization,
         },
       })
-      .pipe(
-        tap((data: any) => {
-          const tokenInfo = data.data;
-          this.authStoreService.setAuthToken(tokenInfo);
-        }),
-      );
+      .pipe(tap(({ data }) => this.authStoreService.setAuthToken(data)));
   }
 }

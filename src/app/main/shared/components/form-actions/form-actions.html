@@ -1,17 +1,16 @@
 <div class="row">
   <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
     @if (saving()) {
-      <img src="/assets/loading.png" alt="Carregando..." class="rounded loading-animation" />
+      <img
+        src="/assets/loading.png"
+        [attr.alt]="'COMMONS.LOADING' | translate"
+        class="rounded loading-animation"
+      />
     } @else {
       <button type="button" class="btn btn-danger" (click)="canceled.emit()">
         {{ cancelLabel() | translate }}
       </button>
-      <button
-        [disabled]="disabled()"
-        type="button"
-        class="btn btn-primary"
-        (click)="save.emit()"
-      >
+      <button [disabled]="disabled()" type="button" class="btn btn-primary" (click)="save.emit()">
         @if (isEditing()) {
           {{ editLabel() | translate }}
         } @else {

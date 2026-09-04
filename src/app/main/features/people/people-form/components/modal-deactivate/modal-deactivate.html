@@ -1,24 +1,32 @@
-@if (address()) {
+@if (address(); as addressEvent) {
   <div class="modal-dialog modal-sm">
     <div class="modal-content border-top border-danger border-4 px-2">
       <div class="modal-header bg-light">
         <h5 class="modal-title text-danger">
-          <i class="bi bi-exclamation-triangle-fill me-2"></i>Confirmar Desativação
+          <i class="bi bi-exclamation-triangle-fill me-2"></i
+          >{{ 'MAIN.FEATURES.ADDRESSES.DEACTIVATE.TITLE' | translate }}
         </h5>
-        <button type="button" class="btn-close" (click)="closed.emit()"> </button>
+        <button
+          type="button"
+          class="btn-close"
+          [attr.aria-label]="'COMMONS.CLOSE' | translate"
+          (click)="closed.emit()"
+        ></button>
       </div>
 
       <div class="modal-body text-secondary">
         <p class="mb-3">
-          Tem certeza que deseja desativar o endereço
-          <strong>{{ address().address?.typeAddress! | typeAddressName }}</strong> ? Esta ação
-          impedirá que ele seja utilizado em novos faturamentos ou entregas.
+          {{
+            'MAIN.FEATURES.ADDRESSES.DEACTIVATE.CONFIRM'
+              | translate: { type: (addressEvent.address.typeAddress | typeAddressName) }
+          }}
         </p>
       </div>
 
       <div class="modal-footer border-top-0 pt-0">
-        <button type="button" class="btn btn-danger" (click)="deactivate.emit(address())">
-          <i class="bi bi-x-circle me-1"></i> Desativar Endereço
+        <button type="button" class="btn btn-danger" (click)="deactivate.emit(addressEvent)">
+          <i class="bi bi-x-circle me-1"></i
+          >{{ 'MAIN.FEATURES.ADDRESSES.DEACTIVATE.ACTION' | translate }}
         </button>
       </div>
     </div>

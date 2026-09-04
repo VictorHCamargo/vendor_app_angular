@@ -5,7 +5,7 @@ import { IPersonWebListConfig } from '../interfaces/person-web-config';
 import { PeopleService } from '../services/people-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ILegalPerson, INaturalPerson, TPersonModel } from '../interfaces/person-model';
+import { TPersonModel } from '../interfaces/person-model';
 import { ENTITIES_PERSON_LIST, NATURAL_PERSON_LIST } from '../tools/person-setup';
 import { ITableTitle } from '../../../shared/components/table/interfaces/table-title';
 import { ITableButton } from '../../../shared/components/table/interfaces/table-button';
@@ -13,10 +13,11 @@ import { Modal } from '../../../shared/components/modal/modal';
 import { ModalView } from './components/modal-view/modal-view';
 import { ModalDeactivate } from './components/modal-deactivate/modal-deactivate';
 import { ToastService } from '../../../shared/components/toast-messages/services/toast-service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-people-list',
-  imports: [Table, Modal, ModalView, ModalDeactivate],
+  imports: [Modal, ModalDeactivate, ModalView, Table, TranslatePipe],
   templateUrl: './people-list.html',
   styleUrl: './people-list.scss',
 })
@@ -31,9 +32,9 @@ export class PeopleList extends BaseList<TPersonModel> {
 
   html!: IPersonWebListConfig;
 
-  titles!: ITableTitle<any>[];
+  titles!: ITableTitle<TPersonModel>[];
 
-  buttons!: ITableButton<any>[];
+  buttons!: ITableButton<TPersonModel>[];
 
   isOpen = computed(() => this._isOpen());
 
@@ -52,35 +53,32 @@ export class PeopleList extends BaseList<TPersonModel> {
     this.setHtmlConfig();
   }
 
-  isNaturalPerson() {
-    return (this.route.snapshot.routeConfig?.path?.includes('naturalPerson') ? 'F' : 'J') == 'F';
+  isNaturalPerson(): boolean {
+    return this.route.snapshot.routeConfig?.path?.includes('naturalPerson') ?? false;
   }
 
-  onClosed() {
+  onClosed(): void {
     this._isOpen.set(false);
     this.isDeactivating.set(false);
   }
 
-  openModal(model: TPersonModel, isDeactivating?: boolean) {
+  openModal(model: TPersonModel, isDeactivating = false): void {
     this._isOpen.set(true);
-    if (!isDeactivating) {
-      this.isDeactivating.set(false);
-      this._person.set(model);
-    } else {
-      this.isDeactivating.set(true);
-      this._person.set(model);
-    }
+    this.isDeactivating.set(isDeactivating);
+    this._person.set(model);
   }
 
-  onDeactivate(event: TPersonModel) {
-    this.peopleService.delete(event.id!).subscribe({
-      next: (_) => {
+  onDeactivate(event: TPersonModel): void {
+    if (event.id == null) {
+      return;
+    }
+
+    this.peopleService.delete(event.id).subscribe({
+      next: () => {
         this.reloadData();
         this.onClosed();
       },
-      error: (_) => {
-        this.onClosed();
-      },
+      error: () => this.onClosed(),
     });
   }
 
@@ -108,19 +106,12 @@ export class PeopleList extends BaseList<TPersonModel> {
     });
   }
 
-  override reloadData() {
-    this.toastService.show('As informações foram atualizadas', 'info', 1000);
-    if (this.isNaturalPerson()) {
-      this.peopleService.searchByQuery('F').subscribe((result) => {
-        console.log(result);
-        this.dataModel.set(result as TPersonModel[]);
-      });
-    } else {
-      this.peopleService.searchByQuery('J').subscribe((result) => {
-        console.log(result);
-        this.dataModel.set(result as TPersonModel[]);
-      });
-    }
+  override reloadData(): void {
+    const personType = this.isNaturalPerson() ? 'F' : 'J';
+    this.peopleService.searchByQuery(personType).subscribe((result) => {
+      this.dataModel.set(result);
+      this.toastService.show('MAIN.FEATURES.PEOPLE.MESSAGES.LIST_REFRESHED', 'info', 1000);
+    });
   }
 
   private setHtmlConfig() {
@@ -139,7 +130,7 @@ export class PeopleList extends BaseList<TPersonModel> {
     }
   }
 
-  private makeTitlesNaturalPerson(): ITableTitle<INaturalPerson>[] {
+  private makeTitlesNaturalPerson(): ITableTitle<TPersonModel>[] {
     return [
       { name: 'MAIN.FEATURES.PEOPLE.NAMEF', dataField: 'name' },
       { name: 'MAIN.FEATURES.PEOPLE.NICKNAMEF', dataField: 'nickname' },
@@ -148,7 +139,7 @@ export class PeopleList extends BaseList<TPersonModel> {
     ];
   }
 
-  private makeTitlesLegalPerson(): ITableTitle<ILegalPerson>[] {
+  private makeTitlesLegalPerson(): ITableTitle<TPersonModel>[] {
     return [
       { name: 'MAIN.FEATURES.PEOPLE.NAMEJ', dataField: 'name' },
       { name: 'MAIN.FEATURES.PEOPLE.NICKNAMEJ', dataField: 'nickname' },
@@ -165,7 +156,7 @@ export class PeopleList extends BaseList<TPersonModel> {
     }
   }
 
-  private makeButtonsNaturalPerson(): ITableButton<INaturalPerson>[] {
+  private makeButtonsNaturalPerson(): ITableButton<TPersonModel>[] {
     return [
       {
         name: 'COMMONS.VIEW',
@@ -182,7 +173,7 @@ export class PeopleList extends BaseList<TPersonModel> {
     ];
   }
 
-  private makeButtonsLegalPerson(): ITableButton<ILegalPerson>[] {
+  private makeButtonsLegalPerson(): ITableButton<TPersonModel>[] {
     return [
       {
         name: 'COMMONS.VIEW',

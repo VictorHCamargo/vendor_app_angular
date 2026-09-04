@@ -6,10 +6,11 @@ import { Router } from '@angular/router';
 import { ToastService } from '../main/shared/components/toast-messages/services/toast-service';
 import { BaseForms } from '../main/shared/class/base-form';
 import { ErrorMessages } from '../main/shared/components/error-messages/error-messages';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
-  imports: [Field, ErrorMessages],
+  imports: [ErrorMessages, Field, TranslatePipe],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
@@ -29,10 +30,10 @@ export class Login extends BaseForms<ILoginModel> {
         email: '',
         password: '',
       },
-      (Path) => {
-        required(Path.email, { message: 'O campo email é obrigatório' });
-        required(Path.password, { message: 'O campo senha é obrigatório' });
-        minLength(Path.password, 6, { message: 'O campo senha precisa ter no mínimo 6 letras' });
+      (path) => {
+        required(path.email, { message: 'LOGIN.VALIDATION.EMAIL_REQUIRED' });
+        required(path.password, { message: 'LOGIN.VALIDATION.PASSWORD_REQUIRED' });
+        minLength(path.password, 6, { message: 'LOGIN.VALIDATION.PASSWORD_MIN_LENGTH' });
       },
     );
 
@@ -44,17 +45,17 @@ export class Login extends BaseForms<ILoginModel> {
     });
   }
 
-  onSign() {
+  onSign(): void {
     const results = this.loginService.login(this.model());
     this.atLogin.set(true);
     results.subscribe({
-      next: (_value) => {
-        this.toastService.show('Usuario autorizado!', 'success', 1500);
+      next: () => {
+        this.toastService.show('LOGIN.MESSAGES.AUTHENTICATED', 'success', 1500);
         this.atLogin.set(false);
         this.router.navigate(['home']);
       },
-      error: (_error) => {
-        this.toastService.show('Dados incorretos', 'danger', 3000);
+      error: () => {
+        this.toastService.show('LOGIN.MESSAGES.INVALID_CREDENTIALS', 'danger', 3000);
         this.atLogin.set(false);
       },
     });

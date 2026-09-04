@@ -8,7 +8,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './form-actions.scss',
 })
 export class FormActions {
-  saving = input.required<boolean>();
+  saving = input(false);
   disabled = input<boolean>(false);
 
   cancelLabel = input<string>('COMMONS.CANCEL');

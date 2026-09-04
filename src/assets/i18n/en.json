@@ -7,7 +7,34 @@
     "DEL": "Inactivate",
     "DELE": "Delete",
     "ACTIONS": "Actions",
-    "NO_RECORDS": "No records found"
+    "NO_RECORDS": "No records found",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "LOADING": "Loading",
+    "CLOSE": "Close"
+  },
+  "LOGIN": {
+    "TITLE": "VENDOR",
+    "SUBTITLE": "Sign in with your credentials to continue.",
+    "EMAIL": "Email",
+    "EMAIL_PLACEHOLDER": "name@example.com",
+    "PASSWORD": "Password",
+    "TOGGLE_PASSWORD": "Show or hide password",
+    "SUBMIT": "Sign in",
+    "VALIDATION": {
+      "EMAIL_REQUIRED": "Email is required.",
+      "PASSWORD_REQUIRED": "Password is required.",
+      "PASSWORD_MIN_LENGTH": "Password must have at least 6 characters."
+    },
+    "MESSAGES": {
+      "AUTHENTICATED": "User authenticated.",
+      "INVALID_CREDENTIALS": "Invalid email or password."
+    }
+  },
+  "UNAUTHORIZED": {
+    "TITLE": "Access denied",
+    "MESSAGE": "Your credentials were not recognized or your session has expired. You do not have permission to view this page.",
+    "ACTION": "Go to login"
   },
   "MAIN": {
     "FEATURES": {
@@ -15,36 +42,88 @@
         "NAMEF": "Name",
         "NICKNAMEF": "Nickname",
         "STATEDOCUMENTF": "State ID",
-        "FEDERALDOCUMENTF": "SSN / Tax ID",
+        "FEDERALDOCUMENTF": "Tax ID",
         "GENDER": "Gender",
         "GENDERLABELMAN": "Male",
         "GENDERLABELFEMAN": "Female",
-        "DATE": "Birthday",
-        "TITLEF": "Natural Person Registration",
-        "NAMEJ": "Company Name",
-        "NICKNAMEJ": "Trade Name",
-        "STATEDOCUMENTJ": "State Tax ID",
-        "FEDERALDOCUMENTJ": "EIN / Federal Tax ID",
+        "DATE": "Birth date",
+        "TITLEF": "Natural person registration",
+        "NAMEJ": "Company name",
+        "NICKNAMEJ": "Trade name",
+        "STATEDOCUMENTJ": "State tax ID",
+        "FEDERALDOCUMENTJ": "Federal tax ID",
         "BOND": "Bond",
-        "TITLEJ": "Legal Person Registration",
-        "ACTIVE": "Active"
+        "TITLEJ": "Legal person registration",
+        "ACTIVE": "Active",
+        "LIST": {
+          "NATURAL": { "TITLE": "Natural people", "NEW": "Add natural person" },
+          "LEGAL": { "TITLE": "Legal people", "NEW": "Add legal person" }
+        },
+        "VALIDATION": {
+          "NICKNAME_REQUIRED": "Nickname is required.",
+          "NAME_REQUIRED": "Name is required.",
+          "COMPANY_NAME_REQUIRED": "Company name is required.",
+          "NAME_MIN_LENGTH": "Name must have at least 3 characters.",
+          "CPF_REQUIRED": "Tax ID is required.",
+          "CPF_FORMAT": "Enter the tax ID in the format 000.000.000-00.",
+          "RG_REQUIRED": "State ID is required.",
+          "RG_FORMAT": "Enter the state ID in the format 00.000.000-0.",
+          "GENDER_REQUIRED": "Gender is required.",
+          "BIRTH_DATE_REQUIRED": "Birth date is required.",
+          "CNPJ_REQUIRED": "Federal tax ID is required.",
+          "CNPJ_FORMAT": "Enter the federal tax ID in the format 00.000.000/0000-00.",
+          "STATE_ID_REQUIRED": "State tax ID is required.",
+          "STATE_ID_FORMAT": "Enter the state tax ID in the format 000.000.000.000."
+        },
+        "MESSAGES": {
+          "LIST_REFRESHED": "Information updated.",
+          "SAVE": {
+            "CREATED": "Person saved successfully.",
+            "UPDATED": "Person updated successfully."
+          }
+        },
+        "DEACTIVATE": {
+          "TITLE": "Confirm inactivation",
+          "CONFIRM": "Are you sure you want to inactivate {{name}}? This will prevent new billing or delivery operations.",
+          "ACTION": "Inactivate person"
+        }
       },
       "ADDRESSES": {
-        "TYPEADDRESSES": {
-          "DELIVERY": "Delivery",
-          "CHARGE": "Billing",
-          "HOUSING": "Residential"
-        },
-        "ZIPCODE": "ZIP Code",
-        "STREET": "Street / Address",
+        "TYPEADDRESSES": { "DELIVERY": "Delivery", "CHARGE": "Billing", "HOUSING": "Residential" },
+        "ZIPCODE": "ZIP code",
+        "STREET": "Street address",
         "NUMBER": "Number",
         "STATE": "State",
         "CITY": "City",
         "NEIGHBORHOOD": "Neighborhood",
         "ACTIVE": "Active",
-        "FORMTITLE": "Address Registration",
-        "LISTTITLE": "Address List",
-        "TYPEADDRESS": "Address Type"
+        "FORMTITLE": "Address registration",
+        "LISTTITLE": "Address list",
+        "TYPEADDRESS": "Address type",
+        "LINKED_COUNT": "Linked addresses: {{count}}",
+        "VALIDATION": {
+          "MIN_LENGTH": "Add at least one address.",
+          "ZIP_CODE_FORMAT": "Enter the ZIP code in the format 00000-000.",
+          "ZIP_CODE_MAX": "ZIP code can have at most 9 characters.",
+          "STREET_REQUIRED": "Street is required.",
+          "STREET_MAX": "Street can have at most 128 characters.",
+          "NUMBER_REQUIRED": "Number is required.",
+          "NUMBER_MAX": "Number can have at most 12 characters.",
+          "NEIGHBORHOOD_REQUIRED": "Neighborhood is required.",
+          "NEIGHBORHOOD_MAX": "Neighborhood can have at most 64 characters.",
+          "CITY_REQUIRED": "City is required.",
+          "CITY_MAX": "City can have at most 64 characters.",
+          "STATE_REQUIRED": "State is required."
+        },
+        "MESSAGES": {
+          "DUPLICATED_TYPE": "You cannot add two addresses of the same type.",
+          "HOUSING_REQUIRED": "The residential address cannot be inactivated."
+        },
+        "DEACTIVATE": {
+          "TITLE": "Confirm inactivation",
+          "CONFIRM": "Are you sure you want to inactivate the {{type}} address? This will prevent its use in new billing or delivery operations.",
+          "ACTION": "Inactivate address"
+        }
       },
       "PRODUCT_MASTER": {
         "FIELDS": {
@@ -52,14 +131,14 @@
           "HEX": "Hexadecimal",
           "ACTIVE": "Active",
           "DESCRIBE": "Description",
-          "COIN": "Coin",
-          "PRICEBUY": "Buy Price",
-          "PRICESELL": "Sell Price",
+          "COIN": "Currency",
+          "PRICEBUY": "Buy price",
+          "PRICESELL": "Sell price",
           "GROUP": "Group",
           "CATEGORY": "Category",
           "MARK": "Brand",
           "COLOR": "Color",
-          "MEASURE": "Unit of Measure"
+          "MEASURE": "Unit of measure"
         },
         "ENTITIES": {
           "CATEGORY": "category",
@@ -129,21 +208,19 @@
           "CATEGORY": "Category",
           "GROUP": "Group",
           "COIN": "Currency",
-          "MEASURE": "Unit of Measure"
+          "MEASURE": "Unit of measure",
+          "COLOR": "Colors",
+          "BRAND": "Brands"
         },
-        "PEOPLE": {
-          "NAME": "People",
-          "NATURAL": "Natural Person",
-          "LEGAL": "Legal Person"
-        }
+        "PEOPLE": { "NAME": "People", "NATURAL": "Natural person", "LEGAL": "Legal person" }
       }
     },
     "HOME": {
       "WELCOME": "Welcome back!",
       "TITLE": "Dashboard",
-      "ACTION": "Quick Actions",
-      "BUTTON1": "View Categories",
-      "BUTTON2": "Manage Groups"
+      "ACTION": "Quick actions",
+      "BUTTON1": "View products",
+      "BUTTON2": "Manage groups"
     }
   }
 }

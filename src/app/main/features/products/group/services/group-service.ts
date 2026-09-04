@@ -3,12 +3,13 @@ import { IGroupModel } from '../interfaces/group-model';
 import { IGroupServiceModel } from '../interfaces/group-service-model';
 import { map, Observable } from 'rxjs';
 import { BaseServices } from '../../../../shared/services/base-services';
+import { IApiResponse } from '../../../../shared/interfaces/api-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GroupService extends BaseServices<IGroupModel, IGroupServiceModel> {
-  override endPoint = '/victor/grupo';
+  override readonly endPoint = '/victor/grupo';
 
   override mapDto(model: IGroupModel): IGroupServiceModel {
     return {
@@ -17,32 +18,49 @@ export class GroupService extends BaseServices<IGroupModel, IGroupServiceModel> 
     };
   }
 
-  override search(): Observable<IGroupModel[]> {
-    return super.search().pipe(
-      map((value: any) => {
-        const data = value.data as IGroupServiceModel[];
+  search(): Observable<IGroupModel[]> {
+    return this.processObservable(
+      this.http.get<IApiResponse<IGroupServiceModel[]>>(`${this.host}${this.endPoint}`),
+    ).pipe(map(({ data }) => data.map((item) => this.mapModel(item))));
+  }
 
-        return data.map((valueData) => {
-          return {
-            id: valueData.id,
-            name: valueData.nome,
-          } as IGroupModel;
-        });
+  save(model: IGroupModel, id: string | number | null): Observable<IGroupModel> {
+    const request = id
+      ? this.http.put<IApiResponse<IGroupServiceModel[]>>(
+          `${this.host}${this.endPoint}/${id}`,
+          this.mapDto(model),
+        )
+      : this.http.post<IApiResponse<IGroupServiceModel[]>>(
+          `${this.host}${this.endPoint}`,
+          this.mapDto(model),
+        );
+
+    return this.processObservable(request).pipe(
+      map(({ data }) => this.mapModel(data[0] ?? this.mapDto(model))),
+    );
+  }
+
+  searchId(id: string | number): Observable<IGroupModel> {
+    return this.processObservable(
+      this.http.get<IApiResponse<IGroupServiceModel[]>>(`${this.host}${this.endPoint}/${id}`),
+    ).pipe(map(({ data }) => this.mapModel(data[0])));
+  }
+
+  delete(id: string | number): Observable<IGroupModel> {
+    return this.processObservable(
+      this.http.delete<IApiResponse<IGroupServiceModel[]>>(`${this.host}${this.endPoint}/${id}`),
+    ).pipe(
+      map(({ data }) => {
+        const item = data[0];
+        return item ? this.mapModel(item) : { id: Number(id), name: '' };
       }),
     );
   }
 
-  override searchId(id: string | number): Observable<IGroupModel> {
-    const result = super.searchId(id);
-
-    return result.pipe(
-      map((value: any, _index) => {
-        const valueData = value.data[0] as IGroupServiceModel;
-        return {
-          id: valueData.id,
-          name: valueData.nome,
-        } as IGroupModel;
-      }),
-    );
+  private mapModel(model: IGroupServiceModel): IGroupModel {
+    return {
+      id: model.id,
+      name: model.nome,
+    };
   }
 }

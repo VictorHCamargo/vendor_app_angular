@@ -61,11 +61,8 @@ export class ProductsList extends BaseList<IProductsModel> {
           name: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.COLOR',
           dataField: 'colorHex',
           transform: {
-            type: 'make',
-            function: (value: string) => {
-              if (!value) return '';
-              return `$class,d-inline-block rounded$style,width: 20px; height: 20px; background-color: ${value};$value,${value}`;
-            },
+            type: 'color',
+            transform: (value: unknown) => (typeof value === 'string' ? value : ''),
           },
         },
         { name: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.MEASURE', dataField: 'nameMeasure' },

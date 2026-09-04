@@ -1,17 +1,18 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { IAuthTokenConfig } from '../interfaces/auth-token-config';
+import { IAuthUserConfig } from '../interfaces/auth-user-config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthStoreService {
-  private localStorageToken = 'token';
-  private localStorageExpire = 'expireIn';
-  private localStorageUser = 'user';
+  private readonly localStorageToken = 'token';
+  private readonly localStorageExpire = 'expireIn';
+  private readonly localStorageUser = 'user';
 
-  token = signal<string>('');
-  expireAt = signal<number>(0);
-  user = signal<any>({});
+  readonly token = signal('');
+  readonly expireAt = signal(0);
+  readonly user = signal<IAuthUserConfig>({});
 
   isLogged = computed(() => {
     return !!this.token() && !this.isTokenExpired();
@@ -22,7 +23,7 @@ export class AuthStoreService {
 
     return exp ? Date.now() > exp : true;
   });
-  setAuthToken(data: IAuthTokenConfig) {
+  setAuthToken(data: IAuthTokenConfig): void {
     const expireAt = Date.now() + data.expiresIn * 1000;
 
     this.expireAt.set(expireAt);
@@ -32,30 +33,41 @@ export class AuthStoreService {
     this.setAuthTokenLocalStorage();
   }
 
-  private setAuthTokenLocalStorage() {
+  private setAuthTokenLocalStorage(): void {
     localStorage.setItem(this.localStorageToken, this.token());
     localStorage.setItem(this.localStorageExpire, `${this.expireAt()}`);
   }
 
-  getAuthTokenLocalStorage() {
+  getAuthTokenLocalStorage(): void {
     const number = localStorage.getItem(this.localStorageExpire);
     this.expireAt.set(number ? Number(number) : Date.now());
     this.token.set(localStorage.getItem(this.localStorageToken) ?? '');
 
-    const rawUser = localStorage.getItem(this.localStorageUser);
-    this.user.set(rawUser ? JSON.parse(rawUser) : {});
+    this.user.set(this.getStoredUser(localStorage.getItem(this.localStorageUser)));
   }
 
-  setAuthUser(data: any) {
+  setAuthUser(data: IAuthUserConfig): void {
     this.user.set(data);
     localStorage.setItem(this.localStorageUser, JSON.stringify(data));
   }
 
-  getUser() {
+  getUser(): IAuthUserConfig {
     return this.user();
   }
 
-  getToken() {
+  getToken(): string {
     return this.token();
+  }
+
+  private getStoredUser(rawUser: string | null): IAuthUserConfig {
+    if (!rawUser) {
+      return {};
+    }
+
+    try {
+      return JSON.parse(rawUser) as IAuthUserConfig;
+    } catch {
+      return {};
+    }
   }
 }

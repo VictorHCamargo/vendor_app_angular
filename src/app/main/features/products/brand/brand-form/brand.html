@@ -2,18 +2,20 @@
   <form>
     <div class="row mb-3 mt-3">
       <div class="col">
-        <h1>{{ 'MAIN.FEATURES.PRODUCT_MASTER.MARK.FORMTITLE' | translate}}</h1>
+        <h1>{{ 'MAIN.FEATURES.PRODUCT_MASTER.MARK.FORMTITLE' | translate }}</h1>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col">
-        <app-form-input [fieldTree]="formName" [info]="{
-          nameLabel : 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.NAME',
-          type : 'text',
-          idLabel : 'name'
-        }"
-        [messageId]="'name'"
-        [type]="'input'"
+        <app-form-input
+          [fieldTree]="formName"
+          [info]="{
+            nameLabel: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.NAME',
+            type: 'text',
+            idLabel: 'name',
+          }"
+          [messageId]="'name'"
+          [type]="'input'"
         />
       </div>
     </div>

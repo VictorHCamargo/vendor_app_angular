@@ -65,12 +65,8 @@ export class ColorList extends BaseList<IColorModel> {
             name: 'MAIN.FEATURES.PRODUCT_MASTER.FIELDS.HEX',
             dataField: 'hexadecimal',
             transform: {
-              type: 'make',
-              function: (value: string) => {
-                const spanConfig = `$class,d-inline-block rounded$style,width: 20px; height: 20px; background-color: ${value};$value,${value}`;
-
-                return spanConfig;
-              },
+              type: 'color',
+              transform: (value: unknown) => String(value ?? ''),
             },
           },
           {
@@ -78,9 +74,7 @@ export class ColorList extends BaseList<IColorModel> {
             dataField: 'active',
             transform: {
               type: 'active',
-              function: (value: boolean) => {
-                return value;
-              },
+              transform: (value: unknown) => value === true,
             },
           },
         ],

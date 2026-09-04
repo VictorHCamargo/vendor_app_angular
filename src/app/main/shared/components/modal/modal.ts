@@ -16,9 +16,9 @@ export class Modal {
       const modal = this.dialogElement()?.nativeElement;
       if (!modal) return;
 
-      if (this.isOpen()) {
+      if (this.isOpen() && !modal.open && typeof modal.showModal === 'function') {
         modal.showModal();
-      } else {
+      } else if (!this.isOpen() && modal.open && typeof modal.close === 'function') {
         modal.close();
       }
     });

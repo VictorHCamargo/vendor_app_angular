@@ -1,29 +1,29 @@
 <table class="table table-hover align-middle mb-3">
   <thead>
     <tr>
-      @for (title of tableConfig()?.titles; track $index) {
+      @for (title of tableConfig().titles; track title.dataField) {
         <th>{{ title.name | translate }}</th>
       }
-      @if (tableConfig()?.buttons?.length !== 0) {
+      @if (hasActions()) {
         <th>{{ 'COMMONS.ACTIONS' | translate }}</th>
       }
     </tr>
   </thead>
   <tbody>
-    @for (model of tableConfig()?.data; track $index; let i = $index) {
-      <tr >
-        @for (title of tableConfig()?.titles; track $index) {
+    @for (model of tableConfig().data; track $index; let i = $index) {
+      <tr>
+        @for (title of tableConfig().titles; track title.dataField) {
           <td [class.text-black-50]="isInactive(model)">
             @if (title.transform) {
               @switch (title.transform.type) {
-                @case ('make') {
-                  <span [innerHTML]="title.transform.function(model[title.dataField]) | fake"></span>
+                @case ('color') {
+                  <app-color-swatch [color]="asString(transformedValue(title, model))" />
                 }
-                @case('active') {
-                  <span [innerHTML]="title.transform.function(model[title.dataField]) | badgeActive"></span>
+                @case ('active') {
+                  <app-active-badge [active]="asBoolean(transformedValue(title, model))" />
                 }
                 @case ('icon') {
-                  <i [class]="title.transform.function(model[title.dataField])" ></i>
+                  <i [class]="asString(transformedValue(title, model))"></i>
                 }
               }
             } @else {
@@ -31,25 +31,14 @@
             }
           </td>
         }
-        @if (tableConfig()?.buttons?.length === 0) {
-          @for (button of tableConfig()?.buttons; track $index) {
-            <td>
-              @if (button.show()) {
-                <button type="button" [classList]="button.style" (click)="button.action(model, i)">
-                  {{ button.name | translate }}
-                </button>
-                &nbsp;
-              }
-            </td>
-          }
-        } @else {
+        @if (hasActions()) {
           <td>
-            @for (button of tableConfig()?.buttons; track $index) {
+            @for (button of tableConfig().buttons; track button.name) {
               @if (button.show()) {
-                <button type="button" [classList]="button.style" (click)="button.action(model, i)">
+                <button type="button" [class]="button.style" (click)="button.action(model, i)">
                   {{ button.name | translate }}
                 </button>
-                &nbsp;
+                <span class="me-1"></span>
               }
             }
           </td>
@@ -57,7 +46,9 @@
       </tr>
     } @empty {
       <tr>
-        <td [attr.colspan]="colspan()" class="text-center">{{ 'COMMONS.NO_RECORDS' | translate }}</td>
+        <td [attr.colspan]="colspan()" class="text-center">
+          {{ 'COMMONS.NO_RECORDS' | translate }}
+        </td>
       </tr>
     }
   </tbody>

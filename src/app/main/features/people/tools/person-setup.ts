@@ -21,13 +21,13 @@ export const ENTITIES_PERSON_FORM: IPersonWebFormConfig = {
 };
 
 export const NATURAL_PERSON_LIST: IPersonWebListConfig = {
-  newRegistration: 'Cadastrar nova Pessoa Fisica',
-  title: 'Lista de Pessoa Fisica',
+  newRegistration: 'MAIN.FEATURES.PEOPLE.LIST.NATURAL.NEW',
+  title: 'MAIN.FEATURES.PEOPLE.LIST.NATURAL.TITLE',
 };
 
 export const ENTITIES_PERSON_LIST: IPersonWebListConfig = {
-  title: 'Lista de Pessoa Juridica',
-  newRegistration: 'Cadastrar nova Pessoa Juridica',
+  title: 'MAIN.FEATURES.PEOPLE.LIST.LEGAL.TITLE',
+  newRegistration: 'MAIN.FEATURES.PEOPLE.LIST.LEGAL.NEW',
 };
 
 const PATTERNS = {
@@ -38,45 +38,45 @@ const PATTERNS = {
 };
 
 export const applyNaturalPersonSchemaPath = (schema: any) => {
-  required(schema.nickname, { message: 'O campo apelido é obrigatório!' });
+  required(schema.nickname, { message: 'MAIN.FEATURES.PEOPLE.VALIDATION.NICKNAME_REQUIRED' });
 
-  required(schema.name, { message: 'O campo nome é obrigatório!' });
-  minLength(schema.name, 3, { message: 'O campo nome precisa no mínimo de 3 letras!' });
+  required(schema.name, { message: 'MAIN.FEATURES.PEOPLE.VALIDATION.NAME_REQUIRED' });
+  minLength(schema.name, 3, { message: 'MAIN.FEATURES.PEOPLE.VALIDATION.NAME_MIN_LENGTH' });
 
-  required(schema.federalDocument, { message: 'O campo CPF é obrigatório!' });
+  required(schema.federalDocument, { message: 'MAIN.FEATURES.PEOPLE.VALIDATION.CPF_REQUIRED' });
   pattern(schema.federalDocument, PATTERNS.CPF, {
-    message: 'O campo CPF precisa estar no padrão 000.000.000-00!',
+    message: 'MAIN.FEATURES.PEOPLE.VALIDATION.CPF_FORMAT',
   });
 
-  required(schema.stateDocument, { message: 'O campo RG é obrigatório!' });
+  required(schema.stateDocument, { message: 'MAIN.FEATURES.PEOPLE.VALIDATION.RG_REQUIRED' });
   pattern(schema.stateDocument, PATTERNS.RG, {
-    message: 'O campo RG precisa estar no padrão 00.000.000-0!',
+    message: 'MAIN.FEATURES.PEOPLE.VALIDATION.RG_FORMAT',
   });
 
-  required(schema.gender, { message: 'O campo gênero é obrigatório!' });
-  required(schema.date, { message: 'O campo data de nascimento é obrigatório!' });
+  required(schema.gender, { message: 'MAIN.FEATURES.PEOPLE.VALIDATION.GENDER_REQUIRED' });
+  required(schema.date, { message: 'MAIN.FEATURES.PEOPLE.VALIDATION.BIRTH_DATE_REQUIRED' });
 
   applyAddressesSchemaPath(schema);
 };
 
 export const applyLegalPersonSchemaPath = (schema: any) => {
-  required(schema.nickname, { message: 'O campo nome fantasia é obrigatório!' });
-  required(schema.name, { message: 'O campo razão social é obrigatório!' });
-  minLength(schema.name, 3, { message: 'O campo razão social precisa no mínimo de 3 letras!' });
+  required(schema.nickname, { message: 'MAIN.FEATURES.PEOPLE.VALIDATION.NICKNAME_REQUIRED' });
+  required(schema.name, { message: 'MAIN.FEATURES.PEOPLE.VALIDATION.COMPANY_NAME_REQUIRED' });
+  minLength(schema.name, 3, { message: 'MAIN.FEATURES.PEOPLE.VALIDATION.NAME_MIN_LENGTH' });
 
-  required(schema.federalDocument, { message: 'O campo CNPJ é obrigatório!' });
+  required(schema.federalDocument, { message: 'MAIN.FEATURES.PEOPLE.VALIDATION.CNPJ_REQUIRED' });
   pattern(schema.federalDocument, PATTERNS.CNPJ, {
-    message: 'O campo CNPJ precisa estar no padrão 00.000.000/0000-00!',
+    message: 'MAIN.FEATURES.PEOPLE.VALIDATION.CNPJ_FORMAT',
   });
 
-  required(schema.stateDocument, { message: 'O campo Inscriçao Estadual é obrigatório!' });
+  required(schema.stateDocument, { message: 'MAIN.FEATURES.PEOPLE.VALIDATION.STATE_ID_REQUIRED' });
   pattern(schema.stateDocument, PATTERNS.IE, {
-    message: 'O campo IE precisa estar no padrão 000.000.000.000!',
+    message: 'MAIN.FEATURES.PEOPLE.VALIDATION.STATE_ID_FORMAT',
   });
 
   applyAddressesSchemaPath(schema);
 };
 
 export const applyAddressesSchemaPath = (schema: any) => {
-  minLength(schema.addresses, 1, { message: 'É necessário cadastrar pelo menos um endereço!' });
+  minLength(schema.addresses, 1, { message: 'MAIN.FEATURES.ADDRESSES.VALIDATION.MIN_LENGTH' });
 };
